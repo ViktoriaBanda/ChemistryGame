@@ -1,0 +1,40 @@
+<div class="laboratory">
+  <!-- Колбы с кислотами -->
+  <div class="acids-container">
+    <h3>Кислоты:</h3>
+    <div class="elements-list">
+      <div class="element acid"
+           *ngFor="let acid of acids"
+           [class.selected]="selectedAcid?.id === acid.id"
+           (click)="selectAcid(acid)">
+        <app-chemical-container [element]="acid"></app-chemical-container>
+        <div class="label">{{ acid.name }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Результат реакции -->
+  <app-reaction-result
+    [reagent1]="currentReaction.acid"
+    [reagent2]="currentReaction.indicator"
+    [resultColor]="currentReaction.resultColor"
+    [animating]="animating">
+  </app-reaction-result>
+
+  <!-- Индикаторы -->
+  <div class="indicators-container">
+    <h3>Индикаторы:</h3>
+    <div class="elements-list">
+      <div class="element indicator"
+           *ngFor="let indicator of indicators"
+           [class.selected]="selectedIndicator?.id === indicator.id"
+           (click)="selectIndicator(indicator)">
+        <app-chemical-container [element]="indicator"></app-chemical-container>
+        <div class="label">{{ indicator.name }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="reset-button">
+  <button (click)="resetExperiment()">Сбросить эксперимент</button> 

@@ -30,65 +30,9 @@
       </div>
     </div>
 
-    <!-- Лаборатория -->
-    <div class="laboratory" *ngIf="selectedSubtopic">
-      <!-- Колбы с кислотами -->
-      <div class="acids-container">
-        <h3>Кислоты:</h3>
-        <div class="elements-list">
-          <div class="element acid"
-               *ngFor="let acid of acids"
-               [class.selected]="selectedAcid?.id === acid.id"
-               (click)="selectAcid(acid)">
-            <div class="flask">
-              <svg viewBox="0 0 100 160">
-                <path class="flask-outline" d="M30,20 L30,80 C30,110 70,110 70,80 L70,20 M20,20 L80,20" />
-                <path class="flask-liquid" [style.fill]="acid.color" d="M30,80 C30,110 70,110 70,80 L70,40 L30,40 Z" />
-              </svg>
-            </div>
-            <div class="label">{{ acid.name }}</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Центральная колба с результатом -->
-      <div class="result-container">
-        <h3>Результат реакции:</h3>
-        <div class="result-flask">
-          <svg viewBox="0 0 120 200">
-            <path class="flask-outline result-flask-path" d="M30,20 L30,100 C30,150 90,150 90,100 L90,20 M20,20 L100,20" />
-            <path class="flask-liquid" [ngClass]="{'animating': animating}" [style.fill]="currentReaction.resultColor" d="M30,100 C30,150 90,150 90,100 L90,40 L30,40 Z" />
-          </svg>
-
-          <div class="info-panel" *ngIf="currentReaction.acid && currentReaction.indicator">
-            <p>{{ currentReaction.acid.name }} + {{ currentReaction.indicator.name }}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Индикаторы -->
-      <div class="indicators-container">
-        <h3>Индикаторы:</h3>
-        <div class="elements-list">
-          <div class="element indicator"
-               *ngFor="let indicator of indicators"
-               [class.selected]="selectedIndicator?.id === indicator.id"
-               (click)="selectIndicator(indicator)">
-            <div class="pipette">
-              <svg viewBox="0 0 50 150">
-                <path class="pipette-outline" d="M25,10 L25,60 M15,60 C15,75 35,75 35,60 L35,70 C35,90 15,90 15,70 Z" />
-                <circle class="pipette-liquid" [style.fill]="indicator.color" cx="25" cy="75" r="10" />
-                <path class="pipette-tip" d="M20,90 L25,130 L30,90" />
-              </svg>
-            </div>
-            <div class="label">{{ indicator.name }}</div>
-          </div>
-        </div>
-      </div>
+    <!-- Область для отображения компонентов -->
+    <div class="content-area">
+      <router-outlet></router-outlet>
     </div>
-  </div>
-
-  <div class="reset-button" *ngIf="selectedSubtopic">
-    <button (click)="resetExperiment()">Сбросить эксперимент</button>
   </div>
 </div>

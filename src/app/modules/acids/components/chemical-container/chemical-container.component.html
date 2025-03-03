@@ -1,0 +1,71 @@
+<ng-container [ngSwitch]="element.container">
+  <!-- Коническая колба -->
+  <div class="flask" *ngSwitchCase="ContainerType.FLASK">
+    <svg viewBox="0 0 100 140">
+      <!-- Основная часть колбы -->
+      <path class="flask-outline" d="M40,10 C40,10 42,30 42,30 C42,30 25,100 25,100 C25,120 75,120 75,100 C75,100 58,30 58,30 C58,30 60,10 60,10" />
+      <!-- Жидкость -->
+      <path class="flask-liquid" [style.fill]="element.color"
+            d="M27,100 C27,118 73,118 73,100 L63,60 L37,60 Z" />
+    </svg>
+  </div>
+
+  <!-- Флакон с капельницей -->
+  <div class="pipette" *ngSwitchCase="ContainerType.PIPETTE">
+    <svg viewBox="0 0 100 140">
+      <!-- Крышка с капельницей -->
+      <path class="bottle-cap" d="M30,5 L70,5 L70,15 L30,15 Z" />
+      <path class="dropper" d="M45,15 L55,15 L55,20 Q50,22 45,20 Z M46,20 L54,20 L54,90 Q50,92 46,90 Z" />
+
+      <!-- Горлышко флакона -->
+      <path class="bottle-neck" d="M28,15 L72,15 L70,30 L30,30 Z" />
+
+      <!-- Основная часть флакона -->
+      <path class="bottle-outline"
+            d="M25,30 L75,30
+               L73,110
+               C73,120 27,120 27,110
+               L25,30" />
+
+      <!-- Жидкость -->
+      <path class="bottle-liquid" [style.fill]="element.color"
+            d="M27,110
+               C27,120 73,120 73,110
+               L71,50
+               L29,50
+               L27,110" />
+
+      <!-- Блики на стекле -->
+      <path class="bottle-highlight" d="M33,35 L37,35 L37,105 L33,105"
+            style="fill: rgba(255,255,255,0.2)" />
+
+      <!-- Дополнительные детали -->
+      <path class="bottle-ring" d="M28,28 L72,28"
+            style="fill: none; stroke: #2c3e50; stroke-width: 1" />
+    </svg>
+  </div>
+
+  <!-- Пробирка -->
+  <div class="test-tube" *ngSwitchCase="ContainerType.TEST_TUBE">
+    <svg viewBox="0 0 40 120">
+      <path class="test-tube-outline" d="M15,10 L15,90 C15,100 25,100 25,90 L25,10" />
+      <path class="test-tube-liquid" [style.fill]="element.color" d="M15,90 C15,100 25,100 25,90 L25,50 L15,50 Z" />
+    </svg>
+  </div>
+
+  <!-- Стакан -->
+  <div class="beaker" *ngSwitchCase="ContainerType.BEAKER">
+    <svg viewBox="0 0 100 120">
+      <path class="beaker-outline" d="M20,20 L20,100 L80,100 L80,20" />
+      <path class="beaker-liquid" [style.fill]="element.color" d="M20,100 L80,100 L80,60 L20,60 Z" />
+    </svg>
+  </div>
+
+  <!-- Кристаллизатор -->
+  <div class="crystallizer" *ngSwitchCase="ContainerType.CRYSTALLIZER">
+    <svg viewBox="0 0 120 80">
+      <path class="crystallizer-outline" d="M10,10 L10,70 L110,70 L110,10" />
+      <path class="crystallizer-liquid" [style.fill]="element.color" d="M10,70 L110,70 L110,40 L10,40 Z" />
+    </svg>
+  </div>
+</ng-container>
