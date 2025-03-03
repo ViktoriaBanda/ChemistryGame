@@ -3,17 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ChemistryGameComponent } from "./modules/chemistry-game/chemistry-game.component";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
     AppComponent,
-  const routes: Routes = [
-  {path: '', component: ChemistryGameComponent},
-]
+    ChemistryGameComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
