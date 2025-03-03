@@ -5,9 +5,8 @@
       <path class="flask-outline result-flask-path" d="M30,20 L30,100 C30,150 90,150 90,100 L90,20 M20,20 L100,20" />
       <path class="flask-liquid" [ngClass]="{'animating': animating}" [style.fill]="resultColor" d="M30,100 C30,150 90,150 90,100 L90,40 L30,40 Z" />
     </svg>
-
-    <div class="info-panel" *ngIf="reactionDescription">
-      <p>{{ reactionDescription }}</p>
-    </div>
   </div>
-</div> 
+</div>
+<div class="info-panel" *ngIf="reactionDescription">
+  <p>{{ reactionDescription }}</p>
+</div>
