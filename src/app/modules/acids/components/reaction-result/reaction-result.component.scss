@@ -17,10 +17,25 @@
   }
 
   .result-flask {
-    width: 120px;
+    width: 200px;
     height: 200px;
     margin: 20px 0;
     position: relative;
+
+    svg {
+      width: 100%;
+      height: 100%;
+
+      g, circle, .gas {
+        display: none;
+      }
+
+      &.has-gas {
+        g, circle, .gas {
+          display: block;
+        }
+      }
+    }
   }
 }
 
@@ -35,12 +50,6 @@
   p {
     margin: 5px 0;
   }
-}
-
-.flask-outline, .result-flask-path {
-  fill: none;
-  stroke: #2c3e50;
-  stroke-width: 3;
 }
 
 .flask-liquid {

@@ -31,21 +31,21 @@ export class AcidsWithIndicatorsComponent implements OnInit {
         id: 1,
         name: 'Соляная кислота (HCl)',
         type: ChemicalType.ACID,
-        color: 'rgba(240, 240, 240, 0.8)',
+        color: 'rgba(255, 255, 255, 0.6)',
         container: ContainerType.FLASK
       },
       {
         id: 2,
         name: 'Серная кислота (H2SO4)',
         type: ChemicalType.ACID,
-        color: 'rgba(240, 240, 240, 0.8)',
+        color: 'rgba(255, 255, 255, 0.6)',
         container: ContainerType.FLASK
       },
       {
         id: 3,
         name: 'Азотная кислота (HNO3)',
         type: ChemicalType.ACID,
-        color: 'rgba(240, 240, 240, 0.8)',
+        color: 'rgba(255, 255, 255, 0.6)',
         container: ContainerType.FLASK
       },
     ];
@@ -55,39 +55,36 @@ export class AcidsWithIndicatorsComponent implements OnInit {
         id: 5,
         name: 'Лакмус',
         type: ChemicalType.INDICATOR,
-        color: 'purple',
+        color: 'rgba(138, 43, 226, 1)',
         container: ContainerType.PIPETTE,
         reactions: {
-          'Соляная кислота (HCl)': 'red',
-          'Серная кислота (H2SO4)': 'red',
-          'Азотная кислота (HNO3)': 'red',
-          'Уксусная кислота (CH3COOH)': 'pink'
+          'Соляная кислота (HCl)': 'rgba(220, 20, 60, 1)',
+          'Серная кислота (H2SO4)': 'rgba(220, 20, 60, 1)',
+          'Азотная кислота (HNO3)': 'rgba(220, 20, 60, 1)',
         }
       },
       {
         id: 6,
         name: 'Метиловый оранжевый',
         type: ChemicalType.INDICATOR,
-        color: 'orange',
+        color: 'rgba(255, 165, 0, 1)',
         container: ContainerType.PIPETTE,
         reactions: {
-          'Соляная кислота (HCl)': 'red',
-          'Серная кислота (H2SO4)': 'red',
-          'Азотная кислота (HNO3)': 'red',
-          'Уксусная кислота (CH3COOH)': 'orange-red'
+          'Соляная кислота (HCl)': 'rgba(220, 20, 60, 1)',
+          'Серная кислота (H2SO4)': 'rgba(220, 20, 60, 1)',
+          'Азотная кислота (HNO3)': 'rgba(220, 20, 60, 1)',
         }
       },
       {
         id: 7,
         name: 'Фенолфталеин',
         type: ChemicalType.INDICATOR,
-        color: 'transparent',
+        color: 'rgba(255, 255, 255, 0.6)',
         container: ContainerType.PIPETTE,
         reactions: {
-          'Соляная кислота (HCl)': 'transparent',
-          'Серная кислота (H2SO4)': 'transparent',
-          'Азотная кислота (HNO3)': 'transparent',
-          'Уксусная кислота (CH3COOH)': 'transparent'
+          'Соляная кислота (HCl)': 'rgba(255, 255, 255, 0.6)',
+          'Серная кислота (H2SO4)': 'rgba(255, 255, 255, 0.6)',
+          'Азотная кислота (HNO3)': 'rgba(255, 255, 255, 0.6)',
         }
       },
     ];
