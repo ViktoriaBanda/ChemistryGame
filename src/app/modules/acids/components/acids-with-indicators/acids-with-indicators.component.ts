@@ -69,7 +69,7 @@ export class AcidsWithIndicatorsComponent implements OnInit {
       },
       {
         id: 6,
-        name: 'Метиловый оранжевый',
+        name: 'Метилоранж',
         type: ChemicalType.INDICATOR,
         color: 'rgba(255, 165, 0, 1)',
         container: ContainerType.PIPETTE,

@@ -50,20 +50,21 @@
   .element {
     display: flex;
     align-items: center;
-    padding: 10px;
+
+    padding: 16px;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.2s ease;
-    background-color: #f9f9f9;
+    background-color: rgba(164, 176, 195, 0.1);
 
     &:hover {
-      background-color: #f0f0f0;
+      background-color: #4C54F41A;
       transform: translateY(-2px);
     }
 
     &.selected {
-      background-color: #e3f2fd;
-      box-shadow: 0 0 0 2px #2196f3;
+      background-color: #4C54F41A;
+      box-shadow: 0 0 0 2px #4C54F4;
     }
 
     .flask, .pipette {
@@ -74,7 +75,8 @@
 
     .label {
       flex: 1;
-      font-size: 0.9rem;
+      font-size: 18px;
+      text-align: center;
     }
   }
 }
