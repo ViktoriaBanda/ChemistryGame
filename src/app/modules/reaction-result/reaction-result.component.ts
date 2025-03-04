@@ -14,6 +14,7 @@ export class ReactionResultComponent {
   @Input() isResultAlreadyExist = false;
 
   @Output() reset = new EventEmitter<void>();
+  @Output() indicatorSelected = new EventEmitter<number>();
 
   isTooltipVisible = false;
   tooltipText = '';
@@ -24,6 +25,7 @@ export class ReactionResultComponent {
 
   onSelectIndicator(item: string): void {
     this.selectedIndicator = this.indicators.findIndex(complexity => complexity === item);
+    this.indicatorSelected.emit(this.selectedIndicator);
   }
 
   get showGas(): boolean {

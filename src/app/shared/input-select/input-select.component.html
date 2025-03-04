@@ -1,8 +1,7 @@
 <div class="head" (click)="changeVisability()" [ngClass]="{disabled: disabled}" #head>
-  <span *ngIf="defaultRender && selectedItem" aria-hidden="true" class="title overflow-text">{{!nameOfDict ? selectedItem : selectedItem[nameOfDict]}}</span>
-  <span *ngIf="!defaultRender" aria-hidden="true" class="title overflow-text">
-    <div [innerHTML]="getPageTypeSvg(selectedItem.icon)"></div>
-    {{selectedItem.titlle}}
+  <span aria-hidden="true" class="title overflow-text">
+    <div [innerHTML]="getPageTypeSvg(selectedItem)"></div>
+    {{selectedItem}}
   </span>
   <span *ngIf="!selectedItem" class="placeholder">{{placeholder}}</span>
 <div class="right">
@@ -13,21 +12,13 @@
 </div>
 <div @openListTriger class="body scrollbar" *ngIf="listVisability" #list>
   <ng-scrollbar [autoHeightDisabled]="false" [appearance]="'standard'">
-    <div class="items" *ngIf="defaultRender">
+    <div class="items">
       <span
         class="item"
         *ngFor="let item of items"
-        (click)="onSelectItem(item)"
-      >{{!nameOfDict ? item : item[nameOfDict]}}</span>
-    </div>
-    <div class="items" *ngIf="!defaultRender">
-      <span
-        class="item"
-        *ngFor="let item of items"
-        (click)="onSelectItem(item)"
-        >
-        <div [innerHTML]="getPageTypeSvg(item.icon)"></div>
-        {{item.titlle}}
+        (click)="onSelectItem(item)">
+        <div [innerHTML]="getPageTypeSvg(item)"></div>
+        {{item}}
       </span>
     </div>
   </ng-scrollbar>

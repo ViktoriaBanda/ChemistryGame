@@ -48,6 +48,7 @@
       [result]="currentReaction.result"
       [animating]="animating"
       [isResultAlreadyExist]="isResultAlreadyExist"
+      (indicatorSelected)="selectReagent(null, $event)"
       (reset)="resetExperiment()">
     </app-reaction-result>
   </div>

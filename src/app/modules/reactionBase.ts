@@ -65,7 +65,7 @@ export abstract class ReactionBase {
     this.updateResult();
   }
 
-  selectReagent(indicator: ChemicalElement) {
+  selectReagent(indicator: ChemicalElement, index?: number) {
     if (this.selectedAcid && this.selectedReagent) {
       this.setResultIsFull();
       return;
@@ -101,7 +101,7 @@ export abstract class ReactionBase {
     };
   }
 
-  private setResultIsFull(): void {
+  setResultIsFull(): void {
     this.isResultAlreadyExist = true;
     setTimeout(() => {
       this.isResultAlreadyExist = false;
