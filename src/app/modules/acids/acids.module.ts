@@ -6,6 +6,8 @@ import { AcidsWithMetalsComponent } from './components/acids-with-metals/acids-w
 import { AcidsWithBasesComponent } from './components/acids-with-bases/acids-with-bases.component';
 import { ReactionResultComponent } from './components/reaction-result/reaction-result.component';
 import { ChemicalContainerComponent } from './components/chemical-container/chemical-container.component';
+import { AcidsWithOxidesComponent } from "./components/acids-with-oxides/acids-with-oxides.component";
+import { AcidsWithSaltsComponent } from "./components/acids-with-salts/acids-with-salts.component";
 
 @NgModule({
   declarations: [
@@ -13,11 +15,13 @@ import { ChemicalContainerComponent } from './components/chemical-container/chem
     AcidsWithMetalsComponent,
     AcidsWithBasesComponent,
     ReactionResultComponent,
-    ChemicalContainerComponent
+    ChemicalContainerComponent,
+    AcidsWithOxidesComponent,
+    AcidsWithSaltsComponent
   ],
   imports: [
     CommonModule,
     AcidsRoutingModule
   ]
 })
-export class AcidsModule { } 
+export class AcidsModule { }

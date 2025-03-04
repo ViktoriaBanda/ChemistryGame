@@ -49,8 +49,18 @@ export class ChemistryGameComponent implements OnInit {
           },
           {
             id: 3,
+            name: 'Взаимодействие с основными оксидами',
+            route: 'oxides'
+          },
+          {
+            id: 4,
             name: 'Взаимодействие с основаниями',
             route: 'bases'
+          },
+          {
+            id: 5,
+            name: 'Взаимодействие с солями',
+            route: 'salts'
           }
         ]
       },
