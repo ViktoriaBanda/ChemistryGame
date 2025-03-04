@@ -37,7 +37,7 @@ export class AcidsWithOxidesComponent extends ReactionBase implements OnInit {
         container: ContainerType.JAR,
         reactions: {
           'Серная кислота (H2SO4)': {
-            color: 'rgba(0, 150, 255, 1)',
+            color: 'rgba(0, 150, 255, 0.8)',
           }
         }
       },
@@ -49,7 +49,7 @@ export class AcidsWithOxidesComponent extends ReactionBase implements OnInit {
         container: ContainerType.JAR,
         reactions: {
           'Серная кислота (H2SO4)': {
-            color: 'rgba(50, 180, 70, 1)'
+            color: 'rgba(50, 180, 70, 0.8)'
           },
         }
       }

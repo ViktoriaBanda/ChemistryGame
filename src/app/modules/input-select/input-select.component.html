@@ -1,0 +1,34 @@
+<div class="head" (click)="changeVisability()" [ngClass]="{disabled: disabled}" #head>
+  <span *ngIf="defaultRender && selectedItem" aria-hidden="true" class="title overflow-text">{{!nameOfDict ? selectedItem : selectedItem[nameOfDict]}}</span>
+  <span *ngIf="!defaultRender" aria-hidden="true" class="title overflow-text">
+    <div [innerHTML]="getPageTypeSvg(selectedItem.icon)"></div>
+    {{selectedItem.titlle}}
+  </span>
+  <span *ngIf="!selectedItem" class="placeholder">{{placeholder}}</span>
+<div class="right">
+  <svg [@openListArrowTriger]="listVisability? 'open' : 'close'" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 9.68787L12 15.6879L18 9.68787" [ngStyle]="{'stroke': !listVisability? '#6f727a80': '#4c54f4'}" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+</div>
+<div @openListTriger class="body scrollbar" *ngIf="listVisability" #list>
+  <ng-scrollbar [autoHeightDisabled]="false" [appearance]="'standard'">
+    <div class="items" *ngIf="defaultRender">
+      <span
+        class="item"
+        *ngFor="let item of items"
+        (click)="onSelectItem(item)"
+      >{{!nameOfDict ? item : item[nameOfDict]}}</span>
+    </div>
+    <div class="items" *ngIf="!defaultRender">
+      <span
+        class="item"
+        *ngFor="let item of items"
+        (click)="onSelectItem(item)"
+        >
+        <div [innerHTML]="getPageTypeSvg(item.icon)"></div>
+        {{item.titlle}}
+      </span>
+    </div>
+  </ng-scrollbar>
+</div>

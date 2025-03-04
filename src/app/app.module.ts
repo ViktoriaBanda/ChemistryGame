@@ -5,16 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChemistryGameComponent } from "./modules/chemistry-game/chemistry-game.component";
 import { CommonModule } from "@angular/common";
+import { InputSelectComponent } from "./modules/input-select/input-select.component";
+import { NgScrollbarModule } from "ngx-scrollbar";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChemistryGameComponent
+    ChemistryGameComponent,
+    InputSelectComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CommonModule
+    CommonModule,
+    NgScrollbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
