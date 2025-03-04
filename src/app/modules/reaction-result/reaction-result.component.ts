@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ChemicalElement, ReactionResult } from '../../models/chemistry.models';
+import { ChemicalElement, ReactionResult } from '../acids/models/chemistry.models';
 
 @Component({
   selector: 'app-reaction-result',
@@ -14,6 +14,10 @@ export class ReactionResultComponent {
   @Input() isResultAlreadyExist = false;
 
   @Output() reset = new EventEmitter<void>();
+
+  isTooltipVisible = false;
+  tooltipText = '';
+  tooltipPosition = {top: '0px', left: '0px'};
 
   get showGas(): boolean {
     return this.result.gas || false;
@@ -49,5 +53,23 @@ export class ReactionResultComponent {
     this.reagent1 = null;
     this.reagent2 = null;
     this.reset.emit();
+  }
+
+  hideTooltip(event?: TouchEvent) {
+    this.isTooltipVisible = false;
+  }
+
+  showTooltip(event: MouseEvent, text: string) {
+    this.isTooltipVisible = true;
+    this.tooltipText = text;
+    this.updateTooltipPosition(event);
+  }
+
+  updateTooltipPosition(event: MouseEvent) {
+    const tooltipOffset = 10;
+    this.tooltipPosition = {
+      top: `${event.clientY + tooltipOffset * 2}px`,
+      left: `${event.clientX + tooltipOffset}px`
+    };
   }
 }

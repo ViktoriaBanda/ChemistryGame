@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ChemicalElement, ContainerType } from '../../models/chemistry.models';
+import { ChemicalElement, ContainerType } from '../acids/models/chemistry.models';
 
 @Component({
   selector: 'app-chemical-container',
@@ -9,4 +9,4 @@ import { ChemicalElement, ContainerType } from '../../models/chemistry.models';
 export class ChemicalContainerComponent {
   @Input() element!: ChemicalElement;
   ContainerType = ContainerType; // для использования в шаблоне
-} 
+}

@@ -11,8 +11,7 @@ export enum ContainerType {
   FLASK,
   PIPETTE,
   TEST_TUBE,
-  BEAKER,
-  CRYSTAL,
+  JAR,
   METAL
 }
 

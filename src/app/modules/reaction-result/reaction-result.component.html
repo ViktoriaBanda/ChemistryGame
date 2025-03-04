@@ -29,11 +29,15 @@
         <circle style="fill:#FFFFFF;" cx="231.85" cy="395.15" r="19.803"/>
         <circle style="fill:#FFFFFF;" cx="196.71" cy="453.95" r="14"/>
       </g>
-      <g class="gas">
+      <g class="gas"
+         (mouseenter)="showTooltip($event, result.description)"
+         (mousemove)="updateTooltipPosition($event)"
+         (mouseleave)="hideTooltip()">
+        <rect x="200" y="0" width="100" height="100" fill="transparent"/>
         <circle style="fill:#EDEEF0;" cx="231.85" cy="90.89" r="16"/>
+        <circle style="fill:#DCDEE2;" cx="281.34" cy="53.86" r="16"/>
+        <circle style="fill:#EDEEF0;" cx="236.99" cy="18" r="16"/>
       </g>
-      <circle class="gas" style="fill:#DCDEE2;" cx="281.34" cy="53.86" r="16"/>
-      <circle class="gas" style="fill:#EDEEF0;" cx="236.99" cy="18" r="16"/>
       <circle class="precipitate" style="fill:#FFFFFF;" cx="312.32" cy="431.45" r="14"/>
       <circle class="precipitate" style="fill:#EDEEF0;" cx="312.32" cy="431.45" r="14"/>
     </svg>
@@ -43,4 +47,8 @@
       <span>{{ products }}</span>
     </div>
   </div>
+</div>
+
+<div class="tooltip" *ngIf="isTooltipVisible" [ngStyle]="tooltipPosition">
+  <span class="tooltip__text">{{ tooltipText }}</span>
 </div>

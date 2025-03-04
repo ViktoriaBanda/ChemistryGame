@@ -26,12 +26,12 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
           'Соляная кислота (HCl)': {
             color: 'rgba(255, 255, 255, 0.6)',
             gas: true,
-            description: 'Выделяется водород'
+            description: 'Водород (H2)'
           },
           'Серная кислота (H2SO4)': {
             color: 'rgba(255, 255, 255, 0.6)',
             gas: true,
-            description: 'Выделяется водород'
+            description: 'Водород (H2)'
           }
         }
       },
@@ -45,12 +45,12 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
           'Соляная кислота (HCl)': {
             color: 'rgba(255, 255, 255, 0.6)',
             gas: true,
-            description: 'Выделяется водород'
+            description: 'Водород (H2)'
           },
           'Серная кислота (H2SO4)': {
             color: 'rgba(255, 255, 255, 0.6)',
             gas: true,
-            description: 'Выделяется водород'
+            description: 'Водород (H2)'
           }
         }
       },
@@ -62,12 +62,10 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
         container: ContainerType.METAL,
         reactions: {
           'Соляная кислота (HCl)': {
-            color: 'rgba(255, 255, 255, 0.6)',
-            description: 'Реакция не идет'
+            color: 'rgba(255, 255, 255, 0.6)'
           },
           'Серная кислота (H2SO4)': {
-            color: 'rgba(173, 216, 230, 0.6)',
-            description: 'Образуется голубой раствор сульфата меди'
+            color: 'rgba(173, 216, 230, 0.6)'
           },
         }
       }

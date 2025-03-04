@@ -1,4 +1,61 @@
-<div class="acids-bases">
-  <h2>Взаимодействие кислот с оксидами</h2>
-  <p>Этот раздел находится в разработке</p>
+<div class="laboratory-container">
+  <!-- Левая панель с веществами -->
+  <div class="substances-panel">
+    <div class="substance-block">
+      <div class="group-header" (click)="toggleGroup('acids')">
+        <h3>Кислоты</h3>
+        <button [class.reverse]="!isGroupExpanded['acids']">
+          <svg class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+               fill="none">
+            <path d="M18 15L12 9L6 15" stroke="black" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="elements-list" [class.expanded]="isGroupExpanded['acids']">
+        <div class="element acid"
+             *ngFor="let acid of acids"
+             [class.selected]="selectedAcid?.id === acid.id"
+             (click)="selectAcid(acid)">
+          <app-chemical-container [element]="acid"></app-chemical-container>
+          <div class="label">{{ acid.name }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="substance-block">
+      <div class="group-header" (click)="toggleGroup('metals')">
+        <h3>Металлы</h3>
+        <button [class.reverse]="!isGroupExpanded['metals']">
+          <svg class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+               fill="none">
+            <path d="M18 15L12 9L6 15" stroke="black" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="elements-list" [class.expanded]="isGroupExpanded['metals']">
+        <div class="element acid"
+             *ngFor="let oxide of oxides"
+             [class.selected]="selectedReagent?.id === oxide.id"
+             (click)="selectReagent(oxide)">
+          <app-chemical-container [element]="oxide"></app-chemical-container>
+          <div class="label">{{ oxide.name }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Правая часть -->
+  <div class="main-content">
+    <!-- Результат реакции -->
+    <app-reaction-result
+      [reagent1]="currentReaction.first"
+      [reagent2]="currentReaction.second"
+      [result]="currentReaction.result"
+      [animating]="animating"
+      [isResultAlreadyExist]="isResultAlreadyExist"
+      (reset)="resetExperiment()">
+    </app-reaction-result>
+  </div>
 </div>
