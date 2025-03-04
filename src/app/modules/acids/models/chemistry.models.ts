@@ -11,7 +11,7 @@ export enum ContainerType {
   PIPETTE,
   TEST_TUBE,
   BEAKER,
-  CRYSTALLIZER
+  CRYSTAL
 }
 
 export interface ChemicalElement {
@@ -24,7 +24,7 @@ export interface ChemicalElement {
 }
 
 export interface Reaction {
-  acid: ChemicalElement | null;
+  metal: ChemicalElement | null;
   indicator: ChemicalElement | null;
   resultColor: string;
-} 
+}

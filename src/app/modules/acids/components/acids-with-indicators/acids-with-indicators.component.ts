@@ -14,7 +14,7 @@ export class AcidsWithIndicatorsComponent implements OnInit {
   selectedIndicator: ChemicalElement | null = null;
 
   currentReaction: Reaction = {
-    acid: null,
+    metal: null,
     indicator: null,
     resultColor: 'transparent'
   };
@@ -62,9 +62,9 @@ export class AcidsWithIndicatorsComponent implements OnInit {
         color: 'rgba(138, 43, 226, 1)',
         container: ContainerType.PIPETTE,
         reactions: {
-          'Соляная кислота (HCl)': 'rgba(220, 20, 60, 1)',
-          'Серная кислота (H2SO4)': 'rgba(220, 20, 60, 1)',
-          'Азотная кислота (HNO3)': 'rgba(220, 20, 60, 1)',
+          'Соляная кислота (HCl)': 'rgba(220, 20, 60, 0.8)',
+          'Серная кислота (H2SO4)': 'rgba(220, 20, 60, 0.8)',
+          'Азотная кислота (HNO3)': 'rgba(220, 20, 60, 0.8)',
         }
       },
       {
@@ -74,9 +74,9 @@ export class AcidsWithIndicatorsComponent implements OnInit {
         color: 'rgba(255, 165, 0, 1)',
         container: ContainerType.PIPETTE,
         reactions: {
-          'Соляная кислота (HCl)': 'rgba(220, 20, 60, 1)',
-          'Серная кислота (H2SO4)': 'rgba(220, 20, 60, 1)',
-          'Азотная кислота (HNO3)': 'rgba(220, 20, 60, 1)',
+          'Соляная кислота (HCl)': 'rgba(220, 20, 60, 0.8)',
+          'Серная кислота (H2SO4)': 'rgba(220, 20, 60, 0.8)',
+          'Азотная кислота (HNO3)': 'rgba(220, 20, 60, 0.8)',
         }
       },
       {
@@ -101,7 +101,7 @@ export class AcidsWithIndicatorsComponent implements OnInit {
     }
 
     this.selectedAcid = acid;
-    this.currentReaction.acid = acid;
+    this.currentReaction.metal = acid;
     this.updateResult();
   }
 
@@ -117,13 +117,16 @@ export class AcidsWithIndicatorsComponent implements OnInit {
   }
 
   updateResult() {
-    if (this.currentReaction.acid && this.currentReaction.indicator) {
+    if (this.currentReaction.metal && this.currentReaction.indicator) {
       const reactions = this.currentReaction.indicator.reactions || {};
-      const resultColor = reactions[this.currentReaction.acid.name];
+      const resultColor = reactions[this.currentReaction.metal.name];
       this.animateColorChange(resultColor);
-    } else if (this.currentReaction.acid) {
+    } else if (this.currentReaction.metal) {
       this.animating = false;
-      this.currentReaction.resultColor = this.currentReaction.acid.color;
+      this.currentReaction.resultColor = this.currentReaction.metal.color;
+    }
+    else {
+      this.animating = false;
     }
   }
 
@@ -138,7 +141,7 @@ export class AcidsWithIndicatorsComponent implements OnInit {
     this.selectedAcid = null;
     this.selectedIndicator = null;
     this.currentReaction = {
-      acid: null,
+      metal: null,
       indicator: null,
       resultColor: 'transparent'
     };
