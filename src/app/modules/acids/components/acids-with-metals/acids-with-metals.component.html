@@ -37,8 +37,8 @@
       <div class="elements-list" [class.expanded]="isGroupExpanded['metals']">
         <div class="element acid"
              *ngFor="let metal of metals"
-             [class.selected]="selectedMetal?.id === metal.id"
-             (click)="selectMetal(metal)">
+             [class.selected]="selectedReagent?.id === metal.id"
+             (click)="selectReagent(metal)">
           <app-chemical-container [element]="metal"></app-chemical-container>
           <div class="label">{{ metal.name }}</div>
         </div>
