@@ -19,6 +19,13 @@ export class ReactionResultComponent {
   tooltipText = '';
   tooltipPosition = {top: '0px', left: '0px'};
 
+  indicators: string[] = ['Лакмус', 'Метилоранж', 'Фенолфталеин'];
+  selectedIndicator: number;
+
+  onSelectIndicator(item: string): void {
+    this.selectedIndicator = this.indicators.findIndex(complexity => complexity === item);
+  }
+
   get showGas(): boolean {
     return this.result.gas || false;
   }

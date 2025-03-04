@@ -18,11 +18,12 @@ ng-scrollbar{
   margin-right: 4px;
 }
 .head{
+  min-width: 152px;
   width: inherit;
   background: #FFFFFF;
   border: 1px solid #E0E2E7;
   border-radius: 5px;
-  padding: 12px 14px;
+  padding: 10px 6px 10px 10px;
 
   display: flex;
   justify-content: space-between;
@@ -49,8 +50,6 @@ ng-scrollbar{
   }
 
   .right{
-    margin-right: 8px;
-
     display: flex;
     align-items: center;
   }

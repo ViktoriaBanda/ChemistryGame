@@ -33,6 +33,14 @@
     }
   }
 
+  &__center {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    flex-wrap: wrap;
+  }
+
   .result-flask {
     width: 300px;
     height: 300px;

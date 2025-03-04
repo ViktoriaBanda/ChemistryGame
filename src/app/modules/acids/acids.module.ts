@@ -8,6 +8,8 @@ import { ReactionResultComponent } from '../reaction-result/reaction-result.comp
 import { ChemicalContainerComponent } from '../chemical-container/chemical-container.component';
 import { AcidsWithOxidesComponent } from "./components/acids-with-oxides/acids-with-oxides.component";
 import { AcidsWithSaltsComponent } from "./components/acids-with-salts/acids-with-salts.component";
+import { AppModule } from "../../app.module";
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { AcidsWithSaltsComponent } from "./components/acids-with-salts/acids-wit
   ],
   imports: [
     CommonModule,
-    AcidsRoutingModule
+    AcidsRoutingModule,
+    SharedModule,
   ]
 })
 export class AcidsModule { }
