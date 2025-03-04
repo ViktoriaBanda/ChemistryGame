@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ChemicalElement, Reaction, ChemicalType, ContainerType } from '../../models/chemistry.models';
+import { ChemicalElement, Reaction, ChemicalType, ContainerType, ReactionResult } from '../../models/chemistry.models';
 
 @Component({
   selector: 'app-acids-with-indicators',
@@ -16,7 +16,7 @@ export class AcidsWithIndicatorsComponent implements OnInit {
   currentReaction: Reaction = {
     first: null,
     second: null,
-    resultColor: 'transparent'
+    result: {}
   };
 
   animating = false;
@@ -73,11 +73,18 @@ export class AcidsWithIndicatorsComponent implements OnInit {
         color: 'rgba(138, 43, 226, 1)',
         container: ContainerType.PIPETTE,
         reactions: {
-          'Соляная кислота (HCl)': 'rgba(220, 20, 60, 0.8)',
-          'Серная кислота (H2SO4)': 'rgba(220, 20, 60, 0.8)',
-          'Азотная кислота (HNO3)': 'rgba(220, 20, 60, 0.8)',
-          'Гидроксид натрия (NaOH)': 'rgba(0, 0, 255, 0.8)',
-          'Гидроксид калия (KOH)': 'rgba(0, 0, 255, 0.8)',
+          'Соляная кислота (HCl)': {
+            color: 'rgba(220, 20, 60, 0.8)',
+            description: 'Лакмус окрашивается в красный цвет'
+          },
+          'Серная кислота (H2SO4)': {
+            color: 'rgba(220, 20, 60, 0.8)',
+            description: 'Лакмус окрашивается в красный цвет'
+          },
+          'Азотная кислота (HNO3)': {
+            color: 'rgba(220, 20, 60, 0.8)',
+            description: 'Лакмус окрашивается в красный цвет'
+          }
         }
       },
       {
@@ -87,11 +94,18 @@ export class AcidsWithIndicatorsComponent implements OnInit {
         color: 'rgba(255, 165, 0, 1)',
         container: ContainerType.PIPETTE,
         reactions: {
-          'Соляная кислота (HCl)': 'rgba(220, 20, 60, 0.8)',
-          'Серная кислота (H2SO4)': 'rgba(220, 20, 60, 0.8)',
-          'Азотная кислота (HNO3)': 'rgba(220, 20, 60, 0.8)',
-          'Гидроксид натрия (NaOH)': 'rgba(255, 165, 0, 0.8)',
-          'Гидроксид калия (KOH)': 'rgba(255, 165, 0, 0.8)',
+          'Соляная кислота (HCl)': {
+            color: 'rgba(220, 20, 60, 0.8)',
+            description: 'Метилоранж окрашивается в красный цвет'
+          },
+          'Серная кислота (H2SO4)': {
+            color: 'rgba(220, 20, 60, 0.8)',
+            description: 'Метилоранж окрашивается в красный цвет'
+          },
+          'Азотная кислота (HNO3)': {
+            color: 'rgba(220, 20, 60, 0.8)',
+            description: 'Метилоранж окрашивается в красный цвет'
+          }
         }
       },
       {
@@ -101,11 +115,18 @@ export class AcidsWithIndicatorsComponent implements OnInit {
         color: 'rgba(255, 255, 255, 0.6)',
         container: ContainerType.PIPETTE,
         reactions: {
-          'Соляная кислота (HCl)': 'rgba(255, 255, 255, 0.6)',
-          'Серная кислота (H2SO4)': 'rgba(255, 255, 255, 0.6)',
-          'Азотная кислота (HNO3)': 'rgba(255, 255, 255, 0.6)',
-          'Гидроксид натрия (NaOH)': 'rgba(255, 192, 203, 0.8)',
-          'Гидроксид калия (KOH)': 'rgba(255, 192, 203, 0.8)',
+          'Соляная кислота (HCl)': {
+            color: 'rgba(255, 255, 255, 0.6)',
+            description: 'Фенолфталеин остается бесцветным'
+          },
+          'Серная кислота (H2SO4)': {
+            color: 'rgba(255, 255, 255, 0.6)',
+            description: 'Фенолфталеин остается бесцветным'
+          },
+          'Азотная кислота (HNO3)': {
+            color: 'rgba(255, 255, 255, 0.6)',
+            description: 'Фенолфталеин остается бесцветным'
+          }
         }
       },
     ];
@@ -136,20 +157,20 @@ export class AcidsWithIndicatorsComponent implements OnInit {
   updateResult() {
     if (this.currentReaction.first && this.currentReaction.second) {
       const reactions = this.currentReaction.second.reactions || {};
-      const resultColor = reactions[this.currentReaction.first.name];
-      this.animateColorChange(resultColor);
+      const result = reactions[this.currentReaction.first.name];
+      this.animateResult(result);
     } else if (this.currentReaction.first) {
       this.animating = false;
-      this.currentReaction.resultColor = this.currentReaction.first.color;
+      this.currentReaction.result = { color: this.currentReaction.first.color };
     }
     else {
       this.animating = false;
     }
   }
 
-  animateColorChange(newColor: string) {
+  animateResult(result: ReactionResult) {
     this.animating = true;
-    this.currentReaction.resultColor = newColor;
+    this.currentReaction.result = result;
     this._changeDetectorRef.detectChanges();
   }
 
@@ -160,7 +181,7 @@ export class AcidsWithIndicatorsComponent implements OnInit {
     this.currentReaction = {
       first: null,
       second: null,
-      resultColor: 'transparent'
+      result: {}
     };
   }
 

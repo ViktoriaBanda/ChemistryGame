@@ -12,7 +12,7 @@
     </button>
   </div>
   <div class="result-flask">
-    <svg viewBox="0 0 512 512" [class.has-gas]="false">
+    <svg viewBox="0 0 512 512" [class.has-gas]="showGas" [ngClass]="{'animating': animating}">
       <path style="fill:#EDEEF0;"
             d="M191.01,141.325v119.041l-66.479,177.799c-6.276,16.785-3.925,35.596,6.289,50.321  C141.035,503.209,157.832,512,175.752,512h160.496c17.93,0,34.731-8.797,44.945-23.534c10.213-14.737,12.553-33.558,6.259-50.346  l-66.645-177.759V141.325H191.01z"/>
       <path style="fill:#EDEEF0;"
@@ -25,27 +25,22 @@
       <rect x="256.12" y="161.93" style="fill:#B7B9C0;" width="64.68" height="26.27"/>
       <rect x="171.12" y="129.24" style="fill:#EDEEF0;" width="169.57" height="40.29"/>
       <rect x="256.12" y="129.24" style="fill:#DCDEE2;" width="84.57" height="40.29"/>
-      <g>
+      <g class="precipitate">
         <circle style="fill:#FFFFFF;" cx="231.85" cy="395.15" r="19.803"/>
         <circle style="fill:#FFFFFF;" cx="196.71" cy="453.95" r="14"/>
       </g>
-      <circle style="fill:#9ED04D;" cx="224.71" cy="312.87" r="14"/>
-      <circle style="fill:#86B143;" cx="288.47" cy="292.82" r="14"/>
-      <g>
-        <circle style="fill:#9ED04D;" cx="256.12" cy="226.58" r="14"/>
-        <circle style="fill:#9ED04D;" cx="231.85" cy="90.89" r="14"/>
+      <g class="gas">
+        <circle style="fill:#EDEEF0;" cx="231.85" cy="90.89" r="16"/>
       </g>
-      <circle style="fill:#86B143;" cx="281.34" cy="53.86" r="14"/>
-      <circle style="fill:#9ED04D;" cx="236.99" cy="14" r="14"/>
-      <circle style="fill:#FFFFFF;" cx="312.32" cy="431.45" r="14"/>
-      <circle style="fill:#EDEEF0;" cx="312.32" cy="431.45" r="14"/>
-      <path class="gas" style="fill:#86B143;"
-            d="M270.128,226.578c0,7.733-6.27,14.003-14.003,14.003v-28.006  C263.86,212.575,270.128,218.843,270.128,226.578z"/>
+      <circle class="gas" style="fill:#DCDEE2;" cx="281.34" cy="53.86" r="16"/>
+      <circle class="gas" style="fill:#EDEEF0;" cx="236.99" cy="18" r="16"/>
+      <circle class="precipitate" style="fill:#FFFFFF;" cx="312.32" cy="431.45" r="14"/>
+      <circle class="precipitate" style="fill:#EDEEF0;" cx="312.32" cy="431.45" r="14"/>
     </svg>
   </div>
-  <div class="info-panel" [class.show]="reactionDescription">
+  <div class="info-panel" [class.show]="description">
     <div class="info-panel__content">
-      <span>{{ reactionDescription }}</span>
+      <span>{{ description }}</span>
     </div>
   </div>
 </div>

@@ -12,7 +12,15 @@ export enum ContainerType {
   PIPETTE,
   TEST_TUBE,
   BEAKER,
+  CRYSTAL,
   METAL
+}
+
+export interface ReactionResult {
+  color?: string;
+  gas?: boolean;
+  precipitate?: boolean;
+  description?: string;
 }
 
 export interface ChemicalElement {
@@ -21,11 +29,11 @@ export interface ChemicalElement {
   type: ChemicalType;
   color: string;
   container: ContainerType;
-  reactions?: { [key: string]: string };
+  reactions?: { [key: string]: ReactionResult };
 }
 
 export interface Reaction {
   first: ChemicalElement | null;
   second: ChemicalElement | null;
-  resultColor: string;
+  result: ReactionResult;
 }

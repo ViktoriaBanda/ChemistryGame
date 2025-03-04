@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ChemicalElement, ChemicalType, ContainerType, Reaction } from "../../models/chemistry.models";
+import { ChemicalElement, ChemicalType, ContainerType, Reaction, ReactionResult } from "../../models/chemistry.models";
 
 @Component({
   selector: 'app-acids-with-metals',
@@ -16,7 +16,7 @@ export class AcidsWithMetalsComponent implements OnInit {
   currentReaction: Reaction = {
     first: null,
     second: null,
-    resultColor: 'transparent'
+    result: {}
   };
 
   animating = false;
@@ -25,8 +25,7 @@ export class AcidsWithMetalsComponent implements OnInit {
   // Состояние групп веществ
   isGroupExpanded: { [key: string]: boolean } = {
     acids: true,
-    oxides: false,
-    bases: false
+    metals: true
   };
 
   constructor(private _changeDetectorRef: ChangeDetectorRef) {
@@ -73,11 +72,21 @@ export class AcidsWithMetalsComponent implements OnInit {
         color: 'rgba(169, 169, 169, 1)',
         container: ContainerType.METAL,
         reactions: {
-          'Соляная кислота (HCl)': 'rgba(255, 255, 255, 0.6)',
-          'Серная кислота (H2SO4)': 'rgba(255, 255, 255, 0.6)',
-          'Азотная кислота (HNO3)': 'rgba(255, 255, 255, 0.6)',
-          'Гидроксид натрия (NaOH)': 'rgba(255, 192, 203, 0.8)',
-          'Гидроксид калия (KOH)': 'rgba(255, 192, 203, 0.8)',
+          'Соляная кислота (HCl)': {
+            color: 'rgba(255, 255, 255, 0.6)',
+            gas: true,
+            description: 'Выделяется водород'
+          },
+          'Серная кислота (H2SO4)': {
+            color: 'rgba(255, 255, 255, 0.6)',
+            gas: true,
+            description: 'Выделяется водород'
+          },
+          'Азотная кислота (HNO3)': {
+            color: 'rgba(255, 255, 255, 0.6)',
+            gas: true,
+            description: 'Выделяется водород и оксиды азота'
+          }
         }
       },
       {
@@ -87,11 +96,21 @@ export class AcidsWithMetalsComponent implements OnInit {
         color: 'rgba(179, 179, 179, 1)',
         container: ContainerType.METAL,
         reactions: {
-          'Соляная кислота (HCl)': 'rgba(255, 255, 255, 0.6)',
-          'Серная кислота (H2SO4)': 'rgba(255, 255, 255, 0.6)',
-          'Азотная кислота (HNO3)': 'rgba(255, 255, 255, 0.6)',
-          'Гидроксид натрия (NaOH)': 'rgba(255, 192, 203, 0.8)',
-          'Гидроксид калия (KOH)': 'rgba(255, 192, 203, 0.8)',
+          'Соляная кислота (HCl)': {
+            color: 'rgba(255, 255, 255, 0.6)',
+            gas: true,
+            description: 'Выделяется водород'
+          },
+          'Серная кислота (H2SO4)': {
+            color: 'rgba(255, 255, 255, 0.6)',
+            gas: true,
+            description: 'Выделяется водород'
+          },
+          'Азотная кислота (HNO3)': {
+            color: 'rgba(255, 255, 255, 0.6)',
+            gas: true,
+            description: 'Выделяется водород и оксиды азота'
+          }
         }
       },
       {
@@ -101,11 +120,19 @@ export class AcidsWithMetalsComponent implements OnInit {
         color: 'rgba(184, 115, 51, 1)',
         container: ContainerType.METAL,
         reactions: {
-          'Соляная кислота (HCl)': 'rgba(255, 255, 255, 0.6)',
-          'Серная кислота (H2SO4)': 'rgba(255, 255, 255, 0.6)',
-          'Азотная кислота (HNO3)': 'rgba(255, 255, 255, 0.6)',
-          'Гидроксид натрия (NaOH)': 'rgba(255, 192, 203, 0.8)',
-          'Гидроксид калия (KOH)': 'rgba(255, 192, 203, 0.8)',
+          'Соляная кислота (HCl)': {
+            color: 'rgba(255, 255, 255, 0.6)',
+            description: 'Реакция не идет'
+          },
+          'Серная кислота (H2SO4)': {
+            color: 'rgba(173, 216, 230, 0.6)',
+            description: 'Образуется голубой раствор сульфата меди'
+          },
+          'Азотная кислота (HNO3)': {
+            color: 'rgba(173, 216, 230, 0.6)',
+            gas: true,
+            description: 'Выделяются оксиды азота, образуется голубой раствор'
+          }
         }
       }
     ];
@@ -122,34 +149,34 @@ export class AcidsWithMetalsComponent implements OnInit {
     this.updateResult();
   }
 
-  selectMetal(indicator: ChemicalElement) {
+  selectMetal(metal: ChemicalElement) {
     if (this.selectedAcid && this.selectedMetal) {
       this.setResultIsFull();
       return;
     }
 
-    this.selectedMetal = indicator;
-    this.currentReaction.second = indicator;
+    this.selectedMetal = metal;
+    this.currentReaction.second = metal;
     this.updateResult();
   }
 
   updateResult() {
     if (this.currentReaction.first && this.currentReaction.second) {
       const reactions = this.currentReaction.second.reactions || {};
-      const resultColor = reactions[this.currentReaction.first.name];
-      this.animateColorChange(resultColor);
+      const result = reactions[this.currentReaction.first.name];
+      this.animateResult(result);
     } else if (this.currentReaction.first) {
       this.animating = false;
-      this.currentReaction.resultColor = this.currentReaction.first.color;
+      this.currentReaction.result = { color: this.currentReaction.first.color };
     }
     else {
       this.animating = false;
     }
   }
 
-  animateColorChange(newColor: string) {
+  animateResult(result: ReactionResult) {
     this.animating = true;
-    this.currentReaction.resultColor = newColor;
+    this.currentReaction.result = result;
     this._changeDetectorRef.detectChanges();
   }
 
@@ -160,7 +187,7 @@ export class AcidsWithMetalsComponent implements OnInit {
     this.currentReaction = {
       first: null,
       second: null,
-      resultColor: 'transparent'
+      result: {}
     };
   }
 

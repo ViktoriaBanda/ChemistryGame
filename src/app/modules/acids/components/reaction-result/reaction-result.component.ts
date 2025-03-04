@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ChemicalElement } from '../../models/chemistry.models';
+import { ChemicalElement, ReactionResult } from '../../models/chemistry.models';
 
 @Component({
   selector: 'app-reaction-result',
@@ -9,13 +9,25 @@ import { ChemicalElement } from '../../models/chemistry.models';
 export class ReactionResultComponent {
   @Input() reagent1: ChemicalElement | null = null;
   @Input() reagent2: ChemicalElement | null = null;
-  @Input() resultColor: string = 'transparent';
-  @Input() animating: boolean;
-  @Input() isResultAlreadyExist: boolean;
+  @Input() result: ReactionResult = {};
+  @Input() animating = false;
+  @Input() isResultAlreadyExist = false;
 
-  @Output() reset = new EventEmitter();
+  @Output() reset = new EventEmitter<void>();
 
-  get reactionDescription(): string {
+  get showGas(): boolean {
+    return this.result.gas || false;
+  }
+
+  get showPrecipitate(): boolean {
+    return this.result.precipitate || false;
+  }
+
+  get resultColor(): string {
+    return this.result.color || 'transparent';
+  }
+
+  get description(): string {
     if (this.reagent1 && this.reagent2) {
       return `${this.reagent1.name} + ${this.reagent2.name}`;
     }
@@ -32,7 +44,6 @@ export class ReactionResultComponent {
     this.animating = false;
     this.reagent1 = null;
     this.reagent2 = null;
-    this.resultColor = 'transparent';
     this.reset.emit();
   }
 }
