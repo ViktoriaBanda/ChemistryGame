@@ -33,6 +33,12 @@
     </svg>
   </div>
 </div>
-<div class="info-panel" *ngIf="reactionDescription">
-  <p>{{ reactionDescription }}</p>
+<div class="info-panel" [class.show]="reactionDescription">
+  <div class="info-panel__content">
+    <span>{{ reactionDescription }}</span>
+  </div>
+</div>
+
+<div class="reset-button">
+  <button (click)="resetExperiment()" [class.bounce]="isResultAlreadyExist">Сбросить эксперимент</button>
 </div>

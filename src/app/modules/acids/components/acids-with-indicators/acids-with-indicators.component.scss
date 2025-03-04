@@ -123,26 +123,6 @@
   }
 }
 
-.reset-button {
-  text-align: center;
-  margin-top: 20px;
-
-  button {
-    padding: 10px 20px;
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background-color: #c0392b;
-    }
-  }
-}
-
 @media (max-width: 992px) {
   .laboratory {
     grid-template-columns: 1fr;
@@ -177,4 +157,4 @@
       }
     }
   }
-} 
+}

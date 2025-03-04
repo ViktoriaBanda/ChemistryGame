@@ -18,7 +18,9 @@
     [reagent1]="currentReaction.acid"
     [reagent2]="currentReaction.indicator"
     [resultColor]="currentReaction.resultColor"
-    [animating]="animating">
+    [animating]="animating"
+    [isResultAlreadyExist]="isResultAlreadyExist"
+    (reset)="resetExperiment()">
   </app-reaction-result>
 
   <!-- Индикаторы -->
@@ -35,6 +37,3 @@
     </div>
   </div>
 </div>
-
-<div class="reset-button">
-  <button (click)="resetExperiment()">Сбросить эксперимент</button> 

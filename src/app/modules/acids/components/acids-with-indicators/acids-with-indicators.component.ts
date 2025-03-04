@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ChemicalElement, Reaction, ChemicalType, ContainerType } from '../../models/chemistry.models';
 
 @Component({
@@ -20,6 +20,10 @@ export class AcidsWithIndicatorsComponent implements OnInit {
   };
 
   animating = false;
+  isResultAlreadyExist = false;
+
+  constructor(private _changeDetectorRef: ChangeDetectorRef) {
+  }
 
   ngOnInit() {
     this.initializeData();
@@ -91,12 +95,22 @@ export class AcidsWithIndicatorsComponent implements OnInit {
   }
 
   selectAcid(acid: ChemicalElement) {
+    if (this.selectedAcid && this.selectedIndicator) {
+      this.setResultIsFull();
+      return;
+    }
+
     this.selectedAcid = acid;
     this.currentReaction.acid = acid;
     this.updateResult();
   }
 
   selectIndicator(indicator: ChemicalElement) {
+    if (this.selectedAcid && this.selectedIndicator) {
+      this.setResultIsFull();
+      return;
+    }
+
     this.selectedIndicator = indicator;
     this.currentReaction.indicator = indicator;
     this.updateResult();
@@ -105,20 +119,22 @@ export class AcidsWithIndicatorsComponent implements OnInit {
   updateResult() {
     if (this.currentReaction.acid && this.currentReaction.indicator) {
       const reactions = this.currentReaction.indicator.reactions || {};
-      const resultColor = reactions[this.currentReaction.acid.name] || 'transparent';
+      const resultColor = reactions[this.currentReaction.acid.name];
       this.animateColorChange(resultColor);
+    } else if (this.currentReaction.acid) {
+      this.animating = false;
+      this.currentReaction.resultColor = this.currentReaction.acid.color;
     }
   }
 
   animateColorChange(newColor: string) {
     this.animating = true;
-    setTimeout(() => {
-      this.currentReaction.resultColor = newColor;
-      this.animating = false;
-    }, 1000);
+    this.currentReaction.resultColor = newColor;
+    this._changeDetectorRef.detectChanges();
   }
 
   resetExperiment() {
+    this.isResultAlreadyExist = false;
     this.selectedAcid = null;
     this.selectedIndicator = null;
     this.currentReaction = {
@@ -126,5 +142,12 @@ export class AcidsWithIndicatorsComponent implements OnInit {
       indicator: null,
       resultColor: 'transparent'
     };
+  }
+
+  private setResultIsFull(): void {
+    this.isResultAlreadyExist = true;
+    setTimeout(() => {
+      this.isResultAlreadyExist = false;
+    }, 1000);
   }
 }

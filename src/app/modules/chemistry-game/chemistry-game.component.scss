@@ -2,7 +2,7 @@
 .chemistry-game {
   font-family: 'Roboto', Arial, sans-serif;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 20px auto 0;
   padding: 20px;
   background-color: #f5f5f5;
   border-radius: 10px;
@@ -80,6 +80,13 @@
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   min-height: 400px;
+
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+  }
 }
 
 .laboratory {

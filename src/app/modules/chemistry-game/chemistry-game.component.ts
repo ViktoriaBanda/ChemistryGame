@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 interface Topic {
   id: number;
@@ -23,11 +23,18 @@ export class ChemistryGameComponent implements OnInit {
   topics: Topic[] = [];
   selectedTopic: Topic | null = null;
   selectedSubtopic: Subtopic | null = null;
+  isEmptyRoute: boolean;
 
-  constructor(private router: Router) {}
+  constructor(private _router: Router) {}
 
   ngOnInit() {
     this.initializeData();
+    this.isEmptyRoute = this._router.url === '/';
+    this._router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isEmptyRoute = this._router.url === '/';
+      }
+    });
   }
 
   initializeData() {
@@ -81,7 +88,7 @@ export class ChemistryGameComponent implements OnInit {
   selectSubtopic(subtopic: Subtopic) {
     this.selectedSubtopic = subtopic;
     if (this.selectedTopic) {
-      this.router.navigate([this.selectedTopic.route, subtopic.route]);
+      this._router.navigate([this.selectedTopic.route, subtopic.route]);
     }
   }
 }
