@@ -55,13 +55,6 @@ export class AcidsWithMetalsComponent implements OnInit {
         color: 'rgba(255, 255, 255, 0.6)',
         container: ContainerType.FLASK
       },
-      {
-        id: 3,
-        name: 'Азотная кислота (HNO3)',
-        type: ChemicalType.ACID,
-        color: 'rgba(255, 255, 255, 0.6)',
-        container: ContainerType.FLASK
-      },
     ];
 
     this.metals = [
@@ -81,11 +74,6 @@ export class AcidsWithMetalsComponent implements OnInit {
             color: 'rgba(255, 255, 255, 0.6)',
             gas: true,
             description: 'Выделяется водород'
-          },
-          'Азотная кислота (HNO3)': {
-            color: 'rgba(255, 255, 255, 0.6)',
-            gas: true,
-            description: 'Выделяется водород и оксиды азота'
           }
         }
       },
@@ -105,11 +93,6 @@ export class AcidsWithMetalsComponent implements OnInit {
             color: 'rgba(255, 255, 255, 0.6)',
             gas: true,
             description: 'Выделяется водород'
-          },
-          'Азотная кислота (HNO3)': {
-            color: 'rgba(255, 255, 255, 0.6)',
-            gas: true,
-            description: 'Выделяется водород и оксиды азота'
           }
         }
       },
@@ -128,11 +111,6 @@ export class AcidsWithMetalsComponent implements OnInit {
             color: 'rgba(173, 216, 230, 0.6)',
             description: 'Образуется голубой раствор сульфата меди'
           },
-          'Азотная кислота (HNO3)': {
-            color: 'rgba(173, 216, 230, 0.6)',
-            gas: true,
-            description: 'Выделяются оксиды азота, образуется голубой раствор'
-          }
         }
       }
     ];

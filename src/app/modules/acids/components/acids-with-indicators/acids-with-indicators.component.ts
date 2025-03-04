@@ -56,13 +56,6 @@ export class AcidsWithIndicatorsComponent implements OnInit {
         color: 'rgba(255, 255, 255, 0.6)',
         container: ContainerType.FLASK
       },
-      {
-        id: 3,
-        name: 'Азотная кислота (HNO3)',
-        type: ChemicalType.ACID,
-        color: 'rgba(255, 255, 255, 0.6)',
-        container: ContainerType.FLASK
-      },
     ];
 
     this.indicators = [
@@ -78,10 +71,6 @@ export class AcidsWithIndicatorsComponent implements OnInit {
             description: 'Лакмус окрашивается в красный цвет'
           },
           'Серная кислота (H2SO4)': {
-            color: 'rgba(220, 20, 60, 0.8)',
-            description: 'Лакмус окрашивается в красный цвет'
-          },
-          'Азотная кислота (HNO3)': {
             color: 'rgba(220, 20, 60, 0.8)',
             description: 'Лакмус окрашивается в красный цвет'
           }
@@ -101,10 +90,6 @@ export class AcidsWithIndicatorsComponent implements OnInit {
           'Серная кислота (H2SO4)': {
             color: 'rgba(220, 20, 60, 0.8)',
             description: 'Метилоранж окрашивается в красный цвет'
-          },
-          'Азотная кислота (HNO3)': {
-            color: 'rgba(220, 20, 60, 0.8)',
-            description: 'Метилоранж окрашивается в красный цвет'
           }
         }
       },
@@ -120,10 +105,6 @@ export class AcidsWithIndicatorsComponent implements OnInit {
             description: 'Фенолфталеин остается бесцветным'
           },
           'Серная кислота (H2SO4)': {
-            color: 'rgba(255, 255, 255, 0.6)',
-            description: 'Фенолфталеин остается бесцветным'
-          },
-          'Азотная кислота (HNO3)': {
             color: 'rgba(255, 255, 255, 0.6)',
             description: 'Фенолфталеин остается бесцветным'
           }

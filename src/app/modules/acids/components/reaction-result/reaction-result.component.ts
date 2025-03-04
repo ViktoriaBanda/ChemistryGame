@@ -27,7 +27,7 @@ export class ReactionResultComponent {
     return this.result.color || 'transparent';
   }
 
-  get description(): string {
+  get products(): string {
     if (this.reagent1 && this.reagent2) {
       return `${this.reagent1.name} + ${this.reagent2.name}`;
     }
@@ -38,6 +38,10 @@ export class ReactionResultComponent {
       return `${this.reagent2.name}`;
     }
     return '';
+  }
+
+  get description() : string {
+    return this.result.description || '';
   }
 
   resetExperiment() {
