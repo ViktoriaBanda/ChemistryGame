@@ -3,7 +3,8 @@ export enum ChemicalType {
   BASE,
   INDICATOR,
   METAL,
-  SALT
+  SALT,
+  OXIDE
 }
 
 export enum ContainerType {
@@ -11,7 +12,7 @@ export enum ContainerType {
   PIPETTE,
   TEST_TUBE,
   BEAKER,
-  CRYSTAL
+  METAL
 }
 
 export interface ChemicalElement {
@@ -20,11 +21,11 @@ export interface ChemicalElement {
   type: ChemicalType;
   color: string;
   container: ContainerType;
-  reactions?: { [key: string]: string }; // индикатор -> цвет реакции
+  reactions?: { [key: string]: string };
 }
 
 export interface Reaction {
-  metal: ChemicalElement | null;
-  indicator: ChemicalElement | null;
+  first: ChemicalElement | null;
+  second: ChemicalElement | null;
   resultColor: string;
 }

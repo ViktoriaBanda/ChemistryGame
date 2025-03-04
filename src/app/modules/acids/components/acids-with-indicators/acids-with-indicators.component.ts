@@ -14,19 +14,30 @@ export class AcidsWithIndicatorsComponent implements OnInit {
   selectedIndicator: ChemicalElement | null = null;
 
   currentReaction: Reaction = {
-    metal: null,
-    indicator: null,
+    first: null,
+    second: null,
     resultColor: 'transparent'
   };
 
   animating = false;
   isResultAlreadyExist = false;
 
+  // Состояние групп веществ
+  isGroupExpanded: { [key: string]: boolean } = {
+    acids: true,
+    oxides: false,
+    bases: false
+  };
+
   constructor(private _changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
     this.initializeData();
+  }
+
+  toggleGroup(groupName: string) {
+    this.isGroupExpanded[groupName] = !this.isGroupExpanded[groupName];
   }
 
   initializeData() {
@@ -65,6 +76,8 @@ export class AcidsWithIndicatorsComponent implements OnInit {
           'Соляная кислота (HCl)': 'rgba(220, 20, 60, 0.8)',
           'Серная кислота (H2SO4)': 'rgba(220, 20, 60, 0.8)',
           'Азотная кислота (HNO3)': 'rgba(220, 20, 60, 0.8)',
+          'Гидроксид натрия (NaOH)': 'rgba(0, 0, 255, 0.8)',
+          'Гидроксид калия (KOH)': 'rgba(0, 0, 255, 0.8)',
         }
       },
       {
@@ -77,6 +90,8 @@ export class AcidsWithIndicatorsComponent implements OnInit {
           'Соляная кислота (HCl)': 'rgba(220, 20, 60, 0.8)',
           'Серная кислота (H2SO4)': 'rgba(220, 20, 60, 0.8)',
           'Азотная кислота (HNO3)': 'rgba(220, 20, 60, 0.8)',
+          'Гидроксид натрия (NaOH)': 'rgba(255, 165, 0, 0.8)',
+          'Гидроксид калия (KOH)': 'rgba(255, 165, 0, 0.8)',
         }
       },
       {
@@ -89,6 +104,8 @@ export class AcidsWithIndicatorsComponent implements OnInit {
           'Соляная кислота (HCl)': 'rgba(255, 255, 255, 0.6)',
           'Серная кислота (H2SO4)': 'rgba(255, 255, 255, 0.6)',
           'Азотная кислота (HNO3)': 'rgba(255, 255, 255, 0.6)',
+          'Гидроксид натрия (NaOH)': 'rgba(255, 192, 203, 0.8)',
+          'Гидроксид калия (KOH)': 'rgba(255, 192, 203, 0.8)',
         }
       },
     ];
@@ -101,7 +118,7 @@ export class AcidsWithIndicatorsComponent implements OnInit {
     }
 
     this.selectedAcid = acid;
-    this.currentReaction.metal = acid;
+    this.currentReaction.first = acid;
     this.updateResult();
   }
 
@@ -112,18 +129,18 @@ export class AcidsWithIndicatorsComponent implements OnInit {
     }
 
     this.selectedIndicator = indicator;
-    this.currentReaction.indicator = indicator;
+    this.currentReaction.second = indicator;
     this.updateResult();
   }
 
   updateResult() {
-    if (this.currentReaction.metal && this.currentReaction.indicator) {
-      const reactions = this.currentReaction.indicator.reactions || {};
-      const resultColor = reactions[this.currentReaction.metal.name];
+    if (this.currentReaction.first && this.currentReaction.second) {
+      const reactions = this.currentReaction.second.reactions || {};
+      const resultColor = reactions[this.currentReaction.first.name];
       this.animateColorChange(resultColor);
-    } else if (this.currentReaction.metal) {
+    } else if (this.currentReaction.first) {
       this.animating = false;
-      this.currentReaction.resultColor = this.currentReaction.metal.color;
+      this.currentReaction.resultColor = this.currentReaction.first.color;
     }
     else {
       this.animating = false;
@@ -141,8 +158,8 @@ export class AcidsWithIndicatorsComponent implements OnInit {
     this.selectedAcid = null;
     this.selectedIndicator = null;
     this.currentReaction = {
-      metal: null,
-      indicator: null,
+      first: null,
+      second: null,
       resultColor: 'transparent'
     };
   }

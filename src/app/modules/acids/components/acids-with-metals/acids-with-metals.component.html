@@ -1,39 +1,61 @@
-<div class="laboratory">
-  <!-- Колбы с кислотами -->
-  <div class="acids-container">
-    <h3>Кислоты:</h3>
-    <div class="elements-list">
-      <div class="element acid"
-           *ngFor="let acid of acids"
-           [class.selected]="selectedAcid?.id === acid.id"
-           (click)="selectAcid(acid)">
-        <app-chemical-container [element]="acid"></app-chemical-container>
-        <div class="label">{{ acid.name }}</div>
+<div class="laboratory-container">
+  <!-- Левая панель с веществами -->
+  <div class="substances-panel">
+    <div class="substance-block">
+      <div class="group-header" (click)="toggleGroup('acids')">
+        <h3>Кислоты</h3>
+        <button [class.reverse]="!isGroupExpanded['acids']">
+          <svg class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+               fill="none">
+            <path d="M18 15L12 9L6 15" stroke="black" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="elements-list" [class.expanded]="isGroupExpanded['acids']">
+        <div class="element acid"
+             *ngFor="let acid of acids"
+             [class.selected]="selectedAcid?.id === acid.id"
+             (click)="selectAcid(acid)">
+          <app-chemical-container [element]="acid"></app-chemical-container>
+          <div class="label">{{ acid.name }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="substance-block">
+      <div class="group-header" (click)="toggleGroup('metals')">
+        <h3>Металлы</h3>
+        <button [class.reverse]="!isGroupExpanded['metals']">
+          <svg class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+               fill="none">
+            <path d="M18 15L12 9L6 15" stroke="black" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="elements-list" [class.expanded]="isGroupExpanded['metals']">
+        <div class="element acid"
+             *ngFor="let metal of metals"
+             [class.selected]="selectedMetal?.id === metal.id"
+             (click)="selectMetal(metal)">
+          <app-chemical-container [element]="metal"></app-chemical-container>
+          <div class="label">{{ metal.name }}</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Результат реакции -->
-  <app-reaction-result
-    [reagent1]="currentReaction.metal"
-    [reagent2]="currentReaction.indicator"
-    [resultColor]="currentReaction.resultColor"
-    [animating]="animating"
-    [isResultAlreadyExist]="isResultAlreadyExist"
-    (reset)="resetExperiment()">
-  </app-reaction-result>
-
-  <!-- Металлы -->
-  <div class="indicators-container">
-    <h3>Индикаторы:</h3>
-    <div class="elements-list">
-      <div class="element indicator"
-           *ngFor="let indicator of metals"
-           [class.selected]="selectedMetal?.id === indicator.id"
-           (click)="selectMetal(indicator)">
-        <app-chemical-container [element]="indicator"></app-chemical-container>
-        <div class="label">{{ indicator.name }}</div>
-      </div>
-    </div>
+  <!-- Правая часть -->
+  <div class="main-content">
+    <!-- Результат реакции -->
+    <app-reaction-result
+      [reagent1]="currentReaction.first"
+      [reagent2]="currentReaction.second"
+      [resultColor]="currentReaction.resultColor"
+      [animating]="animating"
+      [isResultAlreadyExist]="isResultAlreadyExist"
+      (reset)="resetExperiment()">
+    </app-reaction-result>
   </div>
 </div>

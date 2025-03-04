@@ -2,4 +2,51 @@
 body {
   background: url('/assets/img/background.jpg') 0 0% / 30% repeat;
   font-family: 'Inter', 'Noto Color Emoji', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
+  min-width: 992px;
+}
+
+.reverse {
+  transform: rotate(180deg);
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  transition: transform 0.3s ease;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #C4C4C4;
+  border-radius: 4px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #a8a8a8!important;
+}
+
+.scrollbar {
+  --scrollbar-border-radius: 4px!important;
+  --scrollbar-track-color: transparent!important;
+  --scrollbar-wrapper-color: transparent!important;
+  --scrollbar-thumb-color: #C4C4C4!important;
+  --scrollbar-thumb-hover-color: #a8a8a8!important;
+  --scrollbar-size: 4px!important;
+  --scrollbar-hover-size: 4px!important;
+  --scrollbar-thumb-transition: height ease-out 150ms, width ease-out 150ms;
+  --scrollbar-track-transition: height ease-out 150ms, width ease-out 150ms;
+
+  &.hideScroll {
+    .scrollbar-control {
+      opacity: 0 !important;
+    }
+  }
 }

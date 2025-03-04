@@ -1,7 +1,7 @@
 <!-- chemistry-game.component.html -->
 <div class="chemistry-game">
   <div class="header">
-    <h1>Химическая лаборатория</h1>
+    <h1 [routerLink]="'/'">Химическая лаборатория</h1>
   </div>
 
   <div class="game-container">
@@ -31,7 +31,7 @@
     </div>
 
     <!-- Область для отображения компонентов -->
-    <div class="content-area">
+    <div class="content-area" [class.experiment]="selectedSubtopic || !isEmptyRoute">
       <div class="icon" *ngIf="isEmptyRoute && !selectedSubtopic">
         <svg height="300px" width="500px" viewBox="0 0 512 512">
           <path style="fill:#EDEEF0;"

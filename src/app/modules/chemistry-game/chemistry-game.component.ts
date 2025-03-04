@@ -30,9 +30,14 @@ export class ChemistryGameComponent implements OnInit {
   ngOnInit() {
     this.initializeData();
     this.isEmptyRoute = this._router.url === '/';
+
+    // Получаем текущий маршрут и выбираем соответствующие тему и подкатегорию
+    this.selectTopicAndSubtopicFromRoute();
+
     this._router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.isEmptyRoute = this._router.url === '/';
+        this.selectTopicAndSubtopicFromRoute();
       }
     });
   }
@@ -47,37 +52,68 @@ export class ChemistryGameComponent implements OnInit {
           {
             id: 1,
             name: 'Индикаторы',
-            route: 'indicators'
+            route: 'indicators',
           },
           {
             id: 2,
             name: 'Взаимодействие с металлами',
-            route: 'metals'
+            route: 'metals',
           },
           {
             id: 3,
             name: 'Взаимодействие с основными оксидами',
-            route: 'oxides'
+            route: 'oxides',
           },
           {
             id: 4,
             name: 'Взаимодействие с основаниями',
-            route: 'bases'
+            route: 'bases',
           },
           {
             id: 5,
             name: 'Взаимодействие с солями',
-            route: 'salts'
-          }
-        ]
+            route: 'salts',
+          },
+        ],
       },
       {
         id: 2,
         name: 'Химические свойства оснований',
         route: 'bases',
-        subtopics: []
-      }
+        subtopics: [],
+      },
     ];
+  }
+
+  // Функция для выбора темы и подкатегории по текущему роуту
+  selectTopicAndSubtopicFromRoute() {
+    const currentUrl = this._router.url;
+    let topicFound = false;
+    let subtopicFound = false;
+
+    // Проверяем все темы и подкатегории на соответствие текущему роуту
+    for (const topic of this.topics) {
+      if (currentUrl.includes(topic.route)) {
+        this.selectedTopic = topic;
+        topicFound = true;
+        for (const subtopic of topic.subtopics) {
+          if (currentUrl.includes(subtopic.route)) {
+            this.selectedSubtopic = subtopic;
+            subtopicFound = true;
+            break;
+          }
+        }
+        if (topicFound && subtopicFound) break;
+      }
+    }
+
+    // Если не нашли, сбрасываем выбранную тему и подкатегорию
+    if (!topicFound) {
+      this.selectedTopic = null;
+    }
+    if (!subtopicFound) {
+      this.selectedSubtopic = null;
+    }
   }
 
   selectTopic(topic: Topic) {
