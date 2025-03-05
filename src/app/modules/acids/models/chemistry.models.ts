@@ -4,7 +4,8 @@ export enum ChemicalType {
   INDICATOR,
   METAL,
   SALT,
-  OXIDE
+  OXIDE,
+  IMPACT
 }
 
 export enum ContainerType {
@@ -28,13 +29,14 @@ export interface ChemicalElement {
   id: number;
   name: string;
   type: ChemicalType;
-  color: string;
-  container: ContainerType;
+  color?: string;
+  container?: ContainerType;
   reactions?: { [key: string]: ReactionResult };
 }
 
 export interface Reaction {
   first: ChemicalElement | null;
   second: ChemicalElement | null;
+  third?: ChemicalElement | null;
   result: ReactionResult;
 }

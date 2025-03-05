@@ -1,7 +1,7 @@
 <div class="head" (click)="changeVisability()" [ngClass]="{disabled: disabled}" #head>
   <span aria-hidden="true" class="title overflow-text" *ngIf="selectedItem">
-    <div [innerHTML]="getPageTypeSvg(selectedItem)"></div>
-    {{selectedItem}}
+    <img [src]="selectedItem.icon" width="30" height="30">
+    <span>{{selectedItem.title}}</span>
   </span>
   <span *ngIf="!selectedItem" class="placeholder">{{placeholder}}</span>
 <div class="right">
@@ -17,8 +17,8 @@
         class="item"
         *ngFor="let item of items"
         (click)="onSelectItem(item)">
-        <div [innerHTML]="getPageTypeSvg(item)"></div>
-        {{item}}
+        <img [src]="item.icon" width="30" height="30">
+        <span>{{item.title}}</span>
       </span>
     </div>
   </ng-scrollbar>

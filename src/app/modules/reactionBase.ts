@@ -15,6 +15,7 @@ export abstract class ReactionBase {
   currentReaction: Reaction = {
     first: null,
     second: null,
+    third: null,
     result: {}
   };
 

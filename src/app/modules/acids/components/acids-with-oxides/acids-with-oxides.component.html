@@ -54,8 +54,11 @@
       [reagent2]="currentReaction.second"
       [result]="currentReaction.result"
       [animating]="animating"
+      [hasImpact]="true"
+      [canChooseImpact]="!!selectedAcid && !!selectedReagent"
       [reactionCompleted]="reactionCompleted"
       [isResultAlreadyExist]="isResultAlreadyExist"
+      (impactSelected)="selectImpact($event)"
       (reset)="resetExperiment()">
     </app-reaction-result>
   </div>

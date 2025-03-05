@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ChemicalElement, ReactionResult } from '../acids/models/chemistry.models';
 import { InputSelectComponent } from "../../shared/input-select/input-select.component";
+import { IItemSelect } from "../../core/interfaces/item-select.interface";
 
 @Component({
   selector: 'app-reaction-result',
@@ -8,7 +9,9 @@ import { InputSelectComponent } from "../../shared/input-select/input-select.com
   styleUrls: ['./reaction-result.component.scss']
 })
 export class ReactionResultComponent {
-  @ViewChild('select') select : InputSelectComponent;
+  @ViewChild('selectIndicator') selectIndicator : InputSelectComponent;
+  @ViewChild('selectImpact') selectImpact : InputSelectComponent;
+
   @Input() reagent1: ChemicalElement | null = null;
   @Input() reagent2: ChemicalElement | null = null;
   @Input() result: ReactionResult = {};
@@ -17,21 +20,38 @@ export class ReactionResultComponent {
   @Input() hasIndicators = false;
   @Input() hasImpact = false;
   @Input() canChooseIndicator = false;
+  @Input() canChooseImpact = false;
   @Input() reactionCompleted = false;
 
   @Output() reset = new EventEmitter<void>();
   @Output() indicatorSelected = new EventEmitter<number>();
+  @Output() impactSelected = new EventEmitter<number>();
 
   isTooltipVisible = false;
   tooltipText = '';
   tooltipPosition = {top: '0px', left: '0px'};
 
-  indicators: string[] = ['Лакмус', 'Метилоранж', 'Фенолфталеин'];
-  selectedIndicator: number;
+  indicators: IItemSelect[] = [
+    {id: 1, title: 'Лакмус', icon: 'assets/icons/lakmus.svg'},
+    {id: 2, title: 'Метилоранж', icon: 'assets/icons/methylorange.svg'},
+    {id: 3, title: 'Фенолфталеин', icon: 'assets/icons/phenolphtaleini.svg'}
+   ];
 
-  onSelectIndicator(item: string): void {
-    this.selectedIndicator = this.indicators.findIndex(complexity => complexity === item);
-    this.indicatorSelected.emit(this.selectedIndicator);
+  impacts: IItemSelect[] = [
+    {id: 1, title: 'Нагревание', icon: 'assets/icons/temperature.svg'}
+  ];
+
+  selectedIndicatorIndex: number;
+  selectedImpactIndex: number;
+
+  onSelectIndicator(itemSelect: IItemSelect): void {
+    this.selectedIndicatorIndex = this.indicators.findIndex(item => item === itemSelect);
+    this.indicatorSelected.emit(this.selectedIndicatorIndex);
+  }
+
+  onSelectImpact(itemSelect: IItemSelect): void {
+    this.selectedImpactIndex = this.impacts.findIndex(item => item === itemSelect);
+    this.impactSelected.emit(this.selectedImpactIndex);
   }
 
   get hasReaction(): boolean {
@@ -52,7 +72,7 @@ export class ReactionResultComponent {
 
   get precipitateColor(): string {
     if (this.reagent1 && this.reagent2) {
-      return this.result.precipitate?.color || 'transparent';
+      return this.result.precipitate?.color;
     }
     else if (this.reagent1) {
       return this.reagent1.color;
@@ -86,7 +106,8 @@ export class ReactionResultComponent {
     this.reagent2 = null;
     this.result = {};
     this.reactionCompleted = false;
-    this.select.reset();
+    this.selectIndicator.reset();
+    this.selectImpact.reset();
     this.reset.emit();
   }
 

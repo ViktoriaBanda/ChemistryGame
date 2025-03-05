@@ -9,6 +9,7 @@ import { ReactionBase } from "../../../reactionBase";
 })
 export class AcidsWithOxidesComponent extends ReactionBase implements OnInit {
   oxides: ChemicalElement[] = [];
+  impacts: ChemicalElement[] = [];
 
   ngOnInit() {
     this.initializeData();
@@ -27,7 +28,8 @@ export class AcidsWithOxidesComponent extends ReactionBase implements OnInit {
           'Серная кислота (H2SO4)': {
             color: 'rgba(255, 255, 255, 0.6)',
             hasPrecipitate: true,
-            precipitate: {color: 'rgba(255, 255, 255, 1)'}
+            precipitate: {color: 'rgba(255, 255, 255, 1)'},
+            description: 'Оксид Магния (MgO)'
           }
         }
       },
@@ -41,7 +43,8 @@ export class AcidsWithOxidesComponent extends ReactionBase implements OnInit {
           'Серная кислота (H2SO4)': {
             color: 'rgba(255, 255, 255, 0.6)',
             hasPrecipitate: true,
-            precipitate: {color: 'rgba(30, 30, 30, 1)'}
+            precipitate: {color: 'rgba(30, 30, 30, 1)'},
+            description: 'Оксид Меди (CuO)'
           }
         }
       },
@@ -55,15 +58,53 @@ export class AcidsWithOxidesComponent extends ReactionBase implements OnInit {
           'Серная кислота (H2SO4)': {
             color: 'rgba(255, 255, 255, 0.6)',
             hasPrecipitate: true,
-            precipitate: {color: 'rgba(150, 190, 120, 1)'}
+            precipitate: {color: 'rgba(150, 190, 120, 1)'},
+            description: 'Оксид Никеля (NiO)'
           },
         }
       }
     ];
+
+    this.impacts = [
+      {
+        id: 5,
+        name: 'Нагревание',
+        type: ChemicalType.IMPACT,
+        reactions: {
+          'Оксид Магния (MgO)': {
+            color: 'rgba(255, 255, 255, 0.6)',
+            hasPrecipitate: false,
+            precipitate: {color: 'rgba(255, 255, 255, 1)'}
+          },
+          'Оксид Меди (CuO)': {
+            color: 'rgba(0, 150, 255, 1)',
+            hasPrecipitate: false,
+            precipitate: {color: 'rgba(30, 30, 30, 1)'}
+          },
+          'Оксид Никеля (NiO)': {
+            color: 'rgba(50, 180, 70, 1)',
+            hasPrecipitate: false,
+            precipitate: {color: 'rgba(150, 190, 120, 1)'}
+          }
+        }
+      },
+    ];
+  }
+
+  selectImpact(index?: number) {
+    let impact = this.impacts[index];
+    this.currentReaction.third = impact;
+    this.updateResult();
   }
 
   updateResult() {
-    if (this.currentReaction.first && this.currentReaction.second) {
+    if (this.currentReaction.first && this.currentReaction.second && this.currentReaction.third) {
+      const reactions = this.currentReaction.third.reactions || {};
+      let result = reactions[this.currentReaction.second.name];
+      this.reactionCompleted = true;
+      this.animateResult(result);
+    }
+    else if (this.currentReaction.first && this.currentReaction.second) {
       const reactions = this.currentReaction.second.reactions || {};
       this.currentReaction.result = reactions[this.currentReaction.first.name];
       this.reactionCompleted = true;
