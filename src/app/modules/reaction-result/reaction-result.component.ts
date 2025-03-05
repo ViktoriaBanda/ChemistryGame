@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ChemicalElement, ReactionResult } from '../acids/models/chemistry.models';
+import { InputSelectComponent } from "../../shared/input-select/input-select.component";
 
 @Component({
   selector: 'app-reaction-result',
@@ -7,11 +8,15 @@ import { ChemicalElement, ReactionResult } from '../acids/models/chemistry.model
   styleUrls: ['./reaction-result.component.scss']
 })
 export class ReactionResultComponent {
+  @ViewChild('select') select : InputSelectComponent;
   @Input() reagent1: ChemicalElement | null = null;
   @Input() reagent2: ChemicalElement | null = null;
   @Input() result: ReactionResult = {};
   @Input() animating = false;
   @Input() isResultAlreadyExist = false;
+  @Input() hasIndicators = false;
+  @Input() hasImpact = false;
+  @Input() canChooseIndicator = false;
 
   @Output() reset = new EventEmitter<void>();
   @Output() indicatorSelected = new EventEmitter<number>();
@@ -61,6 +66,7 @@ export class ReactionResultComponent {
     this.animating = false;
     this.reagent1 = null;
     this.reagent2 = null;
+    this.select.reset();
     this.reset.emit();
   }
 

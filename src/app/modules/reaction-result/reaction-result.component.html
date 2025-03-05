@@ -12,8 +12,10 @@
     </button>
   </div>
   <div class="result-container__center">
-    <div class="indicators">
-      <select-input [items]="indicators"
+    <div class="indicators" [class.show]="hasIndicators">
+      <select-input #select
+                    [items]="indicators"
+                    [disabled]="!canChooseIndicator"
                     [placeholder]="'Индикатор'"
                     (selectItem)="onSelectIndicator($event)"></select-input>
     </div>
@@ -48,7 +50,7 @@
         </g>
       </svg>
     </div>
-    <div class="indicators">
+    <div class="indicators" [class.show]="hasImpact">
       <select-input [items]="indicators"
                     [placeholder]="'Индикатор'"
                     (selectItem)="onSelectIndicator($event)"></select-input>

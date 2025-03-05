@@ -46,6 +46,8 @@
       [reagent1]="currentReaction.first"
       [reagent2]="currentReaction.second"
       [result]="currentReaction.result"
+      [hasIndicators]="true"
+      [canChooseIndicator]="!!selectedAcid"
       [animating]="animating"
       [isResultAlreadyExist]="isResultAlreadyExist"
       (indicatorSelected)="selectReagent(null, $event)"

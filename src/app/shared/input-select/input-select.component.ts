@@ -32,7 +32,7 @@ export class InputSelectComponent implements OnInit {
   listVisability: boolean = false;
 
   @Input() disabled: boolean = false;
-  @Input() items: Array<any>;
+  @Input() items: Array<any>; // массив иконка - название
   @Input() selectedItem: any;
   @Input() nameOfDict: string;
   @Input() placeholder: string = 'Выберите вариант';
@@ -68,6 +68,10 @@ export class InputSelectComponent implements OnInit {
     this.selectedItem = item;
     this.selectItem.emit(item);
     this.changeVisability();
+  }
+
+  reset(): void {
+    this.selectedItem = null;
   }
 
   svg = {
