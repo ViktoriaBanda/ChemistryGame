@@ -22,13 +22,13 @@ export interface ReactionResult {
   description?: string;
   hasGas?: boolean;
   hasPrecipitate?: boolean;
-  precipitate?: ReactionResult;
+  precipitate?: ChemicalElement;
 }
 
 export interface ChemicalElement {
-  id: number;
+  id?: number;
   name: string;
-  type: ChemicalType;
+  type?: ChemicalType;
   color?: string;
   container?: ContainerType;
   reactions?: { [key: string]: ReactionResult };

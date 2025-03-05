@@ -37,9 +37,10 @@
         <rect x="171.12" y="129.24" style="fill:#EDEEF0;" width="169.57" height="40.29"/>
         <rect x="256.12" y="129.24" style="fill:#DCDEE2;" width="84.57" height="40.29"/>
         <g class="precipitate"
-           (mouseenter)="showPrecipitate ? showTooltip($event, result.description) : null"
+           (mouseenter)="showPrecipitate ? showTooltip($event, result.precipitate.name) : null"
            (mousemove)="updateTooltipPosition($event)"
            (mouseleave)="hideTooltip()">
+          <rect x="150" y="450" width="210" height="50" fill="transparent"></rect>
           <circle [style.fill]="precipitateColor" cx="170" cy="470" r="10"/>
           <circle [style.fill]="precipitateColor" cx="195" cy="470" r="10"/>
           <circle [style.fill]="precipitateColor" cx="220" cy="470" r="10"/>

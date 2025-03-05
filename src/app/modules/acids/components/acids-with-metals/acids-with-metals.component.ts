@@ -28,7 +28,7 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
             color: 'rgba(255, 255, 255, 0.6)',
             hasGas: true,
             hasPrecipitate: true,
-            precipitate: {color: 'rgba(169, 169, 169, 1)'},
+            precipitate: {name: 'Магний (Mg)', color: 'rgba(169, 169, 169, 1)'},
             description: 'Водород (H2)'
           },
           'Серная кислота (H2SO4)': {
@@ -36,7 +36,7 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
             color: 'rgba(255, 255, 255, 0.6)',
             hasGas: true,
             hasPrecipitate: true,
-            precipitate: {color: 'rgba(169, 169, 169, 1)'},
+            precipitate: {name: 'Магний (Mg)', color: 'rgba(169, 169, 169, 1)'},
             description: 'Водород (H2)'
           }
         }
@@ -53,7 +53,7 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
             color: 'rgba(255, 255, 255, 0.6)',
             hasGas: true,
             hasPrecipitate: true,
-            precipitate: {color: 'rgba(179, 179, 179, 1)'},
+            precipitate: {name: 'Цинк (Zn)', color: 'rgba(179, 179, 179, 1)'},
             description: 'Водород (H2)'
           },
           'Серная кислота (H2SO4)': {
@@ -61,7 +61,7 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
             color: 'rgba(255, 255, 255, 0.6)',
             hasGas: true,
             hasPrecipitate: true,
-            precipitate: {color: 'rgba(179, 179, 179, 1)'},
+            precipitate: {name: 'Цинк (Zn)', color: 'rgba(179, 179, 179, 1)'},
             description: 'Водород (H2)'
           }
         }
@@ -76,12 +76,12 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
           'Соляная кислота (HCl)': {
             color: 'rgba(255, 255, 255, 0.6)',
             hasPrecipitate: true,
-            precipitate: {color: 'rgba(184, 115, 51, 1)'},
+            precipitate: {name: 'Медь (Cu)', color: 'rgba(184, 115, 51, 1)'},
           },
           'Серная кислота (H2SO4)': {
-            color: 'rgba(173, 216, 230, 0.6)',
+            color: 'rgba(255, 255, 255, 0.6)',
             hasPrecipitate: true,
-            precipitate: {color: 'rgba(184, 115, 51, 1)'},
+            precipitate: {name: 'Медь (Cu)', color: 'rgba(184, 115, 51, 1)'},
           },
         }
       }
@@ -100,7 +100,7 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
     }
     else if (this.currentReaction.second) {
       this.resetReactionsFlags();
-      this.currentReaction.result = { precipitate: {color: this.currentReaction.second.color}, hasPrecipitate: true };
+      this.currentReaction.result = { precipitate: {name: this.currentReaction.second.name, color: this.currentReaction.second.color}, hasPrecipitate: true };
     }
     else {
       this.resetReactionsFlags();
