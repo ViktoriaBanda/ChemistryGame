@@ -153,3 +153,16 @@
     transform: scale(1);
   }
 }
+
+@media screen and (max-width: 1220px) {
+  .result-container {
+    .result-flask {
+      width: 250px;
+      height: 250px;
+    }
+
+    &__center {
+      gap: 5px;
+    }
+  }
+}
