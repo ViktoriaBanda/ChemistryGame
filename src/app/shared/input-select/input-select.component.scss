@@ -6,11 +6,9 @@
   position: relative;
   user-select: none;
 }
-.disabled{
+.disabled {
   pointer-events: none;
-  span{
-    color: rgba($color: #000000, $alpha: .5)!important;
-  }
+  opacity: 0.3;
 }
 ng-scrollbar{
   width: 100%;
@@ -18,10 +16,13 @@ ng-scrollbar{
   margin-right: 4px;
 }
 .head{
-  min-width: 152px;
+  min-width: 160px;
+  height: 52px;
+  box-sizing: border-box;
+
   width: inherit;
   background: #FFFFFF;
-  border: 1px solid #E0E2E7;
+  border: 1px solid #787878;
   border-radius: 5px;
   padding: 10px 6px 10px 10px;
 
@@ -30,7 +31,7 @@ ng-scrollbar{
   align-items: center;
   cursor: pointer;
 
-  .title{
+  .title {
     width: inherit;
     border: 0;
 
@@ -55,7 +56,7 @@ ng-scrollbar{
   }
 
   .placeholder {
-    color: #6f727a;
+    color: #787878;
     opacity: 0.5;
   }
 }
@@ -69,7 +70,6 @@ ng-scrollbar{
   overflow-x: clip;
   background: #FFFFFF;
   border: 1px solid #E0E2E7;
-  padding: 16px 0px 16px 12px;
   display: flex;
   flex-direction: column;
   gap: 5px;

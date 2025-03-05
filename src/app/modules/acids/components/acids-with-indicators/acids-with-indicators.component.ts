@@ -76,10 +76,6 @@ export class AcidsWithIndicatorsComponent extends ReactionBase implements OnInit
 
   selectReagent(reagent?:ChemicalElement, index?: number) {
     let indicator = this.indicators[index];
-    if (this.selectedAcid && this.selectedReagent) {
-      this.setResultIsFull();
-      return;
-    }
 
     this.selectedReagent = indicator;
     this.currentReaction.second = indicator;

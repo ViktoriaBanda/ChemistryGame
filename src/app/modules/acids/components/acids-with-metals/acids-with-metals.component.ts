@@ -24,13 +24,19 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
         container: ContainerType.METAL,
         reactions: {
           'Соляная кислота (HCl)': {
+            hasReaction: true,
             color: 'rgba(255, 255, 255, 0.6)',
-            gas: true,
+            hasGas: true,
+            hasPrecipitate: true,
+            precipitate: {color: 'rgba(169, 169, 169, 1)'},
             description: 'Водород (H2)'
           },
           'Серная кислота (H2SO4)': {
+            hasReaction: true,
             color: 'rgba(255, 255, 255, 0.6)',
-            gas: true,
+            hasGas: true,
+            hasPrecipitate: true,
+            precipitate: {color: 'rgba(169, 169, 169, 1)'},
             description: 'Водород (H2)'
           }
         }
@@ -43,13 +49,19 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
         container: ContainerType.METAL,
         reactions: {
           'Соляная кислота (HCl)': {
+            hasReaction: true,
             color: 'rgba(255, 255, 255, 0.6)',
-            gas: true,
+            hasGas: true,
+            hasPrecipitate: true,
+            precipitate: {color: 'rgba(179, 179, 179, 1)'},
             description: 'Водород (H2)'
           },
           'Серная кислота (H2SO4)': {
+            hasReaction: true,
             color: 'rgba(255, 255, 255, 0.6)',
-            gas: true,
+            hasGas: true,
+            hasPrecipitate: true,
+            precipitate: {color: 'rgba(179, 179, 179, 1)'},
             description: 'Водород (H2)'
           }
         }
@@ -62,13 +74,36 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
         container: ContainerType.METAL,
         reactions: {
           'Соляная кислота (HCl)': {
-            color: 'rgba(255, 255, 255, 0.6)'
+            color: 'rgba(255, 255, 255, 0.6)',
+            hasPrecipitate: true,
+            precipitate: {color: 'rgba(184, 115, 51, 1)'},
           },
           'Серная кислота (H2SO4)': {
-            color: 'rgba(173, 216, 230, 0.6)'
+            color: 'rgba(173, 216, 230, 0.6)',
+            hasPrecipitate: true,
+            precipitate: {color: 'rgba(184, 115, 51, 1)'},
           },
         }
       }
     ];
+  }
+
+  updateResult() {
+    if (this.currentReaction.first && this.currentReaction.second) {
+      const reactions = this.currentReaction.second.reactions || {};
+      const result = reactions[this.currentReaction.first.name];
+      this.reactionCompleted = true;
+      this.animateResult(result);
+    } else if (this.currentReaction.first) {
+      this.resetReactionsFlags();
+      this.currentReaction.result = { color: this.currentReaction.first.color };
+    }
+    else if (this.currentReaction.second) {
+      this.resetReactionsFlags();
+      this.currentReaction.result = { precipitate: {color: this.currentReaction.second.color}, hasPrecipitate: true };
+    }
+    else {
+      this.resetReactionsFlags();
+    }
   }
 }

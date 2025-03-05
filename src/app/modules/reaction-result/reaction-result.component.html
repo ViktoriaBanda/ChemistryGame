@@ -1,7 +1,9 @@
 <div class="result-container">
   <div class="result-container__header">
     <span></span>
-    <span class="title">Результат реакции</span>
+    <span class="title"
+          [ngClass]="{'green': reactionCompleted && hasReaction, 'red': reactionCompleted && !hasReaction}">
+      {{reactionCompleted ? (hasReaction ? 'Реакция прошла успешно' : 'Реакция не идет') : 'Выберите реагент'}}</span>
     <button class="reset-button" (click)="resetExperiment()" [class.bounce]="isResultAlreadyExist">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
            fill="none" class="retry ng-star-inserted">
@@ -20,7 +22,8 @@
                     (selectItem)="onSelectIndicator($event)"></select-input>
     </div>
     <div class="result-flask">
-      <svg viewBox="0 0 512 512" [class.has-gas]="showGas" [ngClass]="{'animating': animating}">
+      <svg viewBox="0 0 512 512"
+           [ngClass]="{'animating': animating, 'has-gas': showGas, 'has-precipitate': showPrecipitate}">
         <path style="fill:#EDEEF0;"
               d="M191.01,141.325v119.041l-66.479,177.799c-6.276,16.785-3.925,35.596,6.289,50.321  C141.035,503.209,157.832,512,175.752,512h160.496c17.93,0,34.731-8.797,44.945-23.534c10.213-14.737,12.553-33.558,6.259-50.346  l-66.645-177.759V141.325H191.01z"/>
         <path style="fill:#EDEEF0;"
@@ -34,10 +37,14 @@
         <rect x="171.12" y="129.24" style="fill:#EDEEF0;" width="169.57" height="40.29"/>
         <rect x="256.12" y="129.24" style="fill:#DCDEE2;" width="84.57" height="40.29"/>
         <g class="precipitate">
-          <circle style="fill:#FFFFFF;" cx="231.85" cy="395.15" r="19.803"/>
-          <circle style="fill:#FFFFFF;" cx="196.71" cy="453.95" r="14"/>
-          <circle style="fill:#FFFFFF;" cx="312.32" cy="431.45" r="14"/>
-          <circle style="fill:#EDEEF0;" cx="312.32" cy="431.45" r="14"/>
+          <circle [style.fill]="precipitateColor" cx="170" cy="470" r="10"/>
+          <circle [style.fill]="precipitateColor" cx="195" cy="470" r="10"/>
+          <circle [style.fill]="precipitateColor" cx="220" cy="470" r="10"/>
+          <circle [style.fill]="precipitateColor" cx="245" cy="470" r="10"/>
+          <circle [style.fill]="precipitateColor" cx="270" cy="470" r="10"/>
+          <circle [style.fill]="precipitateColor" cx="295" cy="470" r="10"/>
+          <circle [style.fill]="precipitateColor" cx="320" cy="470" r="10"/>
+          <circle [style.fill]="precipitateColor" cx="345" cy="470" r="10"/>
         </g>
         <g class="gas"
            (mouseenter)="showGas ? showTooltip($event, result.description) : null"

@@ -17,6 +17,7 @@ export class ReactionResultComponent {
   @Input() hasIndicators = false;
   @Input() hasImpact = false;
   @Input() canChooseIndicator = false;
+  @Input() reactionCompleted = false;
 
   @Output() reset = new EventEmitter<void>();
   @Output() indicatorSelected = new EventEmitter<number>();
@@ -33,16 +34,33 @@ export class ReactionResultComponent {
     this.indicatorSelected.emit(this.selectedIndicator);
   }
 
+  get hasReaction(): boolean {
+    return this.result && this.result.hasReaction;
+  }
+
   get showGas(): boolean {
-    return this.result.gas || false;
+    return this.result.hasGas || false;
   }
 
   get showPrecipitate(): boolean {
-    return this.result.precipitate || false;
+    return this.result.hasPrecipitate || false;
   }
 
   get resultColor(): string {
     return this.result.color || 'transparent';
+  }
+
+  get precipitateColor(): string {
+    if (this.reagent1 && this.reagent2) {
+      return this.result.precipitate?.color || 'transparent';
+    }
+    else if (this.reagent1) {
+      return this.reagent1.color;
+    }
+    else if (this.reagent2) {
+      return this.reagent2.color;
+    }
+    return 'transparent';
   }
 
   get products(): string {
@@ -66,6 +84,8 @@ export class ReactionResultComponent {
     this.animating = false;
     this.reagent1 = null;
     this.reagent2 = null;
+    this.result = {};
+    this.reactionCompleted = false;
     this.select.reset();
     this.reset.emit();
   }

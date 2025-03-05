@@ -49,6 +49,7 @@
       [hasIndicators]="true"
       [canChooseIndicator]="!!selectedAcid"
       [animating]="animating"
+      [reactionCompleted]="reactionCompleted"
       [isResultAlreadyExist]="isResultAlreadyExist"
       (indicatorSelected)="selectReagent(null, $event)"
       (reset)="resetExperiment()">

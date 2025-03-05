@@ -17,9 +17,11 @@ export enum ContainerType {
 
 export interface ReactionResult {
   color?: string;
-  gas?: boolean;
-  precipitate?: boolean;
+  hasReaction?: boolean;
   description?: string;
+  hasGas?: boolean;
+  hasPrecipitate?: boolean;
+  precipitate?: ReactionResult;
 }
 
 export interface ChemicalElement {

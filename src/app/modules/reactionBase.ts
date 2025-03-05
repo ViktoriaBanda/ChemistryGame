@@ -10,6 +10,7 @@ export abstract class ReactionBase {
   acids: ChemicalElement[] = [];
   animating = false;
   isResultAlreadyExist = false;
+  reactionCompleted = false;
 
   currentReaction: Reaction = {
     first: null,
@@ -80,13 +81,14 @@ export abstract class ReactionBase {
     if (this.currentReaction.first && this.currentReaction.second) {
       const reactions = this.currentReaction.second.reactions || {};
       const result = reactions[this.currentReaction.first.name];
+      this.reactionCompleted = true;
       this.animateResult(result);
     } else if (this.currentReaction.first) {
-      this.animating = false;
+      this.resetReactionsFlags();
       this.currentReaction.result = { color: this.currentReaction.first.color };
     }
     else {
-      this.animating = false;
+      this.resetReactionsFlags();
     }
   }
 
@@ -106,5 +108,10 @@ export abstract class ReactionBase {
     setTimeout(() => {
       this.isResultAlreadyExist = false;
     }, 1000);
+  }
+
+  resetReactionsFlags(): void {
+    this.reactionCompleted = false;
+    this.animating = false;
   }
 }

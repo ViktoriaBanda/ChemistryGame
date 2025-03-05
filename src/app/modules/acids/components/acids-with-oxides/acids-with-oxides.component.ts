@@ -21,11 +21,13 @@ export class AcidsWithOxidesComponent extends ReactionBase implements OnInit {
         id: 8,
         name: 'Оксид Магния (MgO)',
         type: ChemicalType.OXIDE,
-        color: 'rgba(255, 255, 255, 0.6)',
+        color: 'rgba(255, 255, 255, 1)',
         container: ContainerType.JAR,
         reactions: {
           'Серная кислота (H2SO4)': {
             color: 'rgba(255, 255, 255, 0.6)',
+            hasPrecipitate: true,
+            precipitate: {color: 'rgba(255, 255, 255, 1)'}
           }
         }
       },
@@ -37,7 +39,9 @@ export class AcidsWithOxidesComponent extends ReactionBase implements OnInit {
         container: ContainerType.JAR,
         reactions: {
           'Серная кислота (H2SO4)': {
-            color: 'rgba(0, 150, 255, 0.8)',
+            color: 'rgba(255, 255, 255, 0.6)',
+            hasPrecipitate: true,
+            precipitate: {color: 'rgba(30, 30, 30, 1)'}
           }
         }
       },
@@ -49,10 +53,30 @@ export class AcidsWithOxidesComponent extends ReactionBase implements OnInit {
         container: ContainerType.JAR,
         reactions: {
           'Серная кислота (H2SO4)': {
-            color: 'rgba(50, 180, 70, 0.8)'
+            color: 'rgba(255, 255, 255, 0.6)',
+            hasPrecipitate: true,
+            precipitate: {color: 'rgba(150, 190, 120, 1)'}
           },
         }
       }
     ];
+  }
+
+  updateResult() {
+    if (this.currentReaction.first && this.currentReaction.second) {
+      const reactions = this.currentReaction.second.reactions || {};
+      this.currentReaction.result = reactions[this.currentReaction.first.name];
+      this.reactionCompleted = true;
+    } else if (this.currentReaction.first) {
+      this.resetReactionsFlags();
+      this.currentReaction.result = { color: this.currentReaction.first.color };
+    }
+    else if (this.currentReaction.second) {
+      this.resetReactionsFlags();
+      this.currentReaction.result = { precipitate: {color: this.currentReaction.second.color}, hasPrecipitate: true };
+    }
+    else {
+      this.resetReactionsFlags();
+    }
   }
 }
