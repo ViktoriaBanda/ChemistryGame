@@ -23,6 +23,8 @@ export class AcidsWithAlkaliComponent extends ReactionBase implements OnInit {
   }
 
   ngOnInit() {
+    this.reagentsCount = 3;
+    this.reagentsCountWithoutAdditions = 2;
     this.initializeData();
   }
 
@@ -30,20 +32,12 @@ export class AcidsWithAlkaliComponent extends ReactionBase implements OnInit {
     this.reactions = new Map([
       // H2SO4 + индикаторы
       [createReactionKey([Chemical.H2SO4, Chemical.LITMUS]), {
-        color: 'rgba(220, 20, 60, 0.6)', // красный
-        description: 'Лакмус в кислой среде краснеет'
+        color: 'rgba(220, 20, 60, 0.6)',
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.METHYL_ORANGE]), {
-        color: 'rgba(220, 20, 60, 0.6)', // красный
-        description: 'Метилоранж в кислой среде краснеет'
+        color: 'rgba(220, 20, 60, 0.6)',
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.PHENOLPHTHALEIN]), {
-        color: 'rgba(255, 255, 255, 0.6)', // бесцветный
-        description: 'Фенолфталеин в кислой среде бесцветный'
-      }],
-      // H2SO4 + основания
-      [createReactionKey([Chemical.H2SO4, Chemical.NaOH]), {
-        hasReaction: true,
         color: 'rgba(255, 255, 255, 0.6)',
       }],
       // Основания + Индикаторы
@@ -53,11 +47,29 @@ export class AcidsWithAlkaliComponent extends ReactionBase implements OnInit {
       }],
       [createReactionKey([Chemical.NaOH, Chemical.METHYL_ORANGE]), {
         hasReaction: true,
-        color: 'rgba(255, 165, 0, 0.6)',
+        color: 'rgba(255, 255, 0, 0.6)',
       }],
       [createReactionKey([Chemical.NaOH, Chemical.PHENOLPHTHALEIN]), {
         hasReaction: true,
         color: 'rgba(255, 0, 255, 0.6)',
+      }],
+      // H2SO4 + основания
+      [createReactionKey([Chemical.H2SO4, Chemical.NaOH]), {
+        hasReaction: true,
+        color: 'rgba(255, 255, 255, 0.6)',
+      }],
+      // H2SO4 + основания + индикаторы
+      [createReactionKey([Chemical.H2SO4, Chemical.NaOH, Chemical.LITMUS]), {
+        hasReaction: true,
+        color: 'rgba(138, 43, 226, 0.6)',
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.NaOH, Chemical.METHYL_ORANGE]), {
+        hasReaction: true,
+        color: 'rgba(255, 165, 0, 0.6)',
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.NaOH, Chemical.PHENOLPHTHALEIN]), {
+        hasReaction: true,
+        color: 'rgba(255, 255, 255, 0.6)',
       }],
       // Нагревание
       [createReactionKey([Chemical.H2SO4, Chemical.MgOH2, Chemical.PHENOLPHTHALEIN]), {

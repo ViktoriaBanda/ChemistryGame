@@ -46,7 +46,8 @@ export abstract class ReactionBase {
   protected animating = false;
   protected isResultAlreadyExist = false;
   protected reactions: Map<string, ReactionResult>;
-  protected reagentsCount: number = 2;
+  protected reagentsCount: number = 2; // указывается с учетом индикаторов
+  protected reagentsCountWithoutAdditions: number = 2; // указывается без учета индикаторов
   protected reagents: ChemicalElement[] = [];
 
   toggleGroup(group: string) {
@@ -54,34 +55,38 @@ export abstract class ReactionBase {
   }
 
   selectAcid(acid: ChemicalElement) {
-    if (this.reagents.length === this.reagentsCount) {
+    if (this.reagents.length >= this.reagentsCount) {
       this.setResultIsFull();
       return;
     }
 
+    this.reagents = this.reagents.filter(r => r?.type !== acid.type);
     this.selectedAcid = acid;
     this.reagents.push(acid);
     this.updateResult();
   }
 
   selectReagent(reagent: ChemicalElement, index?: number, type?: ChemicalType) {
-    if (this.reagents.length === this.reagentsCount &&
-      index == null && this.reagents.every(reagent => reagent?.type !== ChemicalType.INDICATOR)) {
+    if (index == null && this.reagents.length >= this.reagentsCount || this.isAlreadyHasSameType(reagent?.type)) {
       this.setResultIsFull();
       return;
     }
 
+    if (reagent) {
+      this.reagents = this.reagents.filter(r => r?.type !== reagent.type);
+    } else {
+      this.reagents = this.reagents.filter(r => r?.type !== type);
+    }
+
     if (index != null) {
-      if(type === ChemicalType.INDICATOR) {
+      if (type === ChemicalType.INDICATOR) {
         let indicator = this.indicators[index];
-        this.reagents = this.reagents.filter(reagent => reagent?.type !== ChemicalType.INDICATOR);
         this.reagents.push(indicator);
         this.updateResult();
         return;
       }
-      if(type === ChemicalType.IMPACT) {
+      if (type === ChemicalType.IMPACT) {
         let impact = this.impacts[index];
-        this.reagents = this.reagents.filter(reagent => reagent?.type !== ChemicalType.IMPACT);
         this.reagents.push(impact);
         this.updateResult();
         return;
@@ -91,6 +96,17 @@ export abstract class ReactionBase {
     this.selectedReagent = reagent;
     this.reagents.push(reagent);
     this.updateResult();
+  }
+
+  isAlreadyHasSameType(typeForAdd: ChemicalType): boolean {
+    let mainReagents = this.reagents.filter(reagent => reagent?.type !== ChemicalType.INDICATOR &&
+      reagent?.type !== ChemicalType.IMPACT);
+    return this.reagents.length >= this.reagentsCountWithoutAdditions && mainReagents.some(reagent => reagent.type === typeForAdd);
+  }
+
+  isFullWithoutAdditions(): boolean {
+    return this.reagents.filter(reagent => reagent?.type !== ChemicalType.INDICATOR &&
+      reagent?.type !== ChemicalType.IMPACT).length >= this.reagentsCount;
   }
 
   protected updateResult() {
