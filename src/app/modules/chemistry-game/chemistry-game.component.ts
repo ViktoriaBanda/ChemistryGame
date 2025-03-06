@@ -67,7 +67,7 @@ export class ChemistryGameComponent implements OnInit {
           {
             id: 4,
             name: 'Взаимодействие с основаниями',
-            route: 'bases',
+            route: 'alkali',
           },
           {
             id: 5,
@@ -79,7 +79,7 @@ export class ChemistryGameComponent implements OnInit {
       {
         id: 2,
         name: 'Химические свойства оснований',
-        route: 'bases',
+        route: 'alkali',
         subtopics: [],
       },
     ];

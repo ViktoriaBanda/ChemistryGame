@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ChemicalElement, ChemicalType, ContainerType, Reaction, ReactionResult } from "../../models/chemistry.models";
+import { Component, OnInit } from '@angular/core';
+import { ChemicalElement, ChemicalType } from "../../models/chemistry.models";
 import { ReactionBase } from "../../../reactionBase";
 
 @Component({
@@ -21,7 +21,6 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
         name: 'Магний (Mg)',
         type: ChemicalType.METAL,
         color: 'rgba(169, 169, 169, 1)',
-        container: ContainerType.METAL,
         reactions: {
           'Соляная кислота (HCl)': {
             hasReaction: true,
@@ -46,7 +45,6 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
         name: 'Цинк (Zn)',
         type: ChemicalType.METAL,
         color: 'rgba(179, 179, 179, 1)',
-        container: ContainerType.METAL,
         reactions: {
           'Соляная кислота (HCl)': {
             hasReaction: true,
@@ -71,7 +69,6 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
         name: 'Медь (Cu)',
         type: ChemicalType.METAL,
         color: 'rgba(184, 115, 51, 1)',
-        container: ContainerType.METAL,
         reactions: {
           'Соляная кислота (HCl)': {
             color: 'rgba(255, 255, 255, 0.6)',

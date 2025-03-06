@@ -34,15 +34,13 @@ export abstract class ReactionBase {
         id: 1,
         name: 'Соляная кислота (HCl)',
         type: ChemicalType.ACID,
-        color: 'rgba(255, 255, 255, 0.6)',
-        container: ContainerType.FLASK
+        color: 'rgba(255, 255, 255, 0.6)'
       },
       {
         id: 2,
         name: 'Серная кислота (H2SO4)',
         type: ChemicalType.ACID,
-        color: 'rgba(255, 255, 255, 0.6)',
-        container: ContainerType.FLASK
+        color: 'rgba(255, 255, 255, 0.6)'
       },
     ];
   }
@@ -57,10 +55,12 @@ export abstract class ReactionBase {
   }
 
   selectAcid(acid: ChemicalElement) {
-    if (this.selectedAcid && this.selectedReagent) {
+    if (this.currentReaction.first && this.currentReaction.second) {
       this.setResultIsFull();
       return;
     }
+
+    console.log(this.currentReaction)
 
     this.selectedAcid = acid;
     this.currentReaction.first = acid;
@@ -68,7 +68,7 @@ export abstract class ReactionBase {
   }
 
   selectReagent(indicator: ChemicalElement, index?: number) {
-    if (this.selectedAcid && this.selectedReagent) {
+    if (this.currentReaction.first && this.currentReaction.second) {
       this.setResultIsFull();
       return;
     }

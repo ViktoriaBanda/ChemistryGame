@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ChemicalElement, ChemicalType, ContainerType } from "../../models/chemistry.models";
+import { ChemicalElement, ChemicalType } from "../../models/chemistry.models";
 import { ReactionBase } from "../../../reactionBase";
 
 @Component({
-  selector: 'app-acids-with-bases',
+  selector: 'app-acids-with-alkali',
   templateUrl: './acids-with-oxides.component.html',
   styleUrls: ['./acids-with-oxides.component.scss']
 })
@@ -23,7 +23,6 @@ export class AcidsWithOxidesComponent extends ReactionBase implements OnInit {
         name: 'Оксид Магния (MgO)',
         type: ChemicalType.OXIDE,
         color: 'rgba(255, 255, 255, 1)',
-        container: ContainerType.JAR,
         reactions: {
           'Серная кислота (H2SO4)': {
             color: 'rgba(255, 255, 255, 0.6)',
@@ -38,7 +37,6 @@ export class AcidsWithOxidesComponent extends ReactionBase implements OnInit {
         name: 'Оксид Меди (CuO)',
         type: ChemicalType.OXIDE,
         color: 'rgba(30, 30, 30, 1)',
-        container: ContainerType.JAR,
         reactions: {
           'Серная кислота (H2SO4)': {
             color: 'rgba(255, 255, 255, 0.6)',
@@ -53,7 +51,6 @@ export class AcidsWithOxidesComponent extends ReactionBase implements OnInit {
         name: 'Оксид Никеля (NiO)',
         type: ChemicalType.OXIDE,
         color: 'rgba(150, 190, 120, 1)',
-        container: ContainerType.JAR,
         reactions: {
           'Серная кислота (H2SO4)': {
             color: 'rgba(255, 255, 255, 0.6)',
@@ -95,8 +92,7 @@ export class AcidsWithOxidesComponent extends ReactionBase implements OnInit {
   }
 
   selectImpact(index?: number) {
-    let impact = this.impacts[index];
-    this.currentReaction.third = impact;
+    this.currentReaction.third = this.impacts[index];
     this.updateResult();
   }
 

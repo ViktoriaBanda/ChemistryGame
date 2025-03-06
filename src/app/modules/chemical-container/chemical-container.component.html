@@ -1,145 +1,150 @@
-<ng-container [ngSwitch]="element.container">
-  <!-- Коническая колба -->
-  <div class="flask" *ngSwitchCase="ContainerType.FLASK">
-    <svg width="60px" height="84px" viewBox="0 0 512 512">
-      <path style="fill:#EDEEF0;"
-            d="M169.066,16.168v159.234L80.141,413.235c-8.396,22.452-5.25,47.616,8.412,67.311  C102.217,500.242,124.685,512,148.656,512h214.688c23.984,0,46.458-11.768,60.12-31.48c13.661-19.713,16.791-44.888,8.372-67.345  l-89.147-237.778V16.168H169.066z"/>
-      <path style="fill:#EDEEF0;"
-            d="M431.836,413.174l-89.147-237.778V16.168h-86.522V512h107.176c23.984,0,46.458-11.768,60.12-31.48  C437.125,460.807,440.255,435.631,431.836,413.174z"/>
-      <path class="flask-liquid" [style.fill]="element.color"
-            d="M351.634,291.368H160.229l-49.8,133.192c-4.754,12.713-3.043,26.401,4.694,37.554  s19.958,17.549,33.532,17.549h214.688c13.58,0,25.806-6.401,33.542-17.564c7.737-11.162,9.439-24.858,4.671-37.574L351.634,291.368z  "/>
-      <path class="flask-liquid" [style.fill]="element.color"
-            d="M401.557,424.526l-49.923-133.158h-95.467v188.295h107.176c13.58,0,25.806-6.401,33.542-17.564  C404.622,450.937,406.324,437.242,401.557,424.526z"/>
-      <rect x="169.65" y="15.823" style="fill:#D8D9DD;" width="173.04" height="44.833"/>
-      <rect x="256.17" y="25.322" style="fill:#B7B9C0;" width="86.52" height="35.34"/>
-      <rect x="142.46" style="fill:#EDEEF0;" width="226.83" height="33.391"/>
-      <rect x="256.17" style="fill:#DCDEE2;" width="113.13" height="33.391"/>
-    </svg>
-  </div>
+<!-- Коническая колба -->
+<div class="flask" *ngIf="element.type === ChemicalType.ACID">
+  <svg width="60px" height="84px" viewBox="0 0 512 512">
+    <path style="fill:#EDEEF0;"
+          d="M169.066,16.168v159.234L80.141,413.235c-8.396,22.452-5.25,47.616,8.412,67.311  C102.217,500.242,124.685,512,148.656,512h214.688c23.984,0,46.458-11.768,60.12-31.48c13.661-19.713,16.791-44.888,8.372-67.345  l-89.147-237.778V16.168H169.066z"/>
+    <path style="fill:#EDEEF0;"
+          d="M431.836,413.174l-89.147-237.778V16.168h-86.522V512h107.176c23.984,0,46.458-11.768,60.12-31.48  C437.125,460.807,440.255,435.631,431.836,413.174z"/>
+    <path class="flask-liquid" [style.fill]="element.color"
+          d="M351.634,291.368H160.229l-49.8,133.192c-4.754,12.713-3.043,26.401,4.694,37.554  s19.958,17.549,33.532,17.549h214.688c13.58,0,25.806-6.401,33.542-17.564c7.737-11.162,9.439-24.858,4.671-37.574L351.634,291.368z  "/>
+    <path class="flask-liquid" [style.fill]="element.color"
+          d="M401.557,424.526l-49.923-133.158h-95.467v188.295h107.176c13.58,0,25.806-6.401,33.542-17.564  C404.622,450.937,406.324,437.242,401.557,424.526z"/>
+    <rect x="169.65" y="15.823" style="fill:#D8D9DD;" width="173.04" height="44.833"/>
+    <rect x="256.17" y="25.322" style="fill:#B7B9C0;" width="86.52" height="35.34"/>
+    <rect x="142.46" style="fill:#EDEEF0;" width="226.83" height="33.391"/>
+    <rect x="256.17" style="fill:#DCDEE2;" width="113.13" height="33.391"/>
+  </svg>
+</div>
 
-  <!-- Пипетка -->
-  <div class="pipette" *ngSwitchCase="ContainerType.PIPETTE">
-    <svg width="50px" height="60px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.999 511.999">
-      <path style="fill:#EDEEF0;"
-            d="M230.135,163.994l78.389,78.389L167.489,383.418l-99.093,20.704L89.1,305.03L230.135,163.994z"/>
-      <polygon style="fill:#DCDEE2;" points="308.523,242.383 269.329,203.188 68.396,404.121 167.488,383.416 "/>
-      <path style="fill:#444242;"
-            d="M228.311,165.816L377.919,16.209c21.612-21.612,56.777-21.612,78.388,0  c21.612,21.612,21.612,56.777,0,78.389L306.699,244.205L228.311,165.816z"/>
-      <g>
-        <path style="fill:#3A3839;"
-              d="M456.308,94.597c21.612-21.612,21.612-56.777,0-78.389L267.506,205.01l39.194,39.194L456.308,94.597   z"/>
+<!-- Пипетка -->
+<div class="flask" *ngIf="element.type === ChemicalType.INDICATOR">
+  <svg width="50px" height="60px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.999 511.999">
+    <path style="fill:#EDEEF0;"
+          d="M230.135,163.994l78.389,78.389L167.489,383.418l-99.093,20.704L89.1,305.03L230.135,163.994z"/>
+    <polygon style="fill:#DCDEE2;" points="308.523,242.383 269.329,203.188 68.396,404.121 167.488,383.416 "/>
+    <path style="fill:#444242;"
+          d="M228.311,165.816L377.919,16.209c21.612-21.612,56.777-21.612,78.388,0  c21.612,21.612,21.612,56.777,0,78.389L306.699,244.205L228.311,165.816z"/>
+    <g>
+      <path style="fill:#3A3839;"
+            d="M456.308,94.597c21.612-21.612,21.612-56.777,0-78.389L267.506,205.01l39.194,39.194L456.308,94.597   z"/>
 
-        <rect x="221.538" y="178.162" transform="matrix(0.7071 0.7071 -0.7071 0.7071 219.4007 -138.5644)"
-              style="fill:#3A3839;" width="110.849" height="34.791"/>
-      </g>
-      <rect x="268.825" y="197.771" transform="matrix(0.7071 0.7071 -0.7071 0.7071 239.0002 -146.6642)"
-            style="fill:#262626;" width="55.429" height="34.791"/>
-      <rect x="196.918" y="202.78" transform="matrix(0.7071 0.7071 -0.7071 0.7071 229.5967 -113.9457)"
-            style="fill:#DCDEE2;" width="110.849" height="34.791"/>
-      <rect x="244.231" y="222.364" transform="matrix(0.7071 0.7071 -0.7071 0.7071 249.1867 -122.0708)"
-            style="fill:#B7B9C0;" width="55.429" height="34.791"/>
-      <rect x="191.506" y="189.585" transform="matrix(0.7071 0.7071 -0.7071 0.7071 224.4968 -126.2455)"
-            style="fill:#444242;" width="146.269" height="36.568"/>
-      <polygon [style.fill]="element.color"
-               points="237.382,276.433 154.472,359.343 102.267,370.25 203.865,268.652 170.349,260.871   113.174,318.046 102.267,370.25 154.472,359.343 "/>
-      <polygon [style.fill]="element.color" points="102.267,370.25 154.472,359.343 237.382,276.433 203.865,268.652 "/>
-      <path [style.fill]="element.color"
-            d="M68.396,428.389c0,0,28.914,32.061,28.914,54.696c0,15.969-12.946,28.914-28.914,28.914  s-28.914-12.946-28.914-28.914C39.482,460.45,68.396,428.389,68.396,428.389z"/>
-      <path [style.fill]="element.color"
-            d="M68.396,428.389c0,0,28.914,32.061,28.914,54.696c0,15.969-12.946,28.914-28.914,28.914  C68.396,491.127,68.396,428.389,68.396,428.389z"/>
-      <rect x="253.937" y="215.449" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 330.6512 604.426)"
-            style="fill:#3A3839;" width="73.139" height="36.568"/>
-    </svg>
-  </div>
+      <rect x="221.538" y="178.162" transform="matrix(0.7071 0.7071 -0.7071 0.7071 219.4007 -138.5644)"
+            style="fill:#3A3839;" width="110.849" height="34.791"/>
+    </g>
+    <rect x="268.825" y="197.771" transform="matrix(0.7071 0.7071 -0.7071 0.7071 239.0002 -146.6642)"
+          style="fill:#262626;" width="55.429" height="34.791"/>
+    <rect x="196.918" y="202.78" transform="matrix(0.7071 0.7071 -0.7071 0.7071 229.5967 -113.9457)"
+          style="fill:#DCDEE2;" width="110.849" height="34.791"/>
+    <rect x="244.231" y="222.364" transform="matrix(0.7071 0.7071 -0.7071 0.7071 249.1867 -122.0708)"
+          style="fill:#B7B9C0;" width="55.429" height="34.791"/>
+    <rect x="191.506" y="189.585" transform="matrix(0.7071 0.7071 -0.7071 0.7071 224.4968 -126.2455)"
+          style="fill:#444242;" width="146.269" height="36.568"/>
+    <polygon [style.fill]="element.color"
+             points="237.382,276.433 154.472,359.343 102.267,370.25 203.865,268.652 170.349,260.871   113.174,318.046 102.267,370.25 154.472,359.343 "/>
+    <polygon [style.fill]="element.color" points="102.267,370.25 154.472,359.343 237.382,276.433 203.865,268.652 "/>
+    <path [style.fill]="element.color"
+          d="M68.396,428.389c0,0,28.914,32.061,28.914,54.696c0,15.969-12.946,28.914-28.914,28.914  s-28.914-12.946-28.914-28.914C39.482,460.45,68.396,428.389,68.396,428.389z"/>
+    <path [style.fill]="element.color"
+          d="M68.396,428.389c0,0,28.914,32.061,28.914,54.696c0,15.969-12.946,28.914-28.914,28.914  C68.396,491.127,68.396,428.389,68.396,428.389z"/>
+    <rect x="253.937" y="215.449" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 330.6512 604.426)"
+          style="fill:#3A3839;" width="73.139" height="36.568"/>
+  </svg>
+</div>
 
-  <!-- Пробирка -->
-  <div class="test-tube" *ngSwitchCase="ContainerType.TEST_TUBE">
-    <svg viewBox="0 0 40 120">
-      <path class="test-tube-outline" d="M15,10 L15,90 C15,100 25,100 25,90 L25,10"/>
-      <path class="test-tube-liquid" [style.fill]="element.color" d="M15,90 C15,100 25,100 25,90 L25,50 L15,50 Z"/>
-    </svg>
-  </div>
+<!-- Стакан для сыпучих -->
+<div class="flask" *ngIf="element.type === ChemicalType.OXIDE || (element.type === ChemicalType.ALKALI && element.container === ContainerType.JAR)">
+  <svg width="60px" height="84px" viewBox="0 0 512 512">
+    <polygon style="fill:#EDEEF0;"
+             points="175.007,98.165 112.971,202.94 112.971,512 399.029,512 399.029,202.94 336.993,98.165 "/>
+    <polygon style="fill:#DCDEE2;" points="256,512 399.029,512 399.029,202.94 336.993,98.165 256,98.165 "/>
+    <rect x="146.37" y="212.08" [style.fill]="element.color" width="219.28" height="266.53"/>
+    <rect x="256" y="212.08" [style.fill]="element.color" width="109.64" height="266.53"/>
+    <path style="fill:#444242;" d="M363.842,123.368H148.158V0H363.84v123.368H363.842z"/>
+    <path style="fill:#3A3839;" d="M363.842,123.368H256V0h107.842V123.368z"/>
+    <path style="fill:#FFFFFF;" d="M334.446,418.785H177.554V276.621h156.892L334.446,418.785L334.446,418.785z"/>
+    <path style="fill:#EDEEF0;" d="M334.446,418.785H256V276.621h78.446L334.446,418.785L334.446,418.785z"/>
+    <g>
+      <rect x="210.89" y="308.75" style="fill:#444242;" width="90.22" height="11.13"/>
+      <rect x="210.89" y="342.14" style="fill:#444242;" width="90.22" height="11.13"/>
+      <rect x="210.89" y="375.53" style="fill:#444242;" width="90.22" height="11.13"/>
+    </g>
+    <g>
+      <rect x="256" y="308.75" style="fill:#3A3839;" width="45.12" height="11.13"/>
+      <rect x="256" y="342.14" style="fill:#3A3839;" width="45.12" height="11.13"/>
+      <rect x="256" y="375.53" style="fill:#3A3839;" width="45.12" height="11.13"/>
+      <path style="fill:#3A3839;" d="M173.487,1.183v122.184h22.261V0h-13.332C179.326,0,176.334,0.416,173.487,1.183z"/>
+      <rect x="221.07" style="fill:#3A3839;" width="22.261" height="123.37"/>
+    </g>
+    <g>
+      <rect x="268.67" style="fill:#262626;" width="22.261" height="123.37"/>
+      <path style="fill:#262626;" d="M338.513,1.183C335.666,0.416,332.674,0,329.584,0h-13.332v123.368h22.261V1.183z"/>
+    </g>
+  </svg>
+</div>
 
-  <!-- Стакан -->
-  <div class="beaker" *ngSwitchCase="ContainerType.JAR">
-    <svg width="60px" height="84px" viewBox="0 0 512 512">
-      <polygon style="fill:#EDEEF0;"
-               points="175.007,98.165 112.971,202.94 112.971,512 399.029,512 399.029,202.94 336.993,98.165 "/>
-      <polygon style="fill:#DCDEE2;" points="256,512 399.029,512 399.029,202.94 336.993,98.165 256,98.165 "/>
-      <rect x="146.37" y="212.08" [style.fill]="element.color" width="219.28" height="266.53"/>
-      <rect x="256" y="212.08" [style.fill]="element.color" width="109.64" height="266.53"/>
-      <path style="fill:#444242;" d="M363.842,123.368H148.158V0H363.84v123.368H363.842z"/>
-      <path style="fill:#3A3839;" d="M363.842,123.368H256V0h107.842V123.368z"/>
-      <path style="fill:#FFFFFF;" d="M334.446,418.785H177.554V276.621h156.892L334.446,418.785L334.446,418.785z"/>
-      <path style="fill:#EDEEF0;" d="M334.446,418.785H256V276.621h78.446L334.446,418.785L334.446,418.785z"/>
-      <g>
-        <rect x="210.89" y="308.75" style="fill:#444242;" width="90.22" height="11.13"/>
-        <rect x="210.89" y="342.14" style="fill:#444242;" width="90.22" height="11.13"/>
-        <rect x="210.89" y="375.53" style="fill:#444242;" width="90.22" height="11.13"/>
-      </g>
-      <g>
-        <rect x="256" y="308.75" style="fill:#3A3839;" width="45.12" height="11.13"/>
-        <rect x="256" y="342.14" style="fill:#3A3839;" width="45.12" height="11.13"/>
-        <rect x="256" y="375.53" style="fill:#3A3839;" width="45.12" height="11.13"/>
-        <path style="fill:#3A3839;" d="M173.487,1.183v122.184h22.261V0h-13.332C179.326,0,176.334,0.416,173.487,1.183z"/>
-        <rect x="221.07" style="fill:#3A3839;" width="22.261" height="123.37"/>
-      </g>
-      <g>
-        <rect x="268.67" style="fill:#262626;" width="22.261" height="123.37"/>
-        <path style="fill:#262626;" d="M338.513,1.183C335.666,0.416,332.674,0,329.584,0h-13.332v123.368h22.261V1.183z"/>
-      </g>
-    </svg>
-  </div>
+<!-- Металл -->
+<div class="flask" *ngIf="element.type === ChemicalType.METAL">
+  <svg width="60px" height="84px" viewBox="0 0 128 128">
+    <linearGradient id="IconifyId17ecdb2904d178eab19914" gradientUnits="userSpaceOnUse" x1="87.616" y1="21.04"
+                    x2="41.548" y2="138.084">
+      <stop offset="0" stop-color="#9e958e"/>
+      <stop offset=".46" stop-color="#8e8884"/>
+      <stop offset="1" stop-color="#757575"/>
+    </linearGradient>
+    <path
+      d="M8.93 90.74c-.53-1.25-1.04-2.5-1.54-3.75c-3.77-9.51.96-18.09 5.18-26.49l6.12-12.16c1.23-2.45 3.12-4.51 5.44-5.95l17.6-10.92l17.39-17.98a8.147 8.147 0 0 1 3.97-2.27l11.84-2.86c5.73-1.37 8.19-1.15 10.04 1.48c6.41 9.1 10.7 16.59 16.41 25.66c3.11 4.94 10.29 16.29 10.74 17.04c1.38 2.32.82 4.26.77 6.92c-.12 6.13.96 12.29 3.2 18c.67 1.7 1.44 3.38 1.79 5.17c.32 1.61-.11 11.84-.44 15.3c-.27 2.81-6.91 13.3-9.29 14.57c-2.62 1.4-22.04 8.54-26.33 9.76s-22.89-3.03-32.55-4.51c-5.97-.91-11.95-1.83-17.92-2.74c-5.18-.79-10.33-.19-13.23-5.42c-3.41-6.12-6.47-12.41-9.19-18.85z"
+      fill="url(#IconifyId17ecdb2904d178eab19914)" [style.fill]="element.color"/>
+    <path
+      d="M31.34 115c5.97.91 11.95 1.83 17.92 2.74c3.11.48 7.15 1.24 11.34 2.02c-2.82-3.34-7.03-7.3-9.85-10.64c-.61-.72-1.23-1.47-1.45-2.39c-.23-.98.03-1.99.3-2.96c.86-3.18 1.08-6.63 1.94-9.81c-5.33 1.24-17.61 3.6-18.62 3.31c-1.12-.32-2.03-1.13-2.9-1.92c-6.33-5.78-11.28-11.61-16.12-18.66c-.57-.83-1.15-1.69-1.36-2.68c-.2-.93-.05-1.89.1-2.82c.36-2.32 1.16-8.75 1.8-14.42l-1.88 3.73C8.35 68.9 3.62 77.48 7.4 86.99c.5 1.26 1.01 2.51 1.54 3.75a192.48 192.48 0 0 0 9.17 18.83c2.89 5.24 8.05 4.64 13.23 5.43z"
+      fill="url(#IconifyId17ecdb2904d178eab19915)"/>
+    <linearGradient id="IconifyId17ecdb2904d178eab19916" gradientUnits="userSpaceOnUse" x1="99.553" y1="66.702"
+                    x2="74.778" y2="11.745">
+      <stop offset="0" stop-color="#9e958e"/>
+      <stop offset=".442" stop-color="#aea298"/>
+      <stop offset="1" stop-color="#c9b8a9"/>
+    </linearGradient>
+    <linearGradient id="IconifyId17ecdb2904d178eab19917" gradientUnits="userSpaceOnUse" x1="37.502" y1="104.545"
+                    x2="47.502" y2="50.295">
+      <stop offset="0" stop-color="#4c5c64"/>
+      <stop offset="1" stop-color="#455a64" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="IconifyId17ecdb2904d178eab19918" gradientUnits="userSpaceOnUse" x1="41.732" y1="20.416"
+                    x2="70.782" y2="20.416">
+      <stop offset="0" stop-color="#4c5c64"/>
+      <stop offset="1" stop-color="#455a64" stop-opacity="0"/>
+    </linearGradient>
+    <path
+      d="M67.16 20.74c-1.28-1.53-1.64-3.7-1.2-5.64c.37-1.62 3.73-4.75 4.82-5.74l-7.69 1.86a8.226 8.226 0 0 0-3.97 2.27L41.73 31.47s16.84-7.02 25.43-10.73z"
+      fill="url(#IconifyId17ecdb2904d178eab19918)"/>
+    <linearGradient id="IconifyId17ecdb2904d178eab19919" gradientUnits="userSpaceOnUse" x1="87.261" y1="76.607"
+                    x2="121.616" y2="90.767">
+      <stop offset="0" stop-color="#9e958e"/>
+      <stop offset=".25" stop-color="#aea298"/>
+      <stop offset=".566" stop-color="#c9b8a9"/>
+    </linearGradient>
+    <linearGradient id="IconifyId17ecdb2904d178eab19920" gradientUnits="userSpaceOnUse" x1="104.646" y1="123.357"
+                    x2="97.606" y2="95.587">
+      <stop offset="0" stop-color="#37474f"/>
+      <stop offset=".808" stop-color="#42565f" stop-opacity=".192"/>
+      <stop offset="1" stop-color="#455a64" stop-opacity="0"/>
+    </linearGradient>
+    <path
+      d="M117.87 82.63c-.13-.65-.32-1.29-.54-1.92c-.17.59-.54 1.24-1.34 1.85c-2.3 1.76-11.17 4.47-20.93 13.02c-6.37 5.58-6.38 6.33-7.75 12.48c-2.24 10.07-5.8 13.73-6.48 14.35c.37-.04.7-.09.97-.17c4.3-1.21 23.71-8.36 26.33-9.76c2.38-1.27 9.02-11.76 9.29-14.57c.34-3.44.77-13.67.45-15.28z"
+      fill="url(#IconifyId17ecdb2904d178eab19920)"/>
+  </svg>
+</div>
 
-  <!-- Металл -->
-  <div class="crystallizer" *ngSwitchCase="ContainerType.METAL">
-    <svg width="60px" height="84px" viewBox="0 0 128 128">
-      <linearGradient id="IconifyId17ecdb2904d178eab19914" gradientUnits="userSpaceOnUse" x1="87.616" y1="21.04"
-                      x2="41.548" y2="138.084">
-        <stop offset="0" stop-color="#9e958e"/>
-        <stop offset=".46" stop-color="#8e8884"/>
-        <stop offset="1" stop-color="#757575"/>
-      </linearGradient>
-      <path
-        d="M8.93 90.74c-.53-1.25-1.04-2.5-1.54-3.75c-3.77-9.51.96-18.09 5.18-26.49l6.12-12.16c1.23-2.45 3.12-4.51 5.44-5.95l17.6-10.92l17.39-17.98a8.147 8.147 0 0 1 3.97-2.27l11.84-2.86c5.73-1.37 8.19-1.15 10.04 1.48c6.41 9.1 10.7 16.59 16.41 25.66c3.11 4.94 10.29 16.29 10.74 17.04c1.38 2.32.82 4.26.77 6.92c-.12 6.13.96 12.29 3.2 18c.67 1.7 1.44 3.38 1.79 5.17c.32 1.61-.11 11.84-.44 15.3c-.27 2.81-6.91 13.3-9.29 14.57c-2.62 1.4-22.04 8.54-26.33 9.76s-22.89-3.03-32.55-4.51c-5.97-.91-11.95-1.83-17.92-2.74c-5.18-.79-10.33-.19-13.23-5.42c-3.41-6.12-6.47-12.41-9.19-18.85z"
-        fill="url(#IconifyId17ecdb2904d178eab19914)" [style.fill]="element.color"/>
-      <path
-        d="M31.34 115c5.97.91 11.95 1.83 17.92 2.74c3.11.48 7.15 1.24 11.34 2.02c-2.82-3.34-7.03-7.3-9.85-10.64c-.61-.72-1.23-1.47-1.45-2.39c-.23-.98.03-1.99.3-2.96c.86-3.18 1.08-6.63 1.94-9.81c-5.33 1.24-17.61 3.6-18.62 3.31c-1.12-.32-2.03-1.13-2.9-1.92c-6.33-5.78-11.28-11.61-16.12-18.66c-.57-.83-1.15-1.69-1.36-2.68c-.2-.93-.05-1.89.1-2.82c.36-2.32 1.16-8.75 1.8-14.42l-1.88 3.73C8.35 68.9 3.62 77.48 7.4 86.99c.5 1.26 1.01 2.51 1.54 3.75a192.48 192.48 0 0 0 9.17 18.83c2.89 5.24 8.05 4.64 13.23 5.43z"
-        fill="url(#IconifyId17ecdb2904d178eab19915)"/>
-      <linearGradient id="IconifyId17ecdb2904d178eab19916" gradientUnits="userSpaceOnUse" x1="99.553" y1="66.702"
-                      x2="74.778" y2="11.745">
-        <stop offset="0" stop-color="#9e958e"/>
-        <stop offset=".442" stop-color="#aea298"/>
-        <stop offset="1" stop-color="#c9b8a9"/>
-      </linearGradient>
-      <linearGradient id="IconifyId17ecdb2904d178eab19917" gradientUnits="userSpaceOnUse" x1="37.502" y1="104.545"
-                      x2="47.502" y2="50.295">
-        <stop offset="0" stop-color="#4c5c64"/>
-        <stop offset="1" stop-color="#455a64" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="IconifyId17ecdb2904d178eab19918" gradientUnits="userSpaceOnUse" x1="41.732" y1="20.416"
-                      x2="70.782" y2="20.416">
-        <stop offset="0" stop-color="#4c5c64"/>
-        <stop offset="1" stop-color="#455a64" stop-opacity="0"/>
-      </linearGradient>
-      <path
-        d="M67.16 20.74c-1.28-1.53-1.64-3.7-1.2-5.64c.37-1.62 3.73-4.75 4.82-5.74l-7.69 1.86a8.226 8.226 0 0 0-3.97 2.27L41.73 31.47s16.84-7.02 25.43-10.73z"
-        fill="url(#IconifyId17ecdb2904d178eab19918)"/>
-      <linearGradient id="IconifyId17ecdb2904d178eab19919" gradientUnits="userSpaceOnUse" x1="87.261" y1="76.607"
-                      x2="121.616" y2="90.767">
-        <stop offset="0" stop-color="#9e958e"/>
-        <stop offset=".25" stop-color="#aea298"/>
-        <stop offset=".566" stop-color="#c9b8a9"/>
-      </linearGradient>
-      <linearGradient id="IconifyId17ecdb2904d178eab19920" gradientUnits="userSpaceOnUse" x1="104.646" y1="123.357"
-                      x2="97.606" y2="95.587">
-        <stop offset="0" stop-color="#37474f"/>
-        <stop offset=".808" stop-color="#42565f" stop-opacity=".192"/>
-        <stop offset="1" stop-color="#455a64" stop-opacity="0"/>
-      </linearGradient>
-      <path
-        d="M117.87 82.63c-.13-.65-.32-1.29-.54-1.92c-.17.59-.54 1.24-1.34 1.85c-2.3 1.76-11.17 4.47-20.93 13.02c-6.37 5.58-6.38 6.33-7.75 12.48c-2.24 10.07-5.8 13.73-6.48 14.35c.37-.04.7-.09.97-.17c4.3-1.21 23.71-8.36 26.33-9.76c2.38-1.27 9.02-11.76 9.29-14.57c.34-3.44.77-13.67.45-15.28z"
-        fill="url(#IconifyId17ecdb2904d178eab19920)"/>
-    </svg>
-  </div>
-</ng-container>
+<!-- Основание -->
+<div class="flask" *ngIf="element.type === ChemicalType.ALKALI && element.container !== ContainerType.JAR">
+  <svg width="60px" height="84px" viewBox="0 0 511.995 511.995">
+    <rect x="106.438" y="121.535" style="fill:#EDEEF0;" width="299.11" height="390.46"/>
+    <rect x="255.998" y="121.535" style="fill:#DCDEE2;" width="149.56" height="390.46"/>
+    <rect x="106.068" y="112.685" style="fill:#D8D9DD;" width="299.49" height="42.21"/>
+    <rect x="255.808" y="112.685" style="fill:#B7B9C0;" width="149.74" height="42.21"/>
+    <rect x="79.958" y="75.824" style="fill:#EDEEF0;" width="352.08" height="54.918"/>
+    <polygon style="fill:#DCDEE2;"
+             points="432.033,75.82 255.996,75.82 255.996,130.733 432.033,130.733 432.033,130.733 "/>
+    <rect x="134.948" y="263.965" [style.fill]="element.color" width="242.09" height="219.51"/>
+    <rect x="255.998" y="263.965" [style.fill]="element.color" width="121.04" height="219.51"/>
+  </svg>
+</div>

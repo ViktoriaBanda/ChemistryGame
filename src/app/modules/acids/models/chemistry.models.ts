@@ -1,6 +1,6 @@
 export enum ChemicalType {
   ACID,
-  BASE,
+  ALKALI,
   INDICATOR,
   METAL,
   SALT,
@@ -9,11 +9,7 @@ export enum ChemicalType {
 }
 
 export enum ContainerType {
-  FLASK,
-  PIPETTE,
-  TEST_TUBE,
-  JAR,
-  METAL
+  JAR
 }
 
 export interface ReactionResult {
@@ -29,8 +25,8 @@ export interface ChemicalElement {
   id?: number;
   name: string;
   type?: ChemicalType;
-  color?: string;
   container?: ContainerType;
+  color?: string;
   reactions?: { [key: string]: ReactionResult };
 }
 

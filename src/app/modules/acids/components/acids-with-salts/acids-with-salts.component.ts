@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-acids-with-bases',
+  selector: 'app-acids-with-alkali',
   templateUrl: './acids-with-salts.component.html',
   styleUrls: ['./acids-with-salts.component.scss']
 })

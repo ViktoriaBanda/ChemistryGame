@@ -23,19 +23,42 @@
         </div>
       </div>
     </div>
+
+    <!-- Основания -->
+    <div class="substance-block">
+      <div class="group-header" (click)="toggleGroup('alkali')">
+        <h3>Основания</h3>
+        <button [class.reverse]="!isGroupExpanded['alkali']">
+          <svg class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+               fill="none">
+            <path d="M18 15L12 9L6 15" stroke="black" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="elements-list" [class.expanded]="isGroupExpanded['alkali']">
+        <div class="element acid"
+             *ngFor="let alkali of alkalis"
+             [class.selected]="selectedReagent?.id === alkali.id"
+             (click)="selectReagent(alkali)">
+          <app-chemical-container [element]="alkali"></app-chemical-container>
+          <div class="label">{{ alkali.name }}</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Правая часть -->
   <div class="main-content">
     <!-- Результат реакции -->
-    <!-- Правая часть -->
     <app-reaction-result
       [reagent1]="currentReaction.first"
       [reagent2]="currentReaction.second"
       [result]="currentReaction.result"
       [hasIndicators]="true"
-      [canChooseIndicator]="!!selectedAcid"
-      [canChooseImpact]="!!selectedAcid"
+      [canChooseIndicator]="!!selectedAcid && selectedReagent?.id === 1"
+      [hasImpact]="true"
+      [canChooseImpact]="!!selectedAcid && selectedReagent?.id !== 1"
       [animating]="animating"
       [reactionCompleted]="reactionCompleted"
       [isResultAlreadyExist]="isResultAlreadyExist"
