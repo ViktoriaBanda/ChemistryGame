@@ -110,9 +110,7 @@ export abstract class ReactionBase {
   }
 
   protected updateResult() {
-    console.log(this.reagents.length, this.reagentsCount)
     const chemicals: Chemical[] = this.reagents.map(reagent => reagent?.chemical);
-    console.log(chemicals)
 
     if (chemicals.length > 0) {
       const reactionKey = createReactionKey(chemicals);
