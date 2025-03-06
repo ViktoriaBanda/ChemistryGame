@@ -36,7 +36,11 @@ export enum Chemical {
 
   // Соли
   NaCl = 'NaCl',
-  Na2SO4 = 'Na2SO4',
+  MgNO32 = 'Mg(NO3)2',
+  Na2CO3 = 'Na2CO3',
+  BaCl2 = 'BaCl2',
+  CaCO3 = 'CaCO3',
+  AgNO3 = 'AgNO3',
 
   // Условия
   Temperature = 'Temperature',
@@ -55,11 +59,17 @@ export const ChemicalNames: { [key in Chemical]: string } = {
   [Chemical.MgOH2]: 'Гидроксид магния (Mg(OH)2)',
   [Chemical.CuOH2]: 'Гидроксид меди (Cu(OH)2)',
   [Chemical.NiOH2]: 'Гидроксид никеля (Ni(OH)2)',
-  [Chemical.CuO]: 'Оксид меди (CaO)',
+  [Chemical.CuO]: 'Оксид меди (CuO)',
   [Chemical.MgO]: 'Оксид магния (MgO)',
   [Chemical.NiO]: 'Оксид никеля (NiO)',
   [Chemical.NaCl]: 'Хлорид натрия (NaCl)',
-  [Chemical.Na2SO4]: 'Сульфат натрия (Na2SO4)',
+
+  [Chemical.MgNO32]: 'Нитрат магния (Mg(NO3)2)',
+  [Chemical.Na2CO3]: 'Карбонат натрия (Na2CO3)',
+  [Chemical.BaCl2]: 'Хлорид бария (BaCl2)',
+  [Chemical.CaCO3]: 'Карбонат кальция (CaCO3)',
+  [Chemical.AgNO3]: 'Нитрат серебра (AgNO3)',
+
   [Chemical.Temperature]: 'Нагревание'
 };
 

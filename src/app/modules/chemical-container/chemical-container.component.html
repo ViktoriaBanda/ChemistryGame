@@ -52,7 +52,9 @@
 </div>
 
 <!-- Стакан для сыпучих -->
-<div class="flask" *ngIf="element.type === ChemicalType.OXIDE || (element.type === ChemicalType.ALKALI && element.container === ContainerType.JAR)">
+<div class="flask" *ngIf="element.type === ChemicalType.OXIDE ||
+(element.type === ChemicalType.ALKALI && element.container === ContainerType.JAR) ||
+(element.type === ChemicalType.SALT && element.container === ContainerType.JAR)">
   <svg width="60px" height="84px" viewBox="0 0 512 512">
     <polygon style="fill:#EDEEF0;"
              points="175.007,98.165 112.971,202.94 112.971,512 399.029,512 399.029,202.94 336.993,98.165 "/>
@@ -135,7 +137,7 @@
 </div>
 
 <!-- Основание -->
-<div class="flask" *ngIf="element.type === ChemicalType.ALKALI && element.container !== ContainerType.JAR">
+<div class="flask" *ngIf="(element.type === ChemicalType.ALKALI && element.container !== ContainerType.JAR) || (element.type === ChemicalType.SALT && element.container !== ContainerType.JAR)">
   <svg width="60px" height="84px" viewBox="0 0 511.995 511.995">
     <rect x="106.438" y="121.535" style="fill:#EDEEF0;" width="299.11" height="390.46"/>
     <rect x="255.998" y="121.535" style="fill:#DCDEE2;" width="149.56" height="390.46"/>

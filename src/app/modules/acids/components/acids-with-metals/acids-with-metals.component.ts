@@ -4,7 +4,6 @@ import {
   ChemicalElement,
   ChemicalType,
   createReactionKey,
-  ReactionResult
 } from "../../models/chemistry.models";
 import { ReactionBase } from "../../../reactionBase";
 import { getChemicalName } from "../../../../core/utils/helpers";
