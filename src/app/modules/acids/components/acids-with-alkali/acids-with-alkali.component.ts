@@ -27,6 +27,7 @@ export class AcidsWithAlkaliComponent extends ReactionBase {
         reactions: {
           'Серная кислота (H2SO4)': {
             hasReaction: true,
+            hasPrecipitate: false,
             color: 'rgba(255, 255, 255, 0.6)',
           }
         }
@@ -132,7 +133,7 @@ export class AcidsWithAlkaliComponent extends ReactionBase {
 
     this.selectedReagent = reagent;
 
-    if (this.currentReaction.second) {
+    if (this.currentReaction.second && this.currentReaction.second.type !== reagent.type) {
       this.currentReaction.third = reagent;
       this.updateResult();
       return;
@@ -163,7 +164,9 @@ export class AcidsWithAlkaliComponent extends ReactionBase {
         precipitate: {
           name: this.currentReaction.second.name,
           color: this.currentReaction.second.color
-        }, hasPrecipitate: true
+        },
+        hasPrecipitate: this.currentReaction.second.container === ContainerType.JAR,
+        color: this.currentReaction.second.container !== ContainerType.JAR ? this.currentReaction.second.color : 'transparent',
       };
     } else {
       this.resetReactionsFlags();
