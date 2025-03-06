@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ChemicalElement, ChemicalType } from "../../models/chemistry.models";
+import { Chemical, ChemicalElement, ChemicalType, createReactionKey } from "../../models/chemistry.models";
 import { ReactionBase } from "../../../reactionBase";
+import { getChemicalName } from "../../../../core/utils/helpers";
 
 @Component({
   selector: 'app-acids-with-alkali',
@@ -9,10 +10,50 @@ import { ReactionBase } from "../../../reactionBase";
 })
 export class AcidsWithOxidesComponent extends ReactionBase implements OnInit {
   oxides: ChemicalElement[] = [];
-  impacts: ChemicalElement[] = [];
+
+  constructor() {
+    super();
+    this.initializeReactions();
+  }
 
   ngOnInit() {
     this.initializeData();
+  }
+
+  private initializeReactions() {
+    this.reactions = new Map([
+      [createReactionKey([Chemical.H2SO4, Chemical.MgO]), {
+        hasReaction: false,
+        color: 'rgba(255, 255, 255, 0.6)',
+        hasPrecipitate: true,
+        precipitate: {chemical: Chemical.MgO, type: ChemicalType.OXIDE, color: 'rgba(255, 255, 255, 1)'},
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.CuO]), {
+        hasReaction: false,
+        color: 'rgba(255, 255, 255, 0.6)',
+        hasPrecipitate: true,
+        precipitate: {chemical: Chemical.CuO, type: ChemicalType.OXIDE, color: 'rgba(30, 30, 30, 1)'},
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.NiO]), {
+        hasReaction: false,
+        color: 'rgba(255, 255, 255, 0.6)',
+        hasPrecipitate: true,
+        precipitate: {chemical: Chemical.NiO, type: ChemicalType.OXIDE, color: 'rgba(150, 190, 120, 1)'},
+      }],
+      // Нагревание
+      [createReactionKey([Chemical.H2SO4, Chemical.MgO, Chemical.Temperature]), {
+        hasReaction: true,
+        color: 'rgba(255, 255, 255, 0.6)',
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.CuO, Chemical.Temperature]), {
+        hasReaction: true,
+        color: 'rgba(0, 150, 255, 0.6)',
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.NiO, Chemical.Temperature]), {
+        hasReaction: true,
+        color: 'rgba(50, 180, 70, 0.6)',
+      }],
+    ]);
   }
 
   initializeData() {
@@ -20,105 +61,33 @@ export class AcidsWithOxidesComponent extends ReactionBase implements OnInit {
     this.oxides = [
       {
         id: 8,
-        name: 'Оксид Магния (MgO)',
+        chemical: Chemical.MgO,
         type: ChemicalType.OXIDE,
         color: 'rgba(255, 255, 255, 1)',
-        reactions: {
-          'Серная кислота (H2SO4)': {
-            color: 'rgba(255, 255, 255, 0.6)',
-            hasPrecipitate: true,
-            precipitate: {name: 'Оксид Магния (MgO)', color: 'rgba(255, 255, 255, 1)'},
-            description: 'Оксид Магния (MgO)'
-          }
-        }
       },
       {
         id: 9,
-        name: 'Оксид Меди (CuO)',
+        chemical: Chemical.CuO,
         type: ChemicalType.OXIDE,
         color: 'rgba(30, 30, 30, 1)',
-        reactions: {
-          'Серная кислота (H2SO4)': {
-            color: 'rgba(255, 255, 255, 0.6)',
-            hasPrecipitate: true,
-            precipitate: {name: 'Оксид Меди (CuO)', color: 'rgba(30, 30, 30, 1)'},
-            description: 'Оксид Меди (CuO)'
-          }
-        }
       },
       {
         id: 10,
-        name: 'Оксид Никеля (NiO)',
+        chemical: Chemical.NiO,
         type: ChemicalType.OXIDE,
         color: 'rgba(150, 190, 120, 1)',
-        reactions: {
-          'Серная кислота (H2SO4)': {
-            color: 'rgba(255, 255, 255, 0.6)',
-            hasPrecipitate: true,
-            precipitate: {name: 'Оксид Никеля (NiO)', color: 'rgba(150, 190, 120, 1)'},
-            description: 'Оксид Никеля (NiO)'
-          },
-        }
       }
     ];
 
     this.impacts = [
       {
-        id: 5,
-        name: 'Нагревание',
-        type: ChemicalType.IMPACT,
-        reactions: {
-          'Оксид Магния (MgO)': {
-            hasReaction: true,
-            color: 'rgba(255, 255, 255, 0.6)',
-            hasPrecipitate: false,
-            precipitate: {name: '', color: 'rgba(255, 255, 255, 1)'}
-          },
-          'Оксид Меди (CuO)': {
-            hasReaction: true,
-            color: 'rgba(0, 150, 255, 0.6)',
-            hasPrecipitate: false,
-            precipitate: {name: '', color: 'rgba(30, 30, 30, 1)'}
-          },
-          'Оксид Никеля (NiO)': {
-            hasReaction: true,
-            color: 'rgba(50, 180, 70, 0.6)',
-            hasPrecipitate: false,
-            precipitate: {name: '', color: 'rgba(150, 190, 120, 1)'}
-          }
-        }
+        id: 11,
+        chemical: Chemical.Temperature,
+        type: ChemicalType.IMPACT
       },
     ];
   }
 
-  selectImpact(index?: number) {
-    this.currentReaction.third = this.impacts[index];
-    this.updateResult();
-  }
-
-  updateResult() {
-    if (this.currentReaction.first && this.currentReaction.second && this.currentReaction.third) {
-      const reactions = this.currentReaction.third.reactions || {};
-      let result = reactions[this.currentReaction.second.name];
-      this.reactionCompleted = true;
-      this.animateResult(result);
-    } else if (this.currentReaction.first && this.currentReaction.second) {
-      const reactions = this.currentReaction.second.reactions || {};
-      this.currentReaction.result = reactions[this.currentReaction.first.name];
-      this.reactionCompleted = true;
-    } else if (this.currentReaction.first) {
-      this.resetReactionsFlags();
-      this.currentReaction.result = {color: this.currentReaction.first.color};
-    } else if (this.currentReaction.second) {
-      this.resetReactionsFlags();
-      this.currentReaction.result = {
-        precipitate: {
-          name: this.currentReaction.second.name,
-          color: this.currentReaction.second.color
-        }, hasPrecipitate: true
-      };
-    } else {
-      this.resetReactionsFlags();
-    }
-  }
+  protected readonly getChemicalName = getChemicalName;
+  protected readonly ChemicalType = ChemicalType;
 }

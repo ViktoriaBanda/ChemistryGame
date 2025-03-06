@@ -19,7 +19,7 @@
              [class.selected]="selectedAcid?.id === acid.id"
              (click)="selectAcid(acid)">
           <app-chemical-container [element]="acid"></app-chemical-container>
-          <div class="label">{{ acid.name }}</div>
+          <div class="label">{{ getChemicalName(acid.chemical) }}</div>
         </div>
       </div>
     </div>
@@ -28,7 +28,6 @@
   <!-- Правая часть -->
   <div class="main-content">
     <!-- Результат реакции -->
-    <!-- Правая часть -->
     <app-reaction-result
       [reagents]="reagents"
       [result]="currentReaction.result"
@@ -38,7 +37,7 @@
       [animating]="animating"
       [reactionCompleted]="reactionCompleted"
       [isResultAlreadyExist]="isResultAlreadyExist"
-      (indicatorSelected)="selectReagent(null, $event)"
+      (indicatorSelected)="selectReagent(null, $event, ChemicalType.INDICATOR)"
       (reset)="resetExperiment()">
     </app-reaction-result>
   </div>

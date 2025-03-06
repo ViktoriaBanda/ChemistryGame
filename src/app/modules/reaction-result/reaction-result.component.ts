@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { ChemicalElement, ReactionResult } from '../acids/models/chemistry.models';
+import { ChemicalElement, ChemicalType, ReactionResult } from '../acids/models/chemistry.models';
 import { InputSelectComponent } from "../../shared/input-select/input-select.component";
 import { IItemSelect } from "../../core/interfaces/item-select.interface";
+import { getChemicalName } from "../../core/utils/helpers";
 
 @Component({
   selector: 'app-reaction-result',
@@ -74,11 +75,12 @@ export class ReactionResultComponent {
   }
 
   get products(): string {
-    return this.reagents.length ? this.reagents.map(r => r.name).join(' + ') : '';
-  }
-
-  get description() : string {
-    return this.result.description || '';
+    return this.reagents
+      .filter(reagent => reagent?.chemical &&
+        reagent.type !== ChemicalType.INDICATOR &&
+        reagent.type !== ChemicalType.IMPACT) // Оставляем только валидные реагенты
+      .map(reagent => getChemicalName(reagent.chemical))
+      .join(' + ');
   }
 
   resetExperiment() {
@@ -107,4 +109,6 @@ export class ReactionResultComponent {
       left: `${event.clientX + tooltipOffset}px`
     };
   }
+
+  protected readonly getChemicalName = getChemicalName;
 }

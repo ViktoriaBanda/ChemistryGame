@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ChemicalElement, ChemicalType } from '../../models/chemistry.models';
+import { ChemicalElement, ChemicalType, Chemical, ReactionResult, createReactionKey } from '../../models/chemistry.models';
 import { ReactionBase } from "../../../reactionBase";
+import { getChemicalName } from "../../../../core/utils/helpers";
 
 @Component({
   selector: 'app-acids-with-indicators',
@@ -8,64 +9,70 @@ import { ReactionBase } from "../../../reactionBase";
   styleUrls: ['./acids-with-indicators.component.scss']
 })
 export class AcidsWithIndicatorsComponent extends ReactionBase implements OnInit {
-  indicators: ChemicalElement[] = [];
+  constructor() {
+    super();
+    this.initializeReactions();
+  }
 
   ngOnInit() {
     this.initializeData();
+  }
+
+  private initializeReactions() {
+    this.reactions = new Map([
+      // HCl + индикаторы
+      [createReactionKey([Chemical.HCl, Chemical.LITMUS]), {
+        color: 'rgba(220, 20, 60, 0.6)', // красный
+        description: 'Лакмус в кислой среде краснеет'
+      }],
+      [createReactionKey([Chemical.HCl, Chemical.METHYL_ORANGE]), {
+        color: 'rgba(220, 20, 60, 0.6)', // красный
+        description: 'Метилоранж в кислой среде краснеет'
+      }],
+      [createReactionKey([Chemical.HCl, Chemical.PHENOLPHTHALEIN]), {
+        color: 'rgba(255, 255, 255, 0.6)', // бесцветный
+        description: 'Фенолфталеин в кислой среде бесцветный'
+      }],
+
+      // H2SO4 + индикаторы
+      [createReactionKey([Chemical.H2SO4, Chemical.LITMUS]), {
+        color: 'rgba(220, 20, 60, 0.6)', // красный
+        description: 'Лакмус в кислой среде краснеет'
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.METHYL_ORANGE]), {
+        color: 'rgba(220, 20, 60, 0.6)', // красный
+        description: 'Метилоранж в кислой среде краснеет'
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.PHENOLPHTHALEIN]), {
+        color: 'rgba(255, 255, 255, 0.6)', // бесцветный
+        description: 'Фенолфталеин в кислой среде бесцветный'
+      }]
+    ]);
   }
 
   initializeData() {
     this.indicators = [
       {
         id: 5,
-        name: 'Лакмус',
+        chemical: Chemical.LITMUS,
         type: ChemicalType.INDICATOR,
-        color: 'rgba(138, 43, 226, 1)',
-        reactions: {
-          'Соляная кислота (HCl)': {
-            color: 'rgba(220, 20, 60, 0.6)',
-          },
-          'Серная кислота (H2SO4)': {
-            color: 'rgba(220, 20, 60, 0.6)',
-          }
-        }
+        color: 'rgba(138, 43, 226, 1)'
       },
       {
         id: 6,
-        name: 'Метилоранж',
+        chemical: Chemical.METHYL_ORANGE,
         type: ChemicalType.INDICATOR,
-        color: 'rgba(255, 165, 0, 1)',
-        reactions: {
-          'Соляная кислота (HCl)': {
-            color: 'rgba(220, 20, 60, 0.6)',
-          },
-          'Серная кислота (H2SO4)': {
-            color: 'rgba(220, 20, 60, 0.6)',
-          }
-        }
+        color: 'rgba(255, 165, 0, 1)'
       },
       {
         id: 7,
-        name: 'Фенолфталеин',
+        chemical: Chemical.PHENOLPHTHALEIN,
         type: ChemicalType.INDICATOR,
-        color: 'rgba(255, 255, 255, 0.6)',
-        reactions: {
-          'Соляная кислота (HCl)': {
-            color: 'rgba(255, 255, 255, 0.6)',
-          },
-          'Серная кислота (H2SO4)': {
-            color: 'rgba(255, 255, 255, 0.6)',
-          }
-        }
-      },
+        color: 'rgba(255, 255, 255, 0.6)'
+      }
     ];
   }
 
-  selectReagent(reagent?:ChemicalElement, index?: number) {
-    let indicator = this.indicators[index];
-
-    this.selectedReagent = indicator;
-    this.currentReaction.second = indicator;
-    this.updateResult();
-  }
+  protected readonly getChemicalName = getChemicalName;
+  protected readonly ChemicalType = ChemicalType;
 }

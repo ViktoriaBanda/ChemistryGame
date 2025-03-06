@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ChemicalElement, ChemicalType } from "../../models/chemistry.models";
+import {
+  Chemical,
+  ChemicalElement,
+  ChemicalType,
+  createReactionKey,
+  ReactionResult
+} from "../../models/chemistry.models";
 import { ReactionBase } from "../../../reactionBase";
+import { getChemicalName } from "../../../../core/utils/helpers";
 
 @Component({
   selector: 'app-acids-with-metals',
@@ -10,97 +17,87 @@ import { ReactionBase } from "../../../reactionBase";
 export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
   metals: ChemicalElement[] = [];
 
+  constructor() {
+    super();
+    this.initializeReactions();
+  }
+
   ngOnInit() {
     this.initializeData();
+  }
+
+  private initializeReactions() {
+    this.reactions = new Map([
+      // HCl + металлы
+      [createReactionKey([Chemical.HCl, Chemical.Mg]), {
+        hasReaction: true,
+        color: 'rgba(255, 255, 255, 0.6)',
+        description: 'Водород (H2)',
+        hasGas: true,
+        hasPrecipitate: true,
+        precipitate: {chemical: Chemical.Mg, type: ChemicalType.METAL, color: 'rgba(169, 169, 169, 1)'},
+      }],
+      [createReactionKey([Chemical.HCl, Chemical.Zn]), {
+        hasReaction: true,
+        color: 'rgba(255, 255, 255, 0.6)',
+        description: 'Водород (H2)',
+        hasGas: true,
+        hasPrecipitate: true,
+        precipitate: {chemical: Chemical.Zn, type: ChemicalType.METAL, color: 'rgba(179, 179, 179, 1)'},
+      }],
+      [createReactionKey([Chemical.HCl, Chemical.Cu]), {
+        color: 'rgba(255, 255, 255, 0.6)',
+        hasPrecipitate: true,
+        precipitate: {chemical: Chemical.Cu, type: ChemicalType.METAL, color: 'rgba(184, 115, 51, 1)'},
+      }],
+
+      // H2SO4 + металлы
+      [createReactionKey([Chemical.H2SO4, Chemical.Mg]), {
+        hasReaction: true,
+        color: 'rgba(255, 255, 255, 0.6)',
+        hasGas: true,
+        hasPrecipitate: true,
+        precipitate: {chemical: Chemical.Mg, type: ChemicalType.METAL, color: 'rgba(169, 169, 169, 1)'},
+        description: 'Водород (H2)'
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.Zn]), {
+        hasReaction: true,
+        color: 'rgba(255, 255, 255, 0.6)',
+        description: 'Водород (H2)',
+        hasGas: true,
+        hasPrecipitate: true,
+        precipitate: {chemical: Chemical.Zn, type: ChemicalType.METAL, color: 'rgba(179, 179, 179, 1)'},
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.Cu]), {
+        color: 'rgba(255, 255, 255, 0.6)',
+        hasPrecipitate: true,
+        precipitate: {chemical: Chemical.Cu, type: ChemicalType.METAL, color: 'rgba(184, 115, 51, 1)'},
+      }]
+    ]);
   }
 
   initializeData() {
     this.metals = [
       {
         id: 8,
-        name: 'Магний (Mg)',
+        chemical: Chemical.Mg,
         type: ChemicalType.METAL,
-        color: 'rgba(169, 169, 169, 1)',
-        reactions: {
-          'Соляная кислота (HCl)': {
-            hasReaction: true,
-            color: 'rgba(255, 255, 255, 0.6)',
-            hasGas: true,
-            hasPrecipitate: true,
-            precipitate: {name: 'Магний (Mg)', color: 'rgba(169, 169, 169, 1)'},
-            description: 'Водород (H2)'
-          },
-          'Серная кислота (H2SO4)': {
-            hasReaction: true,
-            color: 'rgba(255, 255, 255, 0.6)',
-            hasGas: true,
-            hasPrecipitate: true,
-            precipitate: {name: 'Магний (Mg)', color: 'rgba(169, 169, 169, 1)'},
-            description: 'Водород (H2)'
-          }
-        }
+        color: 'rgba(169, 169, 169, 1)'
       },
       {
         id: 9,
-        name: 'Цинк (Zn)',
+        chemical: Chemical.Zn,
         type: ChemicalType.METAL,
         color: 'rgba(179, 179, 179, 1)',
-        reactions: {
-          'Соляная кислота (HCl)': {
-            hasReaction: true,
-            color: 'rgba(255, 255, 255, 0.6)',
-            hasGas: true,
-            hasPrecipitate: true,
-            precipitate: {name: 'Цинк (Zn)', color: 'rgba(179, 179, 179, 1)'},
-            description: 'Водород (H2)'
-          },
-          'Серная кислота (H2SO4)': {
-            hasReaction: true,
-            color: 'rgba(255, 255, 255, 0.6)',
-            hasGas: true,
-            hasPrecipitate: true,
-            precipitate: {name: 'Цинк (Zn)', color: 'rgba(179, 179, 179, 1)'},
-            description: 'Водород (H2)'
-          }
-        }
       },
       {
         id: 10,
-        name: 'Медь (Cu)',
+        chemical: Chemical.Cu,
         type: ChemicalType.METAL,
         color: 'rgba(184, 115, 51, 1)',
-        reactions: {
-          'Соляная кислота (HCl)': {
-            color: 'rgba(255, 255, 255, 0.6)',
-            hasPrecipitate: true,
-            precipitate: {name: 'Медь (Cu)', color: 'rgba(184, 115, 51, 1)'},
-          },
-          'Серная кислота (H2SO4)': {
-            color: 'rgba(255, 255, 255, 0.6)',
-            hasPrecipitate: true,
-            precipitate: {name: 'Медь (Cu)', color: 'rgba(184, 115, 51, 1)'},
-          },
-        }
       }
     ];
   }
 
-  updateResult() {
-    if (this.currentReaction.first && this.currentReaction.second) {
-      const reactions = this.currentReaction.second.reactions || {};
-      const result = reactions[this.currentReaction.first.name];
-      this.reactionCompleted = true;
-      this.animateResult(result);
-    } else if (this.currentReaction.first) {
-      this.resetReactionsFlags();
-      this.currentReaction.result = { color: this.currentReaction.first.color };
-    }
-    else if (this.currentReaction.second) {
-      this.resetReactionsFlags();
-      this.currentReaction.result = { precipitate: {name: this.currentReaction.second.name, color: this.currentReaction.second.color}, hasPrecipitate: true };
-    }
-    else {
-      this.resetReactionsFlags();
-    }
-  }
+  protected readonly getChemicalName = getChemicalName;
 }

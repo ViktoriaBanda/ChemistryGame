@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ChemicalElement, ChemicalType, ContainerType } from "../../models/chemistry.models";
+import {
+  Chemical,
+  ChemicalElement,
+  ChemicalType,
+  ContainerType,
+  createReactionKey
+} from "../../models/chemistry.models";
 import { ReactionBase } from "../../../reactionBase";
+import { getChemicalName } from "../../../../core/utils/helpers";
 
 @Component({
   selector: 'app-acids-with-alkali',
@@ -9,11 +16,63 @@ import { ReactionBase } from "../../../reactionBase";
 })
 export class AcidsWithAlkaliComponent extends ReactionBase implements OnInit {
   alkalis: ChemicalElement[] = [];
-  indicators: ChemicalElement[] = [];
-  impacts: ChemicalElement[] = [];
+
+  constructor() {
+    super();
+    this.initializeReactions();
+  }
 
   ngOnInit() {
     this.initializeData();
+  }
+
+  private initializeReactions() {
+    this.reactions = new Map([
+      // H2SO4 + индикаторы
+      [createReactionKey([Chemical.H2SO4, Chemical.LITMUS]), {
+        color: 'rgba(220, 20, 60, 0.6)', // красный
+        description: 'Лакмус в кислой среде краснеет'
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.METHYL_ORANGE]), {
+        color: 'rgba(220, 20, 60, 0.6)', // красный
+        description: 'Метилоранж в кислой среде краснеет'
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.PHENOLPHTHALEIN]), {
+        color: 'rgba(255, 255, 255, 0.6)', // бесцветный
+        description: 'Фенолфталеин в кислой среде бесцветный'
+      }],
+      // H2SO4 + основания
+      [createReactionKey([Chemical.H2SO4, Chemical.NaOH]), {
+        hasReaction: true,
+        color: 'rgba(255, 255, 255, 0.6)',
+      }],
+      // Основания + Индикаторы
+      [createReactionKey([Chemical.NaOH, Chemical.LITMUS]), {
+        hasReaction: true,
+        color: 'rgba(0, 0, 255, 0.6)',
+      }],
+      [createReactionKey([Chemical.NaOH, Chemical.METHYL_ORANGE]), {
+        hasReaction: true,
+        color: 'rgba(255, 165, 0, 0.6)',
+      }],
+      [createReactionKey([Chemical.NaOH, Chemical.PHENOLPHTHALEIN]), {
+        hasReaction: true,
+        color: 'rgba(255, 0, 255, 0.6)',
+      }],
+      // Нагревание
+      [createReactionKey([Chemical.H2SO4, Chemical.MgOH2, Chemical.PHENOLPHTHALEIN]), {
+        hasReaction: true,
+        color: 'rgba(255, 255, 255, 0.6)',
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.CuOH2, Chemical.Temperature]), {
+        hasReaction: true,
+        color: 'rgba(0, 150, 255, 0.6)',
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.NiOH2, Chemical.Temperature]), {
+        hasReaction: true,
+        color: 'rgba(50, 180, 70, 0.6)',
+      }],
+    ]);
   }
 
   initializeData() {
@@ -21,126 +80,64 @@ export class AcidsWithAlkaliComponent extends ReactionBase implements OnInit {
     this.alkalis = [
       {
         id: 3,
-        name: 'Гидроксид натрия (NaOH)',
+        chemical: Chemical.NaOH,
         type: ChemicalType.ALKALI,
-        color: 'rgba(255, 255, 255, 0.6)',
-        reactions: {
-          'Серная кислота (H2SO4)': {
-            hasReaction: true,
-            hasPrecipitate: false,
-            color: 'rgba(255, 255, 255, 0.6)',
-          },
-          'Лакмус': {
-            hasReaction: true,
-            hasPrecipitate: false,
-            color: 'rgba(0, 0, 255, 0.6)',
-          },
-          'Метилоранж': {
-            hasReaction: true,
-            hasPrecipitate: false,
-            color: 'rgba(255, 204, 0, 0.6)',
-          },
-          'Фенолфталеин': {
-            hasReaction: true,
-            hasPrecipitate: false,
-            color: 'rgba(255, 20, 147, 0.6)',
-          }
-        }
+        color: 'rgba(255, 255, 255, 0.6)'
       },
       {
         id:4,
-        name: 'Гидроксид магния (Mg(OH)2)',
+        chemical: Chemical.MgOH2,
         type: ChemicalType.ALKALI,
         container: ContainerType.JAR,
         color: 'rgba(255, 255, 255, 1)',
-        reactions: {
-          'Серная кислота (H2SO4)': {
-            hasReaction: false,
-            color: 'rgba(255, 255, 255, 0.6)',
-            hasPrecipitate: true,
-            precipitate: {name: 'Гидроксид магния (Mg(OH)2)', color: 'rgba(255, 255, 255, 1)'}
-          }
-        }
       },
       {
         id: 5,
-        name: 'Гидроксид меди II (Cu(OH)2)',
+        chemical: Chemical.CuOH2,
         type: ChemicalType.ALKALI,
         container: ContainerType.JAR,
         color: 'rgba(50, 140, 255, 1)',
-        reactions: {
-          'Серная кислота (H2SO4)': {
-            hasReaction: false,
-            color: 'rgba(255, 255, 255, 0.6)',
-            hasPrecipitate: true,
-            precipitate: {name: 'Гидроксид меди II (Cu(OH)2)', color: 'rgba(50, 140, 255, 1)'}
-          }
-        }
       },
       {
         id: 6,
-        name: 'Гидроксид никеля (Ni(OH)2)',
+        chemical: Chemical.NiOH2,
         type: ChemicalType.ALKALI,
         container: ContainerType.JAR,
         color: 'rgba(80, 200, 120, 1)',
-        reactions: {
-          'Серная кислота (H2SO4)': {
-            hasReaction: false,
-            color: 'rgba(255, 255, 255, 0.6)',
-            hasPrecipitate: true,
-            precipitate: {name: 'Гидроксид никеля (Ni(OH)2)', color: 'rgba(80, 200, 120, 1)'}
-          }
-        }
       },
     ];
 
     this.indicators = [
       {
         id: 7,
-        name: 'Лакмус',
+        chemical: Chemical.LITMUS,
         type: ChemicalType.INDICATOR,
-        color: 'rgba(138, 43, 226, 1)',
-        reactions: {
-          'Серная кислота (H2SO4)': {
-            color: 'rgba(220, 20, 60, 0.8)',
-          },
-          'Гидроксид натрия (NaOH)': {
-            color: 'rgba(0, 0, 255, 0.6)',
-          }
-        }
+        color: 'rgba(138, 43, 226, 1)'
       },
       {
         id: 8,
-        name: 'Метилоранж',
+        chemical: Chemical.METHYL_ORANGE,
         type: ChemicalType.INDICATOR,
-        color: 'rgba(255, 165, 0, 1)',
-        reactions: {
-          'Серная кислота (H2SO4)': {
-            color: 'rgba(220, 20, 60, 0.8)',
-          },
-          'Гидроксид натрия (NaOH)': {
-            color: 'rgba(255, 165, 0, 0.6)',
-          }
-        }
+        color: 'rgba(255, 165, 0, 1)'
       },
       {
         id: 9,
-        name: 'Фенолфталеин',
+        chemical: Chemical.PHENOLPHTHALEIN,
         type: ChemicalType.INDICATOR,
-        color: 'rgba(255, 255, 255, 0.6)',
-        reactions: {
-          'Серная кислота (H2SO4)': {
-            color: 'rgba(255, 255, 255, 0.6)',
-          },
-          'Гидроксид натрия (NaOH)': {
-            color: 'rgba(255, 0, 255, 0.6)',
-          }
-        }
+        color: 'rgba(255, 255, 255, 0.6)'
+      }
+    ];
+
+    this.impacts = [
+      {
+        id: 11,
+        chemical: Chemical.Temperature,
+        type: ChemicalType.IMPACT
       },
     ];
   }
 
-  selectReagent(reagent?:ChemicalElement, index?: number) {
+  /*selectReagent(reagent?:ChemicalElement, index?: number) {
     if (this.currentReaction.first && this.currentReaction.second && this.currentReaction.third) {
       this.setResultIsFull();
       return;
@@ -181,9 +178,9 @@ export class AcidsWithAlkaliComponent extends ReactionBase implements OnInit {
       this.currentReaction.second = reagent;
       this.updateResult();
     }
-  }
+  }*/
 
-  updateResult() {
+  /*updateResult() {
     if (this.currentReaction.first && this.currentReaction.second && this.currentReaction.third) {
       const reactions = this.currentReaction.third.reactions || {};
       let result = reactions[this.currentReaction.second.name];
@@ -213,5 +210,8 @@ export class AcidsWithAlkaliComponent extends ReactionBase implements OnInit {
     } else {
       this.resetReactionsFlags();
     }
-  }
+  }*/
+
+  protected readonly getChemicalName = getChemicalName;
+  protected readonly ChemicalType = ChemicalType;
 }

@@ -17,9 +17,9 @@
         <div class="element acid"
              *ngFor="let acid of acids"
              [class.selected]="selectedAcid?.id === acid.id"
-             (click)="selectReagent(acid)">
+             (click)="selectAcid(acid)">
           <app-chemical-container [element]="acid"></app-chemical-container>
-          <div class="label">{{ acid.name }}</div>
+          <div class="label">{{ getChemicalName(acid.chemical) }}</div>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
              [class.selected]="selectedReagent?.id === alkali.id"
              (click)="selectReagent(alkali)">
           <app-chemical-container [element]="alkali"></app-chemical-container>
-          <div class="label">{{ alkali.name }}</div>
+          <div class="label">{{ getChemicalName(alkali.chemical) }}</div>
         </div>
       </div>
     </div>
@@ -55,13 +55,13 @@
       [reagents]="reagents"
       [result]="currentReaction.result"
       [hasIndicators]="true"
-      [canChooseIndicator]="(!!selectedAcid && !selectedReagent) || (!!selectedReagent && selectedReagent.id === 3)"
+      [canChooseIndicator]="(!!selectedAcid || (!!selectedReagent && selectedReagent.id === 3))"
       [hasImpact]="true"
-      [canChooseImpact]="selectedAcid && selectedReagent && selectedReagent?.id !== 3"
+      [canChooseImpact]="selectedAcid && selectedReagent && (selectedReagent?.id >= 4 && selectedReagent?.id <= 6)"
       [animating]="animating"
       [reactionCompleted]="reactionCompleted"
       [isResultAlreadyExist]="isResultAlreadyExist"
-      (indicatorSelected)="selectReagent(null, $event)"
+      (indicatorSelected)="selectReagent(null, $event, ChemicalType.INDICATOR)"
       (reset)="resetExperiment()">
     </app-reaction-result>
   </div>

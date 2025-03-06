@@ -18,7 +18,7 @@
              [class.selected]="selectedAcid?.id === acid.id"
              (click)="selectAcid(acid)">
           <app-chemical-container [element]="acid"></app-chemical-container>
-          <div class="label">{{ acid.name }}</div>
+          <div class="label">{{getChemicalName(acid.chemical)}}</div>
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
              [class.selected]="selectedReagent?.id === metal.id"
              (click)="selectReagent(metal)">
           <app-chemical-container [element]="metal"></app-chemical-container>
-          <div class="label">{{ metal.name }}</div>
+          <div class="label">{{ getChemicalName(metal.chemical) }}</div>
         </div>
       </div>
     </div>

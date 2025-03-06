@@ -37,7 +37,7 @@
         <rect x="171.12" y="129.24" style="fill:#EDEEF0;" width="169.57" height="40.29"/>
         <rect x="256.12" y="129.24" style="fill:#DCDEE2;" width="84.57" height="40.29"/>
         <g class="precipitate"
-           (mouseenter)="showPrecipitate ? showTooltip($event, result.precipitate.name) : null"
+           (mouseenter)="showPrecipitate ? showTooltip($event, getChemicalName(result.precipitate.chemical)) : null"
            (mousemove)="updateTooltipPosition($event)"
            (mouseleave)="hideTooltip()">
           <rect x="150" y="450" width="210" height="50" fill="transparent"></rect>

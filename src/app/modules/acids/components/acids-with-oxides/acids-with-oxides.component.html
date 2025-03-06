@@ -18,7 +18,7 @@
              [class.selected]="selectedAcid?.id === acid.id"
              (click)="selectAcid(acid)">
           <app-chemical-container [element]="acid"></app-chemical-container>
-          <div class="label">{{ acid.name }}</div>
+          <div class="label">{{ getChemicalName(acid.chemical) }}</div>
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
              [class.selected]="selectedReagent?.id === oxide.id"
              (click)="selectReagent(oxide)">
           <app-chemical-container [element]="oxide"></app-chemical-container>
-          <div class="label">{{ oxide.name }}</div>
+          <div class="label">{{ getChemicalName(oxide.chemical) }}</div>
         </div>
       </div>
     </div>
@@ -57,7 +57,7 @@
       [canChooseImpact]="!!selectedAcid && !!selectedReagent"
       [reactionCompleted]="reactionCompleted"
       [isResultAlreadyExist]="isResultAlreadyExist"
-      (impactSelected)="selectImpact($event)"
+      (impactSelected)="selectReagent(null, $event, ChemicalType.IMPACT)"
       (reset)="resetExperiment()">
     </app-reaction-result>
   </div>
