@@ -96,7 +96,7 @@ export class AcidsWithSaltsComponent extends ReactionBase implements OnInit {
         chemical: Chemical.CaCO3,
         type: ChemicalType.SALT,
         container: ContainerType.JAR,
-        color: 'rgba(255, 255, 255, 0.3)'
+        color: 'rgba(255, 255, 255, 1)'
       },
       {
         id: 13,

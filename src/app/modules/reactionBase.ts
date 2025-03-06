@@ -151,6 +151,12 @@ export abstract class ReactionBase {
 
               this.currentReaction.result.color = firstReagent.container !== ContainerType.JAR ? color : 'transparent';
               break;
+            case ChemicalType.SALT:
+              this.currentReaction.result.hasPrecipitate = firstReagent.container === ContainerType.JAR;
+              this.currentReaction.result.precipitate = {chemical: chemical, type: ChemicalType.SALT, color};
+
+              this.currentReaction.result.color = firstReagent.container !== ContainerType.JAR ? color : 'transparent';
+              break;
           }
         }
       }
