@@ -30,7 +30,7 @@ export class AcidsWithIndicatorsComponent extends ReactionBase implements OnInit
         description: 'Метилоранж в кислой среде краснеет'
       }],
       [createReactionKey([Chemical.HCl, Chemical.PHENOLPHTHALEIN]), {
-        color: 'rgba(255, 255, 255, 0.6)', // бесцветный
+        color: 'rgba(255, 255, 255, 0.3)', // бесцветный
         description: 'Фенолфталеин в кислой среде бесцветный'
       }],
 
@@ -44,7 +44,7 @@ export class AcidsWithIndicatorsComponent extends ReactionBase implements OnInit
         description: 'Метилоранж в кислой среде краснеет'
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.PHENOLPHTHALEIN]), {
-        color: 'rgba(255, 255, 255, 0.6)', // бесцветный
+        color: 'rgba(255, 255, 255, 0.3)', // бесцветный
         description: 'Фенолфталеин в кислой среде бесцветный'
       }]
     ]);
@@ -68,7 +68,7 @@ export class AcidsWithIndicatorsComponent extends ReactionBase implements OnInit
         id: 7,
         chemical: Chemical.PHENOLPHTHALEIN,
         type: ChemicalType.INDICATOR,
-        color: 'rgba(255, 255, 255, 0.6)'
+        color: 'rgba(255, 255, 255, 0.3)'
       }
     ];
   }

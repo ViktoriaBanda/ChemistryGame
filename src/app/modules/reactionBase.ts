@@ -15,13 +15,13 @@ export abstract class ReactionBase {
       id: 1,
       chemical: Chemical.HCl,
       type: ChemicalType.ACID,
-      color: 'rgba(255, 255, 255, 0.6)'
+      color: 'rgba(255, 255, 255, 0.3)'
     },
     {
       id: 2,
       chemical: Chemical.H2SO4,
       type: ChemicalType.ACID,
-      color: 'rgba(255, 255, 255, 0.6)'
+      color: 'rgba(255, 255, 255, 0.3)'
     }
   ];
 
