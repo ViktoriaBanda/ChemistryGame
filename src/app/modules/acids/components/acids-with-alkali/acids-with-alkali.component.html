@@ -17,7 +17,7 @@
         <div class="element acid"
              *ngFor="let acid of acids"
              [class.selected]="selectedAcid?.id === acid.id"
-             (click)="selectAcid(acid)">
+             (click)="selectReagent(acid)">
           <app-chemical-container [element]="acid"></app-chemical-container>
           <div class="label">{{ acid.name }}</div>
         </div>
@@ -52,13 +52,12 @@
   <div class="main-content">
     <!-- Результат реакции -->
     <app-reaction-result
-      [reagent1]="currentReaction.first"
-      [reagent2]="currentReaction.second"
+      [reagents]="reagents"
       [result]="currentReaction.result"
       [hasIndicators]="true"
-      [canChooseIndicator]="!!selectedAcid && selectedReagent?.id === 1"
+      [canChooseIndicator]="(!!selectedAcid && !selectedReagent) || (!!selectedReagent && selectedReagent.id === 3)"
       [hasImpact]="true"
-      [canChooseImpact]="!!selectedAcid && selectedReagent?.id !== 1"
+      [canChooseImpact]="selectedAcid && selectedReagent && selectedReagent?.id !== 3"
       [animating]="animating"
       [reactionCompleted]="reactionCompleted"
       [isResultAlreadyExist]="isResultAlreadyExist"

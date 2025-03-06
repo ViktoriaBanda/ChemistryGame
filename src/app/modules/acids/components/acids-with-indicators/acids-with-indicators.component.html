@@ -30,8 +30,7 @@
     <!-- Результат реакции -->
     <!-- Правая часть -->
     <app-reaction-result
-      [reagent1]="currentReaction.first"
-      [reagent2]="currentReaction.second"
+      [reagents]="reagents"
       [result]="currentReaction.result"
       [hasIndicators]="true"
       [canChooseIndicator]="!!selectedAcid"

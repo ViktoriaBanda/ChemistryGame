@@ -12,8 +12,7 @@ export class ReactionResultComponent {
   @ViewChild('selectIndicator') selectIndicator : InputSelectComponent;
   @ViewChild('selectImpact') selectImpact : InputSelectComponent;
 
-  @Input() reagent1: ChemicalElement | null = null;
-  @Input() reagent2: ChemicalElement | null = null;
+  @Input() reagents: ChemicalElement[] = [];
   @Input() result: ReactionResult = {};
   @Input() animating = false;
   @Input() isResultAlreadyExist = false;
@@ -71,29 +70,11 @@ export class ReactionResultComponent {
   }
 
   get precipitateColor(): string {
-    if (this.reagent1 && this.reagent2) {
-      return this.result.precipitate?.color;
-    }
-    else if (this.reagent1) {
-      return this.reagent1.color;
-    }
-    else if (this.reagent2) {
-      return this.reagent2.color;
-    }
-    return 'transparent';
+    return this.result.precipitate?.color ?? this.reagents[0]?.color ?? 'transparent';
   }
 
   get products(): string {
-    if (this.reagent1 && this.reagent2) {
-      return `${this.reagent1.name} + ${this.reagent2.name}`;
-    }
-    else if (this.reagent1) {
-      return `${this.reagent1.name}`;
-    }
-    else if (this.reagent2) {
-      return `${this.reagent2.name}`;
-    }
-    return '';
+    return this.reagents.length ? this.reagents.map(r => r.name).join(' + ') : '';
   }
 
   get description() : string {
@@ -102,8 +83,6 @@ export class ReactionResultComponent {
 
   resetExperiment() {
     this.animating = false;
-    this.reagent1 = null;
-    this.reagent2 = null;
     this.result = {};
     this.reactionCompleted = false;
     this.selectIndicator.reset();

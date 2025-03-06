@@ -50,8 +50,7 @@
   <div class="main-content">
     <!-- Результат реакции -->
     <app-reaction-result
-      [reagent1]="currentReaction.first"
-      [reagent2]="currentReaction.second"
+      [reagents]="reagents"
       [result]="currentReaction.result"
       [animating]="animating"
       [isResultAlreadyExist]="isResultAlreadyExist"

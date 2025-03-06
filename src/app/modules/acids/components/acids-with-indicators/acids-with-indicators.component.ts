@@ -23,10 +23,10 @@ export class AcidsWithIndicatorsComponent extends ReactionBase implements OnInit
         color: 'rgba(138, 43, 226, 1)',
         reactions: {
           'Соляная кислота (HCl)': {
-            color: 'rgba(220, 20, 60, 0.8)',
+            color: 'rgba(220, 20, 60, 0.6)',
           },
           'Серная кислота (H2SO4)': {
-            color: 'rgba(220, 20, 60, 0.8)',
+            color: 'rgba(220, 20, 60, 0.6)',
           }
         }
       },
@@ -37,10 +37,10 @@ export class AcidsWithIndicatorsComponent extends ReactionBase implements OnInit
         color: 'rgba(255, 165, 0, 1)',
         reactions: {
           'Соляная кислота (HCl)': {
-            color: 'rgba(220, 20, 60, 0.8)',
+            color: 'rgba(220, 20, 60, 0.6)',
           },
           'Серная кислота (H2SO4)': {
-            color: 'rgba(220, 20, 60, 0.8)',
+            color: 'rgba(220, 20, 60, 0.6)',
           }
         }
       },

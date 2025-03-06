@@ -24,9 +24,9 @@
     </div>
 
     <div class="substance-block">
-      <div class="group-header" (click)="toggleGroup('metals')">
+      <div class="group-header" (click)="toggleGroup('oxides')">
         <h3>Оксиды</h3>
-        <button [class.reverse]="!isGroupExpanded['metals']">
+        <button [class.reverse]="!isGroupExpanded['oxides']">
           <svg class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                fill="none">
             <path d="M18 15L12 9L6 15" stroke="black" stroke-width="2" stroke-linecap="round"
@@ -34,7 +34,7 @@
           </svg>
         </button>
       </div>
-      <div class="elements-list" [class.expanded]="isGroupExpanded['metals']">
+      <div class="elements-list" [class.expanded]="isGroupExpanded['oxides']">
         <div class="element acid"
              *ngFor="let oxide of oxides"
              [class.selected]="selectedReagent?.id === oxide.id"
@@ -50,8 +50,7 @@
   <div class="main-content">
     <!-- Результат реакции -->
     <app-reaction-result
-      [reagent1]="currentReaction.first"
-      [reagent2]="currentReaction.second"
+      [reagents]="reagents"
       [result]="currentReaction.result"
       [animating]="animating"
       [hasImpact]="true"

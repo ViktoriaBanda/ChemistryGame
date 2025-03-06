@@ -7,6 +7,7 @@ import {
 } from "./acids/models/chemistry.models";
 
 export abstract class ReactionBase {
+  reagents: ChemicalElement[] = [];
   acids: ChemicalElement[] = [];
   animating = false;
   isResultAlreadyExist = false;
@@ -25,7 +26,9 @@ export abstract class ReactionBase {
   // Состояние групп веществ
   isGroupExpanded: { [key: string]: boolean } = {
     acids: true,
-    metals: true
+    metals: true,
+    oxides: true,
+    alkali: true
   };
 
   constructor() {
@@ -60,21 +63,24 @@ export abstract class ReactionBase {
       return;
     }
 
-    console.log(this.currentReaction)
-
     this.selectedAcid = acid;
     this.currentReaction.first = acid;
+    this.reagents.push(acid);
     this.updateResult();
   }
 
-  selectReagent(indicator: ChemicalElement, index?: number) {
+  selectReagent(reagent: ChemicalElement, index?: number) {
     if (this.currentReaction.first && this.currentReaction.second) {
       this.setResultIsFull();
       return;
     }
+    if (this.currentReaction.second) {
+      this.reagents.pop();
+    }
 
-    this.selectedReagent = indicator;
-    this.currentReaction.second = indicator;
+    this.selectedReagent = reagent;
+    this.currentReaction.second = reagent;
+    this.reagents.push(reagent);
     this.updateResult();
   }
 
@@ -86,14 +92,14 @@ export abstract class ReactionBase {
       this.animateResult(result);
     } else if (this.currentReaction.first) {
       this.resetReactionsFlags();
-      this.currentReaction.result = { color: this.currentReaction.first.color };
-    }
-    else {
+      this.currentReaction.result = {color: this.currentReaction.first.color};
+    } else {
       this.resetReactionsFlags();
     }
   }
 
   resetExperiment() {
+    this.reagents = [];
     this.isResultAlreadyExist = false;
     this.selectedAcid = null;
     this.selectedReagent = null;

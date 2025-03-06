@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChemicalElement, ChemicalType, ContainerType } from "../../models/chemistry.models";
 import { ReactionBase } from "../../../reactionBase";
 
@@ -7,7 +7,7 @@ import { ReactionBase } from "../../../reactionBase";
   templateUrl: './acids-with-alkali.component.html',
   styleUrls: ['./acids-with-alkali.component.scss']
 })
-export class AcidsWithAlkaliComponent extends ReactionBase {
+export class AcidsWithAlkaliComponent extends ReactionBase implements OnInit {
   alkalis: ChemicalElement[] = [];
   indicators: ChemicalElement[] = [];
   impacts: ChemicalElement[] = [];
@@ -29,6 +29,21 @@ export class AcidsWithAlkaliComponent extends ReactionBase {
             hasReaction: true,
             hasPrecipitate: false,
             color: 'rgba(255, 255, 255, 0.6)',
+          },
+          'Лакмус': {
+            hasReaction: true,
+            hasPrecipitate: false,
+            color: 'rgba(0, 0, 255, 0.6)',
+          },
+          'Метилоранж': {
+            hasReaction: true,
+            hasPrecipitate: false,
+            color: 'rgba(255, 204, 0, 0.6)',
+          },
+          'Фенолфталеин': {
+            hasReaction: true,
+            hasPrecipitate: false,
+            color: 'rgba(255, 20, 147, 0.6)',
           }
         }
       },
@@ -86,11 +101,11 @@ export class AcidsWithAlkaliComponent extends ReactionBase {
         type: ChemicalType.INDICATOR,
         color: 'rgba(138, 43, 226, 1)',
         reactions: {
-          'Соляная кислота (HCl)': {
-            color: 'rgba(220, 20, 60, 0.8)',
-          },
           'Серная кислота (H2SO4)': {
             color: 'rgba(220, 20, 60, 0.8)',
+          },
+          'Гидроксид натрия (NaOH)': {
+            color: 'rgba(0, 0, 255, 0.6)',
           }
         }
       },
@@ -100,11 +115,11 @@ export class AcidsWithAlkaliComponent extends ReactionBase {
         type: ChemicalType.INDICATOR,
         color: 'rgba(255, 165, 0, 1)',
         reactions: {
-          'Соляная кислота (HCl)': {
-            color: 'rgba(220, 20, 60, 0.8)',
-          },
           'Серная кислота (H2SO4)': {
             color: 'rgba(220, 20, 60, 0.8)',
+          },
+          'Гидроксид натрия (NaOH)': {
+            color: 'rgba(255, 165, 0, 0.6)',
           }
         }
       },
@@ -114,11 +129,11 @@ export class AcidsWithAlkaliComponent extends ReactionBase {
         type: ChemicalType.INDICATOR,
         color: 'rgba(255, 255, 255, 0.6)',
         reactions: {
-          'Соляная кислота (HCl)': {
-            color: 'rgba(255, 255, 255, 0.6)',
-          },
           'Серная кислота (H2SO4)': {
             color: 'rgba(255, 255, 255, 0.6)',
+          },
+          'Гидроксид натрия (NaOH)': {
+            color: 'rgba(255, 0, 255, 0.6)',
           }
         }
       },
@@ -130,10 +145,34 @@ export class AcidsWithAlkaliComponent extends ReactionBase {
       this.setResultIsFull();
       return;
     }
+    else if (this.currentReaction.first && this.currentReaction.second && this.reagents.every(reagent => reagent.type !== ChemicalType.INDICATOR)) {
+      this.setResultIsFull();
+      return;
+    }
 
-    this.selectedReagent = reagent;
+    if (this.currentReaction.second) {
+      this.reagents.pop();
+    }
 
-    if (this.currentReaction.second && this.currentReaction.second.type !== reagent.type) {
+    if (reagent && reagent.type !== ChemicalType.ACID) {
+      this.selectedReagent = reagent;
+    }
+    else if(reagent && reagent.type === ChemicalType.ACID) {
+      this.selectedAcid = reagent;
+    }
+
+    if (!reagent && index != null) {
+      reagent = this.indicators[index];
+    }
+    else {
+      this.reagents.push(reagent);
+    }
+
+    if(!this.currentReaction.first) {
+      this.currentReaction.first = reagent;
+    }
+
+    else if (this.currentReaction.second && this.currentReaction.second.type !== reagent.type) {
       this.currentReaction.third = reagent;
       this.updateResult();
       return;
@@ -141,7 +180,6 @@ export class AcidsWithAlkaliComponent extends ReactionBase {
     else {
       this.currentReaction.second = reagent;
       this.updateResult();
-      return;
     }
   }
 
@@ -155,6 +193,10 @@ export class AcidsWithAlkaliComponent extends ReactionBase {
       const reactions = this.currentReaction.second.reactions || {};
       this.currentReaction.result = reactions[this.currentReaction.first.name];
       this.reactionCompleted = true;
+    } else if (this.currentReaction.second && this.currentReaction.third) {
+        const reactions = this.currentReaction.third.reactions || {};
+        this.currentReaction.result = reactions[this.currentReaction.second.name];
+        this.reactionCompleted = false;
     } else if (this.currentReaction.first) {
       this.resetReactionsFlags();
       this.currentReaction.result = {color: this.currentReaction.first.color};
