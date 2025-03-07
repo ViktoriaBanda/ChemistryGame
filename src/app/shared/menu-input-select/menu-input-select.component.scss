@@ -1,4 +1,4 @@
-:host{
+:host {
   display: inline-block;
   width: -webkit-fill-available;
   width: -moz-available;
@@ -6,23 +6,25 @@
   position: relative;
   user-select: none;
 }
+
 .disabled {
   pointer-events: none;
   opacity: 0.3;
 }
-ng-scrollbar{
+
+ng-scrollbar {
   width: 100%;
   --scrollbar-thumb-color: #E0E2E7;
   margin-right: 4px;
 }
 
-.head{
+.head {
   height: 40px;
   box-sizing: border-box;
 
   width: inherit;
   background: #FFFFFF;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(76, 84, 244, 0.5);
   border-radius: 5px;
   padding: 10px 6px 10px 10px;
 
@@ -51,7 +53,7 @@ ng-scrollbar{
     }
   }
 
-  .right{
+  .right {
     display: flex;
     align-items: center;
   }
@@ -61,7 +63,8 @@ ng-scrollbar{
     opacity: 0.5;
   }
 }
-.body{
+
+.body {
   box-shadow: 0px 9px 15px -2px #00000038;
   position: absolute;
   top: 95%;
@@ -75,7 +78,7 @@ ng-scrollbar{
   gap: 5px;
   border-radius: 0 0 5px 5px;
 
-  .items{
+  .items {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -96,21 +99,22 @@ ng-scrollbar{
       border-radius: 5px;
       transition: all .2s ease;
 
-      div{
+      div {
         display: flex;
         align-items: center;
       }
 
-      &__btn{
+      &__btn {
         color: #6F727A;
       }
 
-      &:hover{
+      &:hover {
         background-color: #4c54f41a;
       }
     }
   }
 }
+
 .icon {
   width: 20px;
   height: 20px;
