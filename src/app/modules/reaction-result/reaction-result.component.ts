@@ -79,7 +79,11 @@ export class ReactionResultComponent {
       .filter(reagent => reagent?.chemical &&
         reagent.type !== ChemicalType.INDICATOR &&
         reagent.type !== ChemicalType.IMPACT) // Оставляем только валидные реагенты
-      .map(reagent => getChemicalName(reagent.chemical))
+      .map(reagent => {
+        const match = getChemicalName(reagent.chemical).match(/\((.*?)\)/);
+        return match ? match[1] : ''; // Берем содержимое в скобках
+      })
+      .filter(name => name) // Убираем пустые значения
       .join(' + ');
   }
 
