@@ -42,36 +42,13 @@
     padding: 16px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1;
 
     h2 {
       color: #2c3e50;
       font-size: 1.2rem;
       margin-top: 0;
       margin-bottom: 8px;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-
-      li {
-        padding: 10px 15px;
-        margin: 5px 0;
-        background-color: rgba(164, 176, 195, 0.2);
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-
-        &:hover {
-          background-color: #4C54F41A;
-        }
-
-        &.active {
-          background-color: #4C54F4;
-          color: white;
-        }
-      }
     }
   }
 }
