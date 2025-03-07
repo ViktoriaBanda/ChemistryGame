@@ -19,7 +19,7 @@
              [class.selected]="selectedAcid?.id === acid.id"
              (click)="selectAcid(acid)">
           <app-chemical-container [element]="acid"></app-chemical-container>
-          <div class="label">{{ getChemicalName(acid.chemical) }}</div>
+          <div class="label" [innerHTML]="getChemicalName(acid.chemical) | safeHtml"></div>
         </div>
       </div>
     </div>

@@ -71,11 +71,11 @@
   </div>
   <div class="info-panel" [class.show]="products">
     <div class="info-panel__content">
-      <span>{{ products }}</span>
+      <span [innerHTML]="products | safeHtml"></span>
     </div>
   </div>
 </div>
 
 <div class="tooltip" *ngIf="isTooltipVisible" [ngStyle]="tooltipPosition">
-  <span class="tooltip__text">{{ tooltipText }}</span>
+  <span class="tooltip__text" [innerHTML]="tooltipText | safeHtml"></span>
 </div>

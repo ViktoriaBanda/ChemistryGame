@@ -48,7 +48,7 @@ export enum Chemical {
 
 export const ChemicalNames: { [key in Chemical]: string } = {
   [Chemical.HCl]: 'Соляная кислота (HCl)',
-  [Chemical.H2SO4]: 'Серная кислота (H2SO4)',
+  [Chemical.H2SO4]: 'Серная кислота (H<sub>2</sub>SO<sub>4</sub>)',
   [Chemical.Mg]: 'Магний (Mg)',
   [Chemical.Zn]: 'Цинк (Zn)',
   [Chemical.Cu]: 'Медь (Cu)',
@@ -56,19 +56,19 @@ export const ChemicalNames: { [key in Chemical]: string } = {
   [Chemical.METHYL_ORANGE]: 'Метилоранж',
   [Chemical.PHENOLPHTHALEIN]: 'Фенолфталеин',
   [Chemical.NaOH]: 'Гидроксид натрия (NaOH)',
-  [Chemical.MgOH2]: 'Гидроксид магния (Mg(OH)2)',
-  [Chemical.CuOH2]: 'Гидроксид меди (Cu(OH)2)',
-  [Chemical.NiOH2]: 'Гидроксид никеля (Ni(OH)2)',
+  [Chemical.MgOH2]: 'Гидроксид магния (Mg(OH)<sub>2</sub>)',
+  [Chemical.CuOH2]: 'Гидроксид меди (Cu(OH)<sub>2</sub>)',
+  [Chemical.NiOH2]: 'Гидроксид никеля (Ni(OH)<sub>2</sub>)',
   [Chemical.CuO]: 'Оксид меди (CuO)',
   [Chemical.MgO]: 'Оксид магния (MgO)',
   [Chemical.NiO]: 'Оксид никеля (NiO)',
   [Chemical.NaCl]: 'Хлорид натрия (NaCl)',
 
-  [Chemical.MgNO32]: 'Нитрат магния (Mg(NO3)2)',
-  [Chemical.Na2CO3]: 'Карбонат натрия (Na2CO3)',
-  [Chemical.BaCl2]: 'Хлорид бария (BaCl2)',
-  [Chemical.CaCO3]: 'Карбонат кальция (CaCO3)',
-  [Chemical.AgNO3]: 'Нитрат серебра (AgNO3)',
+  [Chemical.MgNO32]: 'Нитрат магния (Mg(NO<sub>3</sub>)<sub>2</sub>)',
+  [Chemical.Na2CO3]: 'Карбонат натрия (Na<sub>2</sub>(CO<sub>3</sub>))',
+  [Chemical.BaCl2]: 'Хлорид бария (BaCl<sub>2</sub>)',
+  [Chemical.CaCO3]: 'Карбонат кальция (CaCO<sub>3</sub>)',
+  [Chemical.AgNO3]: 'Нитрат серебра (AgNO<sub>3</sub>)',
 
   [Chemical.Temperature]: 'Нагревание'
 };

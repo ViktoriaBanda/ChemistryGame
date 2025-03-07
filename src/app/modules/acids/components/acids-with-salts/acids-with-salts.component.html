@@ -18,7 +18,7 @@
              [class.selected]="selectedAcid?.id === acid.id"
              (click)="selectAcid(acid)">
           <app-chemical-container [element]="acid"></app-chemical-container>
-          <div class="label">{{getChemicalName(acid.chemical)}}</div>
+          <div class="label" [innerHTML]="getChemicalName(acid.chemical) | safeHtml"></div>
         </div>
       </div>
     </div>
@@ -36,11 +36,11 @@
       </div>
       <div class="elements-list" [class.expanded]="isGroupExpanded['salts']">
         <div class="element acid"
-             *ngFor="let metal of salts"
-             [class.selected]="selectedReagent?.id === metal.id"
-             (click)="selectReagent(metal)">
-          <app-chemical-container [element]="metal"></app-chemical-container>
-          <div class="label">{{ getChemicalName(metal.chemical) }}</div>
+             *ngFor="let salt of salts"
+             [class.selected]="selectedReagent?.id === salt.id"
+             (click)="selectReagent(salt)">
+          <app-chemical-container [element]="salt"></app-chemical-container>
+          <div class="label" [innerHTML]="getChemicalName(salt.chemical) | safeHtml"></div>
         </div>
       </div>
     </div>
