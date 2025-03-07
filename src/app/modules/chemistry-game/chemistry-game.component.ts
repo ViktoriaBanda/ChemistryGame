@@ -1,17 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { IItemSelect } from "../../core/interfaces/item-select.interface";
 
-interface Topic {
+interface Topic extends IItemSelect {
   id: number;
-  name: string;
+  title: string;
   route: string;
-  subtopics: Subtopic[];
-}
-
-interface Subtopic {
-  id: number;
-  name: string;
-  route: string;
+  subtopics?: Topic[];
 }
 
 @Component({
@@ -22,7 +17,7 @@ interface Subtopic {
 export class ChemistryGameComponent implements OnInit {
   topics: Topic[] = [];
   selectedTopic: Topic | null = null;
-  selectedSubtopic: Subtopic | null = null;
+  selectedSubtopic: Topic | null = null;
   isEmptyRoute: boolean;
 
   constructor(private _router: Router) {}
@@ -46,39 +41,39 @@ export class ChemistryGameComponent implements OnInit {
     this.topics = [
       {
         id: 1,
-        name: 'Химические свойства кислот',
+        title: 'Химические свойства кислот',
         route: 'acids',
         subtopics: [
           {
             id: 1,
-            name: 'Индикаторы',
+            title: 'Индикаторы',
             route: 'indicators',
           },
           {
             id: 2,
-            name: 'Взаимодействие с металлами',
+            title: 'Взаимодействие с металлами',
             route: 'metals',
           },
           {
             id: 3,
-            name: 'Взаимодействие с основными оксидами',
+            title: 'Взаимодействие с основными оксидами',
             route: 'oxides',
           },
           {
             id: 4,
-            name: 'Взаимодействие с основаниями',
+            title: 'Взаимодействие с основаниями',
             route: 'alkali',
           },
           {
             id: 5,
-            name: 'Взаимодействие с солями',
+            title: 'Взаимодействие с солями',
             route: 'salts',
           },
         ],
       },
       {
         id: 2,
-        name: 'Химические свойства оснований',
+        title: 'Химические свойства оснований',
         route: 'alkali',
         subtopics: [],
       },
@@ -116,15 +111,15 @@ export class ChemistryGameComponent implements OnInit {
     }
   }
 
-  selectTopic(topic: Topic) {
-    this.selectedTopic = topic;
+  onSelectTopic(itemSelect: IItemSelect): void {
+    this.selectedTopic = this.topics.find(item => item === itemSelect);
     this.selectedSubtopic = null;
   }
 
-  selectSubtopic(subtopic: Subtopic) {
-    this.selectedSubtopic = subtopic;
-    if (this.selectedTopic) {
-      this._router.navigate([this.selectedTopic.route, subtopic.route]);
+  onSelectSubtopic(itemSelect: IItemSelect): void {
+    this.selectedSubtopic = this.selectedTopic.subtopics.find(item => item === itemSelect);
+    if (this.selectedSubtopic) {
+      this._router.navigate([this.selectedTopic.route, this.selectedSubtopic.route]);
     }
   }
 }

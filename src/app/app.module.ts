@@ -6,18 +6,20 @@ import { AppComponent } from './app.component';
 import { ChemistryGameComponent } from "./modules/chemistry-game/chemistry-game.component";
 import { CommonModule, HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     ChemistryGameComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CommonModule,
-    BrowserAnimationsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        CommonModule,
+        BrowserAnimationsModule,
+        SharedModule
+    ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })

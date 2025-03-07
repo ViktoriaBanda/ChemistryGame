@@ -10,26 +10,36 @@
       <div class="topics-container__container">
         <div class="topics">
           <h2>Раздел</h2>
-          <ul>
+          <!--<ul>
             <li *ngFor="let topic of topics"
                 [class.active]="selectedTopic?.id === topic.id"
                 (click)="selectTopic(topic)">
               {{ topic.name }}
             </li>
-          </ul>
+          </ul>-->
+          <menu-select-input
+                        [items]="topics"
+                        [selectedItem]="selectedTopic"
+                        [placeholder]="'Выберите раздел'"
+                        (selectItem)="onSelectTopic($event)"></menu-select-input>
         </div>
       </div>
 
       <div class="topics-container__container" *ngIf="selectedTopic">
         <div class="subtopics">
           <h2>Тема</h2>
-          <ul>
+          <!--<ul>
             <li *ngFor="let subtopic of selectedTopic.subtopics"
                 [class.active]="selectedSubtopic?.id === subtopic.id"
                 (click)="selectSubtopic(subtopic)">
               {{ subtopic.name }}
             </li>
-          </ul>
+          </ul>-->
+          <menu-select-input
+                        [items]="selectedTopic.subtopics"
+                        [selectedItem]="selectedSubtopic"
+                        [placeholder]="'Выберите тему'"
+                        (selectItem)="onSelectSubtopic($event)"></menu-select-input>
         </div>
       </div>
     </div>
