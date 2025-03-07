@@ -29,6 +29,24 @@ export class AcidsWithSaltsComponent extends ReactionBase implements OnInit {
   private initializeReactions() {
     this.reactions = new Map([
       // HCl
+      [createReactionKey([Chemical.HCl, Chemical.NaCl]), {
+        hasReaction: false,
+        color: 'rgba(255, 255, 255, 0.3)',
+      }],
+      [createReactionKey([Chemical.HCl, Chemical.MgNO32]), {
+        hasReaction: false,
+        color: 'rgba(255, 255, 255, 0.3)',
+      }],
+      [createReactionKey([Chemical.HCl, Chemical.Na2CO3]), {
+        hasReaction: true,
+        color: 'rgba(255, 255, 255, 0.3)',
+        description: 'Углекислый газ (CO2)',
+        hasGas: true
+      }],
+      [createReactionKey([Chemical.HCl, Chemical.BaCl2]), {
+        hasReaction: false,
+        color: 'rgba(255, 255, 255, 0.3)',
+      }],
       [createReactionKey([Chemical.HCl, Chemical.CaCO3]), {
         hasReaction: true,
         color: 'rgba(255, 255, 255, 0.3)',
@@ -59,6 +77,19 @@ export class AcidsWithSaltsComponent extends ReactionBase implements OnInit {
       [createReactionKey([Chemical.H2SO4, Chemical.BaCl2]), {
         hasReaction: true,
         color: 'rgba(255, 255, 255, 0.3)',
+        hasPrecipitate: true,
+        precipitate: {chemical: Chemical.Cu, type: ChemicalType.METAL, color: 'rgba(255, 255, 255, 1)'},
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.CaCO3]), {
+        hasReaction: true,
+        color: 'rgba(255, 255, 255, 0.8)',
+        hasPrecipitate: true,
+        precipitate: {chemical: Chemical.Cu, type: ChemicalType.METAL, color: 'rgba(255, 255, 255, 1)'},
+        hasGas: true,
+      }],
+      [createReactionKey([Chemical.H2SO4, Chemical.AgNO3]), {
+        hasReaction: true,
+        color: 'rgba(255, 255, 255, 0.8)',
         hasPrecipitate: true,
         precipitate: {chemical: Chemical.Cu, type: ChemicalType.METAL, color: 'rgba(255, 255, 255, 1)'},
       }]
