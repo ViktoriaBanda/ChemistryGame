@@ -96,6 +96,7 @@ export interface ReactionResult {
   chemical?: Chemical;
   color?: string;
   hasReaction?: boolean;
+  hasReactionWithIndicator?: boolean;
   description?: string;
   hasGas?: boolean;
   gas?: ChemicalElement;

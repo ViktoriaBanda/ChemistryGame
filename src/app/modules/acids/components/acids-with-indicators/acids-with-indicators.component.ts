@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ChemicalElement, ChemicalType, Chemical, ReactionResult, createReactionKey } from '../../../../core/models/chemistry.models';
+import {
+  ChemicalElement,
+  ChemicalType,
+  Chemical,
+  ReactionResult,
+  createReactionKey
+} from '../../../../core/models/chemistry.models';
 import { ReactionBase } from "../../../reactionBase";
 import { getChemicalName } from "../../../../core/utils/helpers";
 
@@ -22,23 +28,35 @@ export class AcidsWithIndicatorsComponent extends ReactionBase implements OnInit
     this.reactions = new Map([
       // HCl + индикаторы
       [createReactionKey([Chemical.HCl, Chemical.LITMUS]), {
+        hasReaction: true,
+        hasReactionWithIndicator: true,
         color: 'rgba(220, 20, 60, 0.6)'
       }],
       [createReactionKey([Chemical.HCl, Chemical.METHYL_ORANGE]), {
+        hasReaction: true,
+        hasReactionWithIndicator: true,
         color: 'rgba(220, 20, 60, 0.6)'
       }],
       [createReactionKey([Chemical.HCl, Chemical.PHENOLPHTHALEIN]), {
+        hasReaction: true,
+        hasReactionWithIndicator: true,
         color: 'rgb(240, 248, 255)'
       }],
 
       // H2SO4 + индикаторы
       [createReactionKey([Chemical.H2SO4, Chemical.LITMUS]), {
+        hasReaction: true,
+        hasReactionWithIndicator: true,
         color: 'rgba(220, 20, 60, 0.6)'
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.METHYL_ORANGE]), {
+        hasReaction: true,
+        hasReactionWithIndicator: true,
         color: 'rgba(220, 20, 60, 0.6)'
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.PHENOLPHTHALEIN]), {
+        hasReaction: true,
+        hasReactionWithIndicator: true,
         color: 'rgb(240, 248, 255)'
       }]
     ]);

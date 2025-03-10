@@ -2,8 +2,11 @@
   <div class="result-container__header">
     <span></span>
     <span class="title"
-          [ngClass]="{'green': reactionCompleted && hasReaction, 'red': reactionCompleted && !hasReaction}">
-      {{ reactionCompleted ? (hasReaction ? 'Реакция прошла успешно' : 'Реакция не идет') : 'Выберите реагент' }}</span>
+          [ngClass]="{'green': reactionCompleted && hasReaction && !hasReactionWithIndicator,
+          'yellow': reactionCompleted && hasReactionWithIndicator,
+          'red': reactionCompleted && !hasReaction}">
+      {{ reactionCompleted && !hasReactionWithIndicator ? (hasReaction ? 'Реакция прошла успешно' : 'Реакция не идет') :
+      hasReactionWithIndicator ? 'Реакция с индикатором' : 'Выберите реагент' }}</span>
     <button class="reset-button" (click)="resetExperiment()" [class.bounce]="isResultAlreadyExist">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
            fill="none" class="retry ng-star-inserted">

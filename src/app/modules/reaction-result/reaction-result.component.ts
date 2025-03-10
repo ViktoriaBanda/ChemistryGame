@@ -58,6 +58,10 @@ export class ReactionResultComponent {
     return this.result && this.result.hasReaction;
   }
 
+  get hasReactionWithIndicator(): boolean {
+    return this.result && this.result.hasReactionWithIndicator;
+  }
+
   get showGas(): boolean {
     return this.result.hasGas || false;
   }
