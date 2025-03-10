@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChemicalElement, ChemicalType, Chemical, ReactionResult, createReactionKey } from '../../models/chemistry.models';
+import { ChemicalElement, ChemicalType, Chemical, ReactionResult, createReactionKey } from '../../../../core/models/chemistry.models';
 import { ReactionBase } from "../../../reactionBase";
 import { getChemicalName } from "../../../../core/utils/helpers";
 
@@ -22,30 +22,24 @@ export class AcidsWithIndicatorsComponent extends ReactionBase implements OnInit
     this.reactions = new Map([
       // HCl + индикаторы
       [createReactionKey([Chemical.HCl, Chemical.LITMUS]), {
-        color: 'rgba(220, 20, 60, 0.6)', // красный
-        description: 'Лакмус в кислой среде краснеет'
+        color: 'rgba(220, 20, 60, 0.6)'
       }],
       [createReactionKey([Chemical.HCl, Chemical.METHYL_ORANGE]), {
-        color: 'rgba(220, 20, 60, 0.6)', // красный
-        description: 'Метилоранж в кислой среде краснеет'
+        color: 'rgba(220, 20, 60, 0.6)'
       }],
       [createReactionKey([Chemical.HCl, Chemical.PHENOLPHTHALEIN]), {
-        color: 'rgba(255, 255, 255, 0.3)', // бесцветный
-        description: 'Фенолфталеин в кислой среде бесцветный'
+        color: 'rgb(240, 248, 255)'
       }],
 
       // H2SO4 + индикаторы
       [createReactionKey([Chemical.H2SO4, Chemical.LITMUS]), {
-        color: 'rgba(220, 20, 60, 0.6)', // красный
-        description: 'Лакмус в кислой среде краснеет'
+        color: 'rgba(220, 20, 60, 0.6)'
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.METHYL_ORANGE]), {
-        color: 'rgba(220, 20, 60, 0.6)', // красный
-        description: 'Метилоранж в кислой среде краснеет'
+        color: 'rgba(220, 20, 60, 0.6)'
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.PHENOLPHTHALEIN]), {
-        color: 'rgba(255, 255, 255, 0.3)', // бесцветный
-        description: 'Фенолфталеин в кислой среде бесцветный'
+        color: 'rgb(240, 248, 255)'
       }]
     ]);
   }
@@ -68,7 +62,7 @@ export class AcidsWithIndicatorsComponent extends ReactionBase implements OnInit
         id: 7,
         chemical: Chemical.PHENOLPHTHALEIN,
         type: ChemicalType.INDICATOR,
-        color: 'rgba(255, 255, 255, 0.3)'
+        color: 'rgb(240, 248, 255)'
       }
     ];
   }

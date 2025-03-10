@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { ChemicalElement, ChemicalType, ReactionResult } from '../acids/models/chemistry.models';
+import { ChemicalElement, ChemicalType, ReactionResult } from '../../core/models/chemistry.models';
 import { InputSelectComponent } from "../../shared/input-select/input-select.component";
 import { IItemSelect } from "../../core/interfaces/item-select.interface";
 import { getChemicalName } from "../../core/utils/helpers";
@@ -74,14 +74,18 @@ export class ReactionResultComponent {
     return this.result.precipitate?.color ?? this.reagents[0]?.color ?? 'transparent';
   }
 
+  get description(): string {
+    return this.result.description;
+  }
+
   get products(): string {
     return this.reagents
       .filter(reagent => reagent?.chemical &&
         reagent.type !== ChemicalType.INDICATOR &&
         reagent.type !== ChemicalType.IMPACT) // Оставляем только валидные реагенты
       .map(reagent => {
-        const match = getChemicalName(reagent.chemical).match(/\((.*?)\)/);
-        return match ? match[1] : ''; // Берем содержимое в скобках
+        const match = getChemicalName(reagent.chemical).match(/\((.*)\)/);
+        return match ? match[1] : ''; // Берем все внутри наружных скобок
       })
       .filter(name => name) // Убираем пустые значения
       .join(' + ');

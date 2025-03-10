@@ -5,23 +5,25 @@ import {
   ContainerType,
   createReactionKey,
   ReactionResult
-} from "./acids/models/chemistry.models";
+} from "../core/models/chemistry.models";
 
 export abstract class ReactionBase {
   indicators: ChemicalElement[] = [];
   impacts: ChemicalElement[] = [];
+
+  animatingTimeout: any;
   protected acids: ChemicalElement[] = [
     {
       id: 1,
       chemical: Chemical.HCl,
       type: ChemicalType.ACID,
-      color: 'rgba(255, 255, 255, 0.3)'
+      color: 'rgb(240, 248, 255)'
     },
     {
       id: 2,
       chemical: Chemical.H2SO4,
       type: ChemicalType.ACID,
-      color: 'rgba(255, 255, 255, 0.3)'
+      color: 'rgb(240, 248, 255)'
     }
   ];
 
@@ -104,11 +106,6 @@ export abstract class ReactionBase {
     return this.reagents.length >= this.reagentsCountWithoutAdditions && mainReagents.some(reagent => reagent.type === typeForAdd);
   }
 
-  isFullWithoutAdditions(): boolean {
-    return this.reagents.filter(reagent => reagent?.type !== ChemicalType.INDICATOR &&
-      reagent?.type !== ChemicalType.IMPACT).length >= this.reagentsCount;
-  }
-
   protected updateResult() {
     const chemicals: Chemical[] = this.reagents.map(reagent => reagent?.chemical);
 
@@ -168,14 +165,17 @@ export abstract class ReactionBase {
   protected animateResult(result: ReactionResult) {
     this.animating = true;
     this.currentReaction.result = result;
-    setTimeout(() => {
+    clearTimeout(this.animatingTimeout);
+    this.animatingTimeout = setTimeout(() => {
       this.animating = false;
-    }, 1000);
+    }, this.currentReaction.result.hasGas ? 3000 : 1000);
   }
 
   protected resetReactionsFlags() {
     this.reactionCompleted = false;
     this.isResultAlreadyExist = false;
+    this.animating = false;
+    clearTimeout(this.animatingTimeout);
     this.currentReaction.result = {};
   }
 

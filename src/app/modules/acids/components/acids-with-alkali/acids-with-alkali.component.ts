@@ -5,7 +5,7 @@ import {
   ChemicalType,
   ContainerType,
   createReactionKey
-} from "../../models/chemistry.models";
+} from "../../../../core/models/chemistry.models";
 import { ReactionBase } from "../../../reactionBase";
 import { getChemicalName } from "../../../../core/utils/helpers";
 
@@ -38,7 +38,7 @@ export class AcidsWithAlkaliComponent extends ReactionBase implements OnInit {
         color: 'rgba(220, 20, 60, 0.6)',
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.PHENOLPHTHALEIN]), {
-        color: 'rgba(255, 255, 255, 0.3)',
+        color: 'rgb(240, 248, 255)',
       }],
       // Основания + Индикаторы
       [createReactionKey([Chemical.NaOH, Chemical.LITMUS]), {
@@ -56,139 +56,17 @@ export class AcidsWithAlkaliComponent extends ReactionBase implements OnInit {
       // H2SO4 + основания
       [createReactionKey([Chemical.H2SO4, Chemical.NaOH]), {
         hasReaction: true,
-        color: 'rgba(255, 255, 255, 0.3)',
+        color: 'rgb(240, 248, 255)',
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.MgOH2]), {
-        hasReaction: false,
-        color: 'rgba(255, 255, 255, 0.3)',
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.MgOH2, type: ChemicalType.ALKALI, color: 'rgba(255, 255, 255, 1)'},
+        hasReaction: true,
+        color: 'rgb(240, 248, 255)',
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.CuOH2]), {
-        hasReaction: false,
-        color: 'rgba(255, 255, 255, 0.3)',
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.CuOH2, type: ChemicalType.ALKALI, color: 'rgba(50, 140, 255, 1)'},
+        hasReaction: true,
+        color: 'rgba(0, 150, 255, 0.6)',
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.NiOH2]), {
-        hasReaction: false,
-        color: 'rgba(255, 255, 255, 0.3)',
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.NiOH2, type: ChemicalType.ALKALI, color: 'rgba(80, 200, 120, 1)'},
-      }],
-      // H2SO4 + основания + индикаторы
-      [createReactionKey([Chemical.H2SO4, Chemical.NaOH, Chemical.LITMUS]), {
-        hasReaction: true,
-        color: 'rgba(138, 43, 226, 0.6)',
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.NaOH, Chemical.METHYL_ORANGE]), {
-        hasReaction: true,
-        color: 'rgba(255, 165, 0, 0.6)',
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.NaOH, Chemical.PHENOLPHTHALEIN]), {
-        hasReaction: true,
-        color: 'rgba(255, 255, 255, 0.3)',
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.MgOH2, Chemical.LITMUS]), {
-        hasReaction: false,
-        color: 'rgba(220, 20, 60, 0.6)',
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.MgOH2, type: ChemicalType.ALKALI, color: 'rgba(255, 255, 255, 1)'},
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.MgOH2, Chemical.METHYL_ORANGE]), {
-        hasReaction: false,
-        color: 'rgba(220, 20, 60, 0.6)',
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.MgOH2, type: ChemicalType.ALKALI, color: 'rgba(255, 255, 255, 1)'},
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.MgOH2, Chemical.PHENOLPHTHALEIN]), {
-        hasReaction: false,
-        color: 'rgba(255, 255, 255, 0.3)',
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.MgOH2, type: ChemicalType.ALKALI, color: 'rgba(255, 255, 255, 1)'},
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.CuOH2, Chemical.LITMUS]), {
-        hasReaction: false,
-        color: 'rgba(220, 20, 60, 0.6)',
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.CuOH2, type: ChemicalType.ALKALI, color: 'rgba(50, 140, 255, 1)'},
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.CuOH2, Chemical.METHYL_ORANGE]), {
-        hasReaction: false,
-        color: 'rgba(220, 20, 60, 0.6)',
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.CuOH2, type: ChemicalType.ALKALI, color: 'rgba(50, 140, 255, 1)'},
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.CuOH2, Chemical.PHENOLPHTHALEIN]), {
-        hasReaction: false,
-        color: 'rgba(255, 255, 255, 0.3)',
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.CuOH2, type: ChemicalType.ALKALI, color: 'rgba(50, 140, 255, 1)'},
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.NiOH2, Chemical.LITMUS]), {
-        hasReaction: false,
-        color: 'rgba(220, 20, 60, 0.6)',
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.NiOH2, type: ChemicalType.ALKALI, color: 'rgba(80, 200, 120, 1)'},
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.NiOH2, Chemical.METHYL_ORANGE]), {
-        hasReaction: false,
-        color: 'rgba(220, 20, 60, 0.6)',
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.NiOH2, type: ChemicalType.ALKALI, color: 'rgba(80, 200, 120, 1)'},
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.NiOH2, Chemical.PHENOLPHTHALEIN]), {
-        hasReaction: false,
-        color: 'rgba(255, 255, 255, 0.3)',
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.NiOH2, type: ChemicalType.ALKALI, color: 'rgba(80, 200, 120, 1)'},
-      }],
-      // Нагревание
-      [createReactionKey([Chemical.H2SO4, Chemical.MgOH2, Chemical.Temperature]), {
-        hasReaction: true,
-        color: 'rgba(255, 255, 255, 0.3)',
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.CuOH2, Chemical.Temperature]), {
-        hasReaction: true,
-        color: 'rgba(0, 150, 255, 0.6)',
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.NiOH2, Chemical.Temperature]), {
-        hasReaction: true,
-        color: 'rgba(50, 180, 70, 0.6)',
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.MgOH2, Chemical.Temperature, Chemical.LITMUS]), {
-        hasReaction: true,
-        color: 'rgba(255, 255, 255, 0.3)',
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.CuOH2, Chemical.Temperature, Chemical.LITMUS]), {
-        hasReaction: true,
-        color: 'rgba(0, 150, 255, 0.6)',
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.NiOH2, Chemical.Temperature, Chemical.LITMUS]), {
-        hasReaction: true,
-        color: 'rgba(50, 180, 70, 0.6)',
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.MgOH2, Chemical.Temperature, Chemical.METHYL_ORANGE]), {
-        hasReaction: true,
-        color: 'rgba(255, 255, 255, 0.3)',
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.CuOH2, Chemical.Temperature, Chemical.METHYL_ORANGE]), {
-        hasReaction: true,
-        color: 'rgba(0, 150, 255, 0.6)',
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.NiOH2, Chemical.Temperature, Chemical.METHYL_ORANGE]), {
-        hasReaction: true,
-        color: 'rgba(50, 180, 70, 0.6)',
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.MgOH2, Chemical.Temperature, Chemical.PHENOLPHTHALEIN]), {
-        hasReaction: true,
-        color: 'rgba(255, 255, 255, 0.3)',
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.CuOH2, Chemical.Temperature, Chemical.PHENOLPHTHALEIN]), {
-        hasReaction: true,
-        color: 'rgba(0, 150, 255, 0.6)',
-      }],
-      [createReactionKey([Chemical.H2SO4, Chemical.NiOH2, Chemical.Temperature, Chemical.PHENOLPHTHALEIN]), {
         hasReaction: true,
         color: 'rgba(50, 180, 70, 0.6)',
       }],
@@ -202,7 +80,7 @@ export class AcidsWithAlkaliComponent extends ReactionBase implements OnInit {
         id: 3,
         chemical: Chemical.NaOH,
         type: ChemicalType.ALKALI,
-        color: 'rgba(255, 255, 255, 0.3)'
+        color: 'rgb(240, 248, 255)'
       },
       {
         id:4,
@@ -244,7 +122,7 @@ export class AcidsWithAlkaliComponent extends ReactionBase implements OnInit {
         id: 9,
         chemical: Chemical.PHENOLPHTHALEIN,
         type: ChemicalType.INDICATOR,
-        color: 'rgba(255, 255, 255, 0.3)'
+        color: 'rgb(240, 248, 255)'
       }
     ];
 

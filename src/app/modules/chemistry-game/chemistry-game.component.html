@@ -9,22 +9,22 @@
     <div class="topics-container">
       <div class="topics-container__container">
         <div class="topics">
-          <h2>Раздел</h2>
+          <h2>Тема</h2>
           <menu-select-input
                         [items]="topics"
                         [selectedItem]="selectedTopic"
-                        [placeholder]="'Выберите раздел'"
+                        [placeholder]="'Выберите тему'"
                         (selectItem)="onSelectTopic($event)"></menu-select-input>
         </div>
       </div>
 
       <div class="topics-container__container">
         <div class="subtopics" *ngIf="selectedTopic?.subtopics?.length">
-          <h2>Тема</h2>
+          <h2>Химические свойства</h2>
           <menu-select-input
                         [items]="selectedTopic.subtopics"
                         [selectedItem]="selectedSubtopic"
-                        [placeholder]="'Выберите тему'"
+                        [placeholder]="'Выберите свойство'"
                         (selectItem)="onSelectSubtopic($event)"></menu-select-input>
         </div>
       </div>

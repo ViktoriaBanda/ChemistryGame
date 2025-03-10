@@ -4,7 +4,7 @@ import {
   ChemicalElement,
   ChemicalType,
   createReactionKey,
-} from "../../models/chemistry.models";
+} from "../../../../core/models/chemistry.models";
 import { ReactionBase } from "../../../reactionBase";
 import { getChemicalName } from "../../../../core/utils/helpers";
 
@@ -30,22 +30,18 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
       // HCl + металлы
       [createReactionKey([Chemical.HCl, Chemical.Mg]), {
         hasReaction: true,
-        color: 'rgba(255, 255, 255, 0.3)',
-        description: 'Водород (H2)',
+        color: 'rgb(240, 248, 255)',
         hasGas: true,
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.Mg, type: ChemicalType.METAL, color: 'rgba(169, 169, 169, 1)'},
+        gas: {chemical: Chemical.H2, type: ChemicalType.GAS, color: 'rgb(240, 248, 255)'},
       }],
       [createReactionKey([Chemical.HCl, Chemical.Zn]), {
         hasReaction: true,
-        color: 'rgba(255, 255, 255, 0.3)',
-        description: 'Водород (H2)',
+        color: 'rgb(240, 248, 255)',
         hasGas: true,
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.Zn, type: ChemicalType.METAL, color: 'rgba(179, 179, 179, 1)'},
+        gas: {chemical: Chemical.H2, type: ChemicalType.GAS, color: 'rgb(240, 248, 255)'},
       }],
       [createReactionKey([Chemical.HCl, Chemical.Cu]), {
-        color: 'rgba(255, 255, 255, 0.3)',
+        color: 'rgb(240, 248, 255)',
         hasPrecipitate: true,
         precipitate: {chemical: Chemical.Cu, type: ChemicalType.METAL, color: 'rgba(184, 115, 51, 1)'},
       }],
@@ -53,22 +49,18 @@ export class AcidsWithMetalsComponent extends ReactionBase implements OnInit {
       // H2SO4 + металлы
       [createReactionKey([Chemical.H2SO4, Chemical.Mg]), {
         hasReaction: true,
-        color: 'rgba(255, 255, 255, 0.3)',
+        color: 'rgb(240, 248, 255)',
         hasGas: true,
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.Mg, type: ChemicalType.METAL, color: 'rgba(169, 169, 169, 1)'},
-        description: 'Водород (H2)'
+        gas: {chemical: Chemical.H2, type: ChemicalType.GAS, color: 'rgb(240, 248, 255)'},
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.Zn]), {
         hasReaction: true,
-        color: 'rgba(255, 255, 255, 0.3)',
-        description: 'Водород (H2)',
+        color: 'rgb(240, 248, 255)',
         hasGas: true,
-        hasPrecipitate: true,
-        precipitate: {chemical: Chemical.Zn, type: ChemicalType.METAL, color: 'rgba(179, 179, 179, 1)'},
+        gas: {chemical: Chemical.H2, type: ChemicalType.GAS, color: 'rgb(240, 248, 255)'},
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.Cu]), {
-        color: 'rgba(255, 255, 255, 0.3)',
+        color: 'rgb(240, 248, 255)',
         hasPrecipitate: true,
         precipitate: {chemical: Chemical.Cu, type: ChemicalType.METAL, color: 'rgba(184, 115, 51, 1)'},
       }]

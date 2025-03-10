@@ -56,13 +56,10 @@
       [result]="currentReaction.result"
       [hasIndicators]="true"
       [canChooseIndicator]="((!!selectedAcid && !selectedReagent) || (!!selectedAcid && !!selectedReagent && selectedReagent.id === 3) || (!!selectedReagent && selectedReagent.id === 3))"
-      [hasImpact]="true"
-      [canChooseImpact]="selectedAcid && selectedReagent && (selectedReagent?.id >= 4 && selectedReagent?.id <= 6)"
       [animating]="animating"
       [reactionCompleted]="reactionCompleted"
       [isResultAlreadyExist]="isResultAlreadyExist"
       (indicatorSelected)="selectReagent(null, $event, ChemicalType.INDICATOR)"
-      (impactSelected)="selectReagent(null, $event, ChemicalType.IMPACT)"
       (reset)="resetExperiment()">
     </app-reaction-result>
   </div>

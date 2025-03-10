@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { ChemicalElement, ChemicalType, ContainerType } from '../acids/models/chemistry.models';
+import { ChemicalElement, ChemicalType, ContainerType } from '../../core/models/chemistry.models';
+import { getChemicalName } from "../../core/utils/helpers";
 
 @Component({
   selector: 'app-chemical-container',
@@ -10,4 +11,5 @@ export class ChemicalContainerComponent {
   @Input() element: ChemicalElement;
   protected readonly ChemicalType = ChemicalType;
   protected readonly ContainerType = ContainerType;
+  protected readonly getChemicalName = getChemicalName;
 }

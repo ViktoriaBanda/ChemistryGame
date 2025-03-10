@@ -5,7 +5,8 @@ export enum ChemicalType {
   METAL = 'METAL',
   SALT = 'SALT',
   OXIDE = 'OXIDE',
-  IMPACT = 'IMPACT'
+  IMPACT = 'IMPACT',
+  GAS = 'GAS'
 }
 
 export enum Chemical {
@@ -41,6 +42,14 @@ export enum Chemical {
   BaCl2 = 'BaCl2',
   CaCO3 = 'CaCO3',
   AgNO3 = 'AgNO3',
+  AgCl = 'AgCl',
+  BaSO4 = 'BaSO4',
+  CaSO4 = 'CaSO4',
+  AgSO4 = 'AgSO4',
+
+  // Газ
+  H2 = 'H2',
+  CO2 = 'CO2',
 
   // Условия
   Temperature = 'Temperature',
@@ -69,7 +78,13 @@ export const ChemicalNames: { [key in Chemical]: string } = {
   [Chemical.BaCl2]: 'Хлорид бария <br> (BaCl<sub>2</sub>)',
   [Chemical.CaCO3]: 'Карбонат кальция <br> (CaCO<sub>3</sub>)',
   [Chemical.AgNO3]: 'Нитрат серебра <br> (AgNO<sub>3</sub>)',
+  [Chemical.AgCl]: 'Хлорид серебра <br> (AgCl)',
+  [Chemical.BaSO4]: 'Сульфат бария <br> (BaSO<sub>4</sub>)',
+  [Chemical.CaSO4]: 'Сульфат кальция <br> (CaSO<sub>4</sub>)',
+  [Chemical.AgSO4]: 'Сульфат серебра <br> (AgSO<sub>4</sub>)',
 
+  [Chemical.H2]: 'Водород <br> (H<sub>2</sub>)',
+  [Chemical.CO2]: 'Углекислый газ <br> (CO<sub>2</sub>)',
   [Chemical.Temperature]: 'Нагревание'
 };
 
@@ -83,6 +98,7 @@ export interface ReactionResult {
   hasReaction?: boolean;
   description?: string;
   hasGas?: boolean;
+  gas?: ChemicalElement;
   hasPrecipitate?: boolean;
   precipitate?: ChemicalElement;
 }
