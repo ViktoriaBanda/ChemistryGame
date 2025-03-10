@@ -74,7 +74,7 @@ export const ChemicalNames: { [key in Chemical]: string } = {
   [Chemical.NaCl]: 'Хлорид натрия <br> (NaCl)',
 
   [Chemical.MgNO32]: 'Нитрат магния <br> (Mg(NO<sub>3</sub>)<sub>2</sub>)',
-  [Chemical.Na2CO3]: 'Карбонат натрия <br> (Na<sub>2</sub>(CO<sub>3</sub>))',
+  [Chemical.Na2CO3]: 'Карбонат натрия <br> (Na<sub>2</sub>CO<sub>3</sub>)',
   [Chemical.BaCl2]: 'Хлорид бария <br> (BaCl<sub>2</sub>)',
   [Chemical.CaCO3]: 'Карбонат кальция <br> (CaCO<sub>3</sub>)',
   [Chemical.AgNO3]: 'Нитрат серебра <br> (AgNO<sub>3</sub>)',
