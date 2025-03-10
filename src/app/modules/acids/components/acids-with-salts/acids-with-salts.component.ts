@@ -76,24 +76,24 @@ export class AcidsWithSaltsComponent extends ReactionBase implements OnInit {
         color: 'rgb(240, 248, 255)',
         hasGas: true,
         gas: {chemical: Chemical.H2, type: ChemicalType.GAS, color: 'rgb(240, 248, 255)'},
+        description: 'Бурное выделение газа'
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.BaCl2]), {
         hasReaction: true,
         color: 'rgb(240, 248, 255)',
         hasPrecipitate: true,
         precipitate: {chemical: Chemical.BaSO4, type: ChemicalType.SALT, color: 'rgba(255, 255, 255, 1)'},
-        description: 'Бурное выделение газа'
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.CaCO3]), {
         hasReaction: true,
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: 'rgb(240, 248, 255)',
         hasPrecipitate: true,
         precipitate: {chemical: Chemical.CaSO4, type: ChemicalType.METAL, color: 'rgba(255, 255, 255, 1)'},
         hasGas: true,
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.AgNO3]), {
         hasReaction: true,
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: 'rgb(240, 248, 255)',
         hasPrecipitate: true,
         precipitate: {chemical: Chemical.AgSO4, type: ChemicalType.METAL, color: 'rgba(255, 255, 255, 1)'},
       }]
