@@ -37,7 +37,7 @@
   }
 
   .topics, .subtopics {
-    min-width: 300px;
+    min-width: 250px;
     background-color: white;
     padding: 16px;
     border-radius: 8px;
@@ -73,5 +73,27 @@
       width: auto;
       height: 450px;
     }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .content-area {
+    &.experiment {
+      height: unset;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .chemistry-game {
+    padding: 16px;
+  }
+
+  .content-area {
+    padding: 12px;
+  }
+
+  .topics-container__container {
+    padding: 12px;
   }
 }

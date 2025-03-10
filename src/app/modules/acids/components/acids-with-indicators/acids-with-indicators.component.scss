@@ -119,3 +119,14 @@
     line-height: 1.2;
   }
 }
+
+@media screen and (max-width: 992px) {
+  .laboratory-container {
+   flex-direction: column;
+  }
+
+  .substances-panel {
+    width: 100%;
+    overflow: unset;
+  }
+}

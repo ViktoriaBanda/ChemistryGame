@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
   gap: 30px;
   background-color: white;
   padding: 16px;
@@ -25,6 +26,12 @@
 
     span {
       min-width: 64px;
+    }
+
+    .offset {
+      @media screen and (max-width: 480px) {
+        display: none;
+      }
     }
 
     .title {
@@ -210,5 +217,24 @@
     &__center {
       gap: 5px;
     }
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .result-container__center {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .indicators {
+    order: 0;
+  }
+
+  .impacts {
+    order: 1;
+  }
+
+  .result-flask {
+    order: 2;
   }
 }

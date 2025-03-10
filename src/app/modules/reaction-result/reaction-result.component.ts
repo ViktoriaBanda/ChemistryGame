@@ -141,5 +141,9 @@ export class ReactionResultComponent {
     };
   }
 
+  isMobile(mobileWidth: number): boolean {
+    return window.innerWidth <= mobileWidth;
+  }
+
   protected readonly getChemicalName = getChemicalName;
 }
