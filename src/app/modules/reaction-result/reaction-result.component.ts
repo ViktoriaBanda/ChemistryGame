@@ -10,8 +10,8 @@ import { getChemicalName } from "../../core/utils/helpers";
   styleUrls: ['./reaction-result.component.scss']
 })
 export class ReactionResultComponent {
-  @ViewChild('selectIndicator') selectIndicator : InputSelectComponent;
-  @ViewChild('selectImpact') selectImpact : InputSelectComponent;
+  @ViewChild('selectIndicator') selectIndicator: InputSelectComponent;
+  @ViewChild('selectImpact') selectImpact: InputSelectComponent;
 
   @Input() reagents: ChemicalElement[] = [];
   @Input() result: ReactionResult = {};
@@ -35,7 +35,7 @@ export class ReactionResultComponent {
     {id: 1, title: 'Лакмус', icon: 'assets/icons/lakmus.svg'},
     {id: 2, title: 'Метилоранж', icon: 'assets/icons/methylorange.svg'},
     {id: 3, title: 'Фенолфталеин', icon: 'assets/icons/phenolphtaleini.svg'}
-   ];
+  ];
 
   impacts: IItemSelect[] = [
     {id: 1, title: 'Нагревание', icon: 'assets/icons/temperature.svg'}
@@ -93,6 +93,25 @@ export class ReactionResultComponent {
       })
       .filter(name => name) // Убираем пустые значения
       .join(' + ');
+  }
+
+  get reactionResultTitle(): string {
+    if (!this.reactionCompleted) {
+      return 'Выберите реагент';
+    }
+    else if (this.hasReaction && !this.hasReactionWithIndicator) {
+      return 'Реакция прошла успешно';
+    }
+    else if (this.hasReaction && this.hasReactionWithIndicator) {
+      return 'Изменение окраски индикатора';
+    }
+    else if (!this.hasReaction && this.hasReactionWithIndicator) {
+      return 'Окраска индикатора не изменяется';
+    }
+    else if (!this.hasReaction && this.hasReactionWithIndicator) {
+      return 'Окраска индикатора не изменяется';
+    }
+    return 'Реакция не идет';
   }
 
   resetExperiment() {

@@ -38,7 +38,7 @@ export class AcidsWithIndicatorsComponent extends ReactionBase implements OnInit
         color: 'rgba(220, 20, 60, 0.6)'
       }],
       [createReactionKey([Chemical.HCl, Chemical.PHENOLPHTHALEIN]), {
-        hasReaction: true,
+        hasReaction: false,
         hasReactionWithIndicator: true,
         color: 'rgb(240, 248, 255)'
       }],
@@ -55,7 +55,7 @@ export class AcidsWithIndicatorsComponent extends ReactionBase implements OnInit
         color: 'rgba(220, 20, 60, 0.6)'
       }],
       [createReactionKey([Chemical.H2SO4, Chemical.PHENOLPHTHALEIN]), {
-        hasReaction: true,
+        hasReaction: false,
         hasReactionWithIndicator: true,
         color: 'rgb(240, 248, 255)'
       }]
