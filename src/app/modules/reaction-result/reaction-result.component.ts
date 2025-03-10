@@ -119,7 +119,7 @@ export class ReactionResultComponent {
     this.result = {};
     this.reactionCompleted = false;
     this.selectIndicator.reset();
-    this.selectImpact.reset();
+    this.selectImpact?.reset();
     this.reset.emit();
   }
 
